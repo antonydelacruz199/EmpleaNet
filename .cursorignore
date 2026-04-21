@@ -1,0 +1,51 @@
+# Dependencias
+node_modules
+.venv
+venv
+
+# Builds y cobertura
+dist
+build
+coverage
+.turbo
+.cache
+
+# Python cache
+__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Logs
+*.log
+
+# Entornos y secretos
+.env
+.env.*
+!.env.example
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+
+# Artefactos grandes o generados
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Base de datos local / binarios si aparecen luego
+*.sqlite
+*.db
+
+# Archivos compilados o temporales
+*.pyc
+*.pyo
+*.pyd
+*.tsbuildinfo
+
+# Editor
+.vscode
+.idea

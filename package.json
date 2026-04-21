@@ -1,0 +1,14 @@
+{
+  "name": "empleanet",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @empleanet/web dev",
+    "dev:api": "pnpm --filter @empleanet/api dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r --if-present lint"
+  }
+}

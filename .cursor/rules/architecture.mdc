@@ -1,0 +1,38 @@
+---
+description: Reglas de arquitectura y lectura obligatoria para EmpleaNet
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Reglas base de EmpleaNet
+
+Antes de proponer o modificar código, revisa estos documentos del proyecto:
+
+- docs/01-vision-producto.md
+- docs/02-alcance-funcional.md
+- docs/03-arquitectura.md
+- docs/04-seguridad.md
+- docs/05-modelo-datos.md
+- docs/06-contratos-api.md
+- docs/07-recoleccion-empleos.md
+- docs/08-motor-recomendacion.md
+- docs/09-reglas-codigo.md
+- docs/10-roadmap.md
+
+## Reglas obligatorias
+- No sobreingenierizar.
+- No crear carpetas profundas innecesarias.
+- No confundir código limpio con crear un archivo por cada proceso.
+- No duplicar lógica, tipos, validaciones ni utilidades.
+- Mantener un solo cliente HTTP en frontend.
+- Mantener controladores ligeros.
+- Mover lógica de negocio a services.
+- Mover acceso a datos a repositories.
+- Mover validación a schemas.
+- Mantener consistencia de nombres.
+- No crear módulos fuera del alcance actual.
+- Toda decisión debe respetar el alcance actual: recopilación, búsqueda y recomendación de empleos.
+
+## Prioridad
+Si existe conflicto entre una propuesta nueva y los documentos del proyecto, los documentos del proyecto tienen prioridad.

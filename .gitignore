@@ -1,0 +1,35 @@
+# Node / frontend / backend
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.tsbuildinfo
+.turbo/
+.cache/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Cursor / archivos temporales locales
+.cursor/**/workspaceStorage/
+.cursor/**/History/
