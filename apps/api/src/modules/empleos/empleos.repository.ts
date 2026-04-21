@@ -21,4 +21,10 @@ export class EmpleosRepository {
   findAll(): Promise<Empleo[]> {
     return Promise.resolve(structuredClone(empleosSeed));
   }
+
+  async findById(id: string): Promise<Empleo | null> {
+    const empleos = await this.findAll();
+    const empleo = empleos.find((item) => item.id === id);
+    return empleo ?? null;
+  }
 }

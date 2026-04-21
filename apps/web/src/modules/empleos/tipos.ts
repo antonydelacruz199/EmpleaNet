@@ -5,3 +5,10 @@ export type Empleo = {
   location?: string;
   tags?: string[];
 };
+
+export type EmpleoDetalle = Empleo & {
+  descripcion?: string;
+  urlOferta?: string;
+  salario?: string;
+  fechaPublicacion?: string;
+};

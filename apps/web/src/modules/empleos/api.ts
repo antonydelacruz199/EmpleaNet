@@ -1,5 +1,5 @@
 import { httpJson } from "../../core/http/clienteHttp";
-import type { Empleo } from "./tipos";
+import type { Empleo, EmpleoDetalle } from "./tipos";
 
 export async function fetchEmpleos(filters: { q?: string; location?: string }): Promise<Empleo[]> {
   return httpJson<Empleo[]>("/empleos", {
@@ -8,4 +8,8 @@ export async function fetchEmpleos(filters: { q?: string; location?: string }): 
       location: filters.location,
     },
   });
+}
+
+export async function fetchEmpleoById(id: string): Promise<EmpleoDetalle> {
+  return httpJson<EmpleoDetalle>(`/empleos/${encodeURIComponent(id)}`);
 }

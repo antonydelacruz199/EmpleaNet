@@ -5,6 +5,7 @@ import type { Empleo } from "./tipos";
 export function EmpleosPage() {
   const [empleos, setEmpleos] = useState<Empleo[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -14,6 +15,8 @@ export function EmpleosPage() {
         if (!cancelled) setEmpleos(data);
       } catch {
         if (!cancelled) setError("No se pudieron cargar los empleos.");
+      } finally {
+        if (!cancelled) setCargando(false);
       }
     })();
     return () => {
@@ -22,6 +25,7 @@ export function EmpleosPage() {
   }, []);
 
   if (error) return <p role="alert">{error}</p>;
+  if (cargando) return <p>Cargando empleos...</p>;
 
   return (
     <section>
@@ -34,6 +38,7 @@ export function EmpleosPage() {
             <li key={job.id}>
               <strong>{job.title}</strong>
               {job.company ? ` — ${job.company}` : ""}
+              {job.location ? ` (${job.location})` : ""}
             </li>
           ))}
         </ul>

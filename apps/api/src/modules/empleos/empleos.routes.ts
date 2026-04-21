@@ -9,3 +9,7 @@ export const empleosRouter: ExpressRouter = Router();
 empleosRouter.get("/", (req, res, next) => {
   void controller.list(req, res, next);
 });
+
+empleosRouter.get("/:id", (req, res, next) => {
+  void controller.getById(req, res, next);
+});

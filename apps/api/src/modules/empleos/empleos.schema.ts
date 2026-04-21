@@ -28,3 +28,9 @@ export const listEmpleosQuerySchema = z.object({
 });
 
 export type ListEmpleosQuery = z.infer<typeof listEmpleosQuerySchema>;
+
+export const empleoIdParamsSchema = z.object({
+  id: z.string().trim().min(1),
+});
+
+export type EmpleoIdParams = z.infer<typeof empleoIdParamsSchema>;

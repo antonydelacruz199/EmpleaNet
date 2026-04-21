@@ -22,4 +22,8 @@ export class EmpleosService {
       return matchesQuery && matchesLocation;
     });
   }
+
+  async getById(id: string) {
+    return this.empleosRepository.findById(id);
+  }
 }
