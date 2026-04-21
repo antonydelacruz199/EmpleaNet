@@ -1,53 +1,23 @@
 # Contratos API - EmpleaNet
 
 ## Convenciones
-- prefijo base: /api
-- respuestas JSON
+- prefijo base: `/api`
+- respuestas en JSON
 - mensajes de error controlados
 - validación de entrada obligatoria
+- no documentar como implementado lo que todavía sigue pendiente
 
-## Módulo empleos
+## Estado actual
+Actualmente la API ya expone un primer flujo funcional básico del módulo de empleos, pero todavía no tiene persistencia real conectada.  
+Por ahora, `empleos.repository.ts` sigue usando datos simulados o arreglos en memoria.
 
-### GET /api/empleos
-Retorna listado de empleos
+## Endpoints implementados actualmente
 
-Filtros posibles:
-- texto
-- ubicacion
-- modalidad
-- fecha
-- fuente
+### GET /api/health
+Verifica que la API está operativa.
 
-### GET /api/empleos/:id
-Retorna detalle de un empleo
-
-## Módulo perfil
-
-### GET /api/perfil/:id
-Retorna el perfil actual
-
-### POST /api/perfil
-Crea perfil
-
-### PUT /api/perfil/:id
-Actualiza perfil
-
-## Módulo recomendaciones
-
-### GET /api/recomendaciones/:perfilId
-Retorna recomendaciones calculadas para un perfil
-
-## Módulo fuentes
-
-### GET /api/fuentes
-Lista fuentes registradas
-
-### POST /api/fuentes
-Registra una nueva fuente
-
-### PUT /api/fuentes/:id
-Actualiza fuente
-
-## Notas
-- no definir todavía endpoints innecesarios
-- los contratos pueden crecer, pero deben mantenerse simples y consistentes
+Respuesta esperada:
+```json
+{
+  "status": "ok"
+}

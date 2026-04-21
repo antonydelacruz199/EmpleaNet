@@ -69,3 +69,7 @@ Responsabilidades:
 - cada módulo debe tener una responsabilidad clara
 - no duplicar lógica entre frontend, backend y worker
 - no crear carpetas o capas innecesarias
+
+## Estado técnico actual
+La arquitectura está definida, pero el módulo `empleos` todavía utiliza datos simulados en el repository.
+La persistencia real con SQLite es el siguiente paso antes de avanzar a perfil, recomendaciones o recolección web real.

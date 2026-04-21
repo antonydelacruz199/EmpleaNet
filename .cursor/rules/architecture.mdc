@@ -9,6 +9,7 @@ alwaysApply: true
 
 Antes de proponer o modificar código, revisa estos documentos del proyecto:
 
+- docs/00-estado-actual.md
 - docs/01-vision-producto.md
 - docs/02-alcance-funcional.md
 - docs/03-arquitectura.md
@@ -19,6 +20,15 @@ Antes de proponer o modificar código, revisa estos documentos del proyecto:
 - docs/08-motor-recomendacion.md
 - docs/09-reglas-codigo.md
 - docs/10-roadmap.md
+
+## Estado actual obligatorio
+- Actualmente `apps/api/src/modules/empleos/empleos.repository.ts` todavía usa datos simulados o arreglos en memoria.
+- No asumir persistencia real hasta que SQLite quede conectado.
+- No asumir que el recolector ya obtiene datos reales de la web.
+- No implementar `auth` en esta fase.
+- No avanzar a perfil ni recomendaciones hasta cerrar persistencia real del módulo empleos.
+- No documentar funcionalidades futuras como si ya existieran.
+- Si una funcionalidad está planificada pero no implementada, debe marcarse como pendiente.
 
 ## Reglas obligatorias
 - No sobreingenierizar.
