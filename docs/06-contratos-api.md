@@ -8,8 +8,7 @@
 - no documentar como implementado lo que todavía sigue pendiente
 
 ## Estado actual
-Actualmente la API ya expone un primer flujo funcional básico del módulo de empleos, pero todavía no tiene persistencia real conectada.  
-Por ahora, `empleos.repository.ts` sigue usando datos simulados o arreglos en memoria.
+La API expone el módulo de empleos con persistencia en SQLite: `GET /api/empleos` y `GET /api/empleos/:id` leen desde la base de datos.
 
 ## Endpoints implementados actualmente
 

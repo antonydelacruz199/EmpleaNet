@@ -21,16 +21,10 @@ No avanzar a la siguiente fase dejando deuda importante en la anterior.
 - `EmpleosPage.tsx` consumiendo datos desde la API
 
 ### Restricción actual
-El módulo `empleos` todavía usa datos simulados o arreglos en memoria en `empleos.repository.ts`.
+Ninguna bloqueante respecto a persistencia de empleos: SQLite ya está conectado.
 
-## Paso actual obligatorio
-Reemplazar los mocks de `empleos.repository.ts` por persistencia real en SQLite.
-
-Esto incluye:
-- conectar `apps/api/src/core/db/conexion.ts`
-- usar `database/schema.sql`
-- usar `database/seeds.sql`
-- hacer que `GET /api/empleos` y `GET /api/empleos/:id` lean desde SQLite
+## Paso actual sugerido
+Cerrar filtros básicos en SQL para `GET /api/empleos` y la pantalla de detalle de empleo en el frontend.
 
 ## Fase 1 - Base del proyecto
 - definir estructura del monorepo

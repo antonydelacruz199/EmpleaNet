@@ -71,5 +71,4 @@ Responsabilidades:
 - no crear carpetas o capas innecesarias
 
 ## Estado técnico actual
-La arquitectura está definida, pero el módulo `empleos` todavía utiliza datos simulados en el repository.
-La persistencia real con SQLite es el siguiente paso antes de avanzar a perfil, recomendaciones o recolección web real.
+El módulo `empleos` ya persiste y lee ofertas desde SQLite; el siguiente paso natural es cerrar filtros en API y detalle en frontend antes de perfil, recomendaciones o recolección web real.

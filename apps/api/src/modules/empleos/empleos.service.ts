@@ -13,8 +13,9 @@ export class EmpleosService {
       const matchesQuery =
         q === undefined ||
         empleo.title.toLowerCase().includes(q) ||
-        empleo.company?.toLowerCase().includes(q) ||
-        empleo.tags?.some((tag) => tag.toLowerCase().includes(q));
+        Boolean(empleo.company?.toLowerCase().includes(q)) ||
+        Boolean(empleo.descripcion?.toLowerCase().includes(q)) ||
+        Boolean(empleo.tags?.some((tag) => tag.toLowerCase().includes(q)));
 
       const matchesLocation =
         location === undefined || empleo.location?.toLowerCase().includes(location);

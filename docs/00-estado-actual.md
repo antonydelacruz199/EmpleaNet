@@ -17,13 +17,13 @@ El proyecto ya tiene arquitectura base, documentación canónica, reglas de Curs
 - cliente HTTP único en frontend
 - seguridad base centralizada en backend
 - documentación base del proyecto creada
+- persistencia del módulo empleos con SQLite (`better-sqlite3`, `database/schema.sql`, `database/seeds.sql`, inicialización en desarrollo)
 
 ## Restricción técnica actual
-Actualmente `apps/api/src/modules/empleos/empleos.repository.ts` todavía devuelve datos simulados o arreglos en memoria.
+Ninguna bloqueante para avanzar a filtros reales en API o detalle de empleo en frontend.
 
 ## No implementado todavía
-- persistencia real del módulo empleos con SQLite
-- filtros reales en GET /api/empleos
+- filtros reales en GET /api/empleos (más allá del filtro en memoria sobre resultados cargados)
 - detalle completo de empleo en frontend con ruta dedicada
 - módulo perfil funcional
 - módulo recomendaciones funcional
@@ -33,14 +33,8 @@ Actualmente `apps/api/src/modules/empleos/empleos.repository.ts` todavía devuel
 - pruebas automatizadas completas
 
 ## Regla de avance actual
-No avanzar a perfil ni recomendaciones hasta reemplazar los mocks de `empleos.repository.ts` por persistencia real con SQLite.
+Puede avanzarse a filtros SQL y detalle de empleo en frontend según roadmap; perfil y recomendaciones siguen pendientes de diseño de producto.
 
-## Siguiente paso obligatorio
-Conectar:
-- `apps/api/src/core/db/conexion.ts`
-- `database/schema.sql`
-- `database/seeds.sql`
-- `apps/api/src/modules/empleos/empleos.repository.ts`
-
-Objetivo:
-que GET /api/empleos y GET /api/empleos/:id lean desde SQLite y no desde datos simulados.
+## Siguiente paso sugerido
+- filtros básicos en SQL para GET /api/empleos
+- pantalla de detalle de empleo en frontend

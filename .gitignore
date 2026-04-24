@@ -33,3 +33,6 @@ Thumbs.db
 # Cursor / archivos temporales locales
 .cursor/**/workspaceStorage/
 .cursor/**/History/
+
+# SQLite local
+database/*.db

@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import type { Express } from "express";
 import { env } from "./config/env.js";
-import { getConexion } from "./core/db/conexion.js";
+import { getDb } from "./core/db/conexion.js";
 import { errorHandler } from "./core/middlewares/errorHandler.js";
 import { notFound } from "./core/middlewares/notFound.js";
 import { setupSecurity } from "./core/security/setupSecurity.js";
@@ -13,7 +13,7 @@ import { recomendacionesRouter } from "./modules/recomendaciones/recomendaciones
 
 export function createApp(): Express {
   const app = express();
-  getConexion();
+  getDb();
 
   setupSecurity(app);
   app.use(
