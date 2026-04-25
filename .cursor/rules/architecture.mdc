@@ -7,7 +7,7 @@ alwaysApply: true
 
 # Reglas base de EmpleaNet
 
-Antes de proponer o modificar código, revisa estos documentos del proyecto:
+Antes de proponer o modificar c?digo, revisa estos documentos del proyecto:
 
 - docs/00-estado-actual.md
 - docs/01-vision-producto.md
@@ -21,27 +21,22 @@ Antes de proponer o modificar código, revisa estos documentos del proyecto:
 - docs/09-reglas-codigo.md
 - docs/10-roadmap.md
 
-## Estado actual obligatorio
-- El módulo `empleos` lee desde SQLite mediante `apps/api/src/core/db/conexion.ts` y `apps/api/src/modules/empleos/empleos.repository.ts` (sin datos simulados en memoria).
-- No asumir que el recolector ya obtiene datos reales de la web.
-- No implementar `auth` en esta fase.
-- Perfil y recomendaciones siguen pendientes de implementación funcional; no confundir con lo ya expuesto en API.
-- No documentar funcionalidades futuras como si ya existieran.
-- Si una funcionalidad está planificada pero no implementada, debe marcarse como pendiente.
+## Estado actual y Fase 2.3 (recolecci?n)
+- El m?dulo `empleos` persiste en SQLite; la API ya expone listado y detalle.
+- **Siguiente fase:** primera integraci?n real del worker con **Remotive API** como **?nica** fuente inicial.
+- **No** scraping HTML en 2.3; **no** m?ltiples fuentes en 2.3; **no** otra fuente que no sea Remotive en 2.3.
+- **No** tocar `perfil`, `recomendaciones` ni `auth` en 2.3.
+- Flujo worker: extraer ? normalizar ? deduplicar ? guardar en SQLite (misma base que consume `apps/api`).
 
 ## Reglas obligatorias
 - No sobreingenierizar.
 - No crear carpetas profundas innecesarias.
-- No confundir código limpio con crear un archivo por cada proceso.
-- No duplicar lógica, tipos, validaciones ni utilidades.
+- No confundir c?digo limpio con crear un archivo por cada proceso.
+- No duplicar l?gica, tipos, validaciones ni utilidades.
 - Mantener un solo cliente HTTP en frontend.
-- Mantener controladores ligeros.
-- Mover lógica de negocio a services.
-- Mover acceso a datos a repositories.
-- Mover validación a schemas.
+- Controladores ligeros; l?gica de negocio en services; datos en repositories; validaci?n en schemas.
 - Mantener consistencia de nombres.
-- No crear módulos fuera del alcance actual.
-- Toda decisión debe respetar el alcance actual: recopilación, búsqueda y recomendación de empleos.
+- Si hay conflicto con los docs del proyecto, prevalecen los docs.
 
 ## Prioridad
-Si existe conflicto entre una propuesta nueva y los documentos del proyecto, los documentos del proyecto tienen prioridad.
+Los documentos en `docs/` definen el alcance; no asumir funcionalidades no documentadas.

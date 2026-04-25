@@ -4,24 +4,8 @@ import { EmpleosRepository } from "./empleos.repository.js";
 export class EmpleosService {
   private readonly empleosRepository = new EmpleosRepository();
 
-  async list(query: ListEmpleosQuery) {
-    const empleos = await this.empleosRepository.findAll();
-    const q = query.q?.toLowerCase();
-    const location = query.location?.toLowerCase();
-
-    return empleos.filter((empleo) => {
-      const matchesQuery =
-        q === undefined ||
-        empleo.title.toLowerCase().includes(q) ||
-        Boolean(empleo.company?.toLowerCase().includes(q)) ||
-        Boolean(empleo.descripcion?.toLowerCase().includes(q)) ||
-        Boolean(empleo.tags?.some((tag) => tag.toLowerCase().includes(q)));
-
-      const matchesLocation =
-        location === undefined || empleo.location?.toLowerCase().includes(location);
-
-      return matchesQuery && matchesLocation;
-    });
+  list(query: ListEmpleosQuery) {
+    return this.empleosRepository.listFiltrado(query);
   }
 
   async getById(id: string) {

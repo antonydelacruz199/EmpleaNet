@@ -12,7 +12,7 @@ export function EmpleosPage() {
     void (async () => {
       try {
         const data = await fetchEmpleos({});
-        if (!cancelled) setEmpleos(data);
+        if (!cancelled) setEmpleos(data.empleos);
       } catch {
         if (!cancelled) setError("No se pudieron cargar los empleos.");
       } finally {

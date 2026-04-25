@@ -3,6 +3,7 @@ export type Empleo = {
   title: string;
   company?: string;
   location?: string;
+  modalidad?: string;
   tags?: string[];
   descripcion?: string;
   urlOferta?: string;
@@ -11,3 +12,10 @@ export type Empleo = {
 };
 
 export type EmpleoDetalle = Empleo;
+
+export type ListadoEmpleos = {
+  empleos: Empleo[];
+  page: number;
+  limit: number;
+  total: number;
+};

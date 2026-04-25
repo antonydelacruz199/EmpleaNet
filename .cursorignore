@@ -35,6 +35,7 @@ Thumbs.db
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+*.tsbuildinfo
 
 # Base de datos local / binarios si aparecen luego
 *.sqlite
@@ -49,3 +50,6 @@ yarn.lock
 # Editor
 .vscode
 .idea
+
+# Documentación histórica detallada
+docs/fases/

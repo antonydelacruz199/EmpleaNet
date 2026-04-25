@@ -1,71 +1,44 @@
-
----
-
-## `docs/07-recoleccion-empleos.md`
-
-```md
 # Recolección de empleos - EmpleaNet
 
 ## Objetivo
-El recolector de EmpleaNet obtendrá ofertas laborales desde fuentes externas, transformará la información a un formato uniforme y la guardará en el sistema para que luego pueda ser consultada desde la API.
+El recolector obtiene ofertas laborales desde una fuente externa, normaliza y persiste ofertas en el modelo de EmpleaNet (SQLite) para que queden accesibles vía `GET /api/empleos`.
 
 ## Estado actual
-El worker de recolección ya tiene estructura base, pero todavía no implementa una extracción real operativa desde una fuente externa.
+El worker en `workers/recolector` tiene estructura mínima; no hay aún **integración productiva** con una API externa.
 
-Actualmente existen los archivos base del worker:
-- `extractores.py`
-- `normalizadores.py`
-- `repositorio.py`
-- `__main__.py`
+## Fase 2.3 — fuente única: Remotive API
+- La **primera y única** integración real de esta fase es **Remotive API**.
+- Se usa para validar el flujo completo (extraer, normalizar, guardar) sin depender de HTML inestable.
 
-Sin embargo, la recolección web real aún no forma parte del flujo funcional validado del sistema.
+## Fuera de alcance en 2.3
+- no scraping de HTML
+- no segundas fuentes ni múltiples conectores en paralelo
+- no mezclar lógica del worker en `apps/api` o en el frontend
+- no tocar `perfil`, `recomendaciones` ni `auth`
+- no almacenar HTML bruto
 
-## Flujo objetivo del recolector
-1. leer fuente configurada
-2. extraer datos
-3. limpiar y normalizar contenido
-4. validar estructura mínima
-5. deduplicar
-6. guardar resultado
-7. registrar ejecución
+## Flujo
+1. Consultar Remotive API (acuerdo con sus términos y límites).
+2. Extraer ofertas.
+3. Normalizar a campos alineados con la tabla `empleo`.
+4. Deduplicar (estrategia mínima, según diseño de la fase).
+5. Insertar/actualizar en SQLite (misma base que la API local).
+6. Comprobar listado y filtros vía `GET /api/empleos`.
 
-## Responsabilidades del recolector
-- extraer empleos desde fuentes externas
-- convertir contenido en un formato uniforme
-- evitar duplicados
-- guardar empleos válidos
-- registrar errores de extracción y normalización
+## Condiciones de integración
+- conservar enlace a la oferta original
+- registrar Remotive en `fuente_empleo` (identificable como origen)
+- asumir retraso de la API pública (~24 h en documentación pública)
+- no redistribuir ofertas fuera de lo permitido por Remotive
 
-## Reglas
-- no mezclar scraping con lógica de frontend
-- no mezclar scraping con la API pública
-- no guardar HTML innecesario o peligroso
-- no asumir que una fuente externa será estable
-- registrar cambios importantes de estructura en una fuente
-- tratar toda fuente externa como entrada no confiable
-- no implementar múltiples fuentes simultáneamente en esta fase
+## Campos mínimos tras normalización
+Alineado con el modelo: `fuente_id`, título, empresa, ubicación, modalidad, descripción, `url_oferta`, fecha de publicación cuando exista en origen.
 
-## Regla de implementación actual
-La recolección web real se desarrollará solo después de cerrar la persistencia real del módulo `empleos` en SQLite.
-
-Antes de implementar scraping real, debe estar resuelto:
-- `conexion.ts`
-- `schema.sql`
-- `seeds.sql`
-- `empleos.repository.ts` leyendo desde SQLite
-
-## Alcance inicial del recolector
-Cuando se implemente la recolección real:
-- se comenzará con una sola fuente externa
-- se priorizará un flujo simple: extraer → normalizar → guardar
-- no se desarrollarán varios extractores al mismo tiempo
-- no se introducirá sobreingeniería temprana
-
-## Estructura mínima del worker
-- `extractores.py`
-- `normalizadores.py`
-- `repositorio.py`
-- `__main__.py`
+## Estructura actual del paquete
+- `extractores.py` — conexión a la API y crudo
+- `normalizadores.py` — mapeo a columnas de `empleo`
+- `repositorio.py` — escritura a SQLite
+- `__main__.py` — punto de entrada
 
 ## Resultado esperado
-El worker debe producir empleos listos para búsqueda y recomendación, no datos crudos sin tratamiento.
+Ejecución manual del worker que carga ofertas reales de Remotive; visibles en el mismo `GET /api/empleos` y detalle `GET /api/empleos/:id` (sin endpoints nuevos obligatorios).

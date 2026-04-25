@@ -18,7 +18,7 @@ export function createApp(): Express {
   setupSecurity(app);
   app.use(
     cors({
-      origin: env.CORS_ORIGIN ?? true,
+      origin: env.CORS_ORIGIN || "http://localhost:5173",
       credentials: true,
     }),
   );

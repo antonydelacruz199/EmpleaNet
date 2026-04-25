@@ -1,40 +1,38 @@
 # Estado actual del proyecto - EmpleaNet
 
 ## Estado general
-El proyecto ya tiene arquitectura base, documentación canónica, reglas de Cursor, frontend y backend ejecutables.
+El proyecto ya tiene arquitectura base, documentación canónica, frontend y backend operativos, worker base y persistencia real del módulo `empleos` en SQLite.
 
 ## Implementado actualmente
 - estructura monorepo definida
 - apps/web operativo
 - apps/api operativo
-- worker base creado en workers/recolector
-- endpoint GET /api/health operativo
-- endpoint GET /api/empleos operativo
-- endpoint GET /api/empleos/:id operativo
-- database/schema.sql creado
-- database/seeds.sql creado
-- EmpleosPage.tsx consume listado desde la API
-- cliente HTTP único en frontend
-- seguridad base centralizada en backend
-- documentación base del proyecto creada
-- persistencia del módulo empleos con SQLite (`better-sqlite3`, `database/schema.sql`, `database/seeds.sql`, inicialización en desarrollo)
+- worker base creado en `workers/recolector`
+- endpoint `GET /api/health` operativo
+- endpoint `GET /api/empleos` operativo
+- endpoint `GET /api/empleos/:id` operativo
+- persistencia real con SQLite en el módulo `empleos`
+- filtros SQL en `/api/empleos`
+- paginación básica en `/api/empleos`
+- `database/schema.sql` y `database/seeds.sql` operativos
 
 ## Restricción técnica actual
-Ninguna bloqueante para avanzar a filtros reales en API o detalle de empleo en frontend.
+- El cierre **visual** del módulo `empleos` en frontend aún no está hecho.
+- **Fase 2.3 (siguiente):** primera recolección real; fuente **única** = **Remotive API**; sin scraping; sin otras fuentes; sin tocar `perfil`, `recomendaciones` ni `auth`.
 
-## No implementado todavía
-- filtros reales en GET /api/empleos (más allá del filtro en memoria sobre resultados cargados)
-- detalle completo de empleo en frontend con ruta dedicada
-- módulo perfil funcional
-- módulo recomendaciones funcional
-- recolección real desde una fuente web externa
-- deduplicación real de empleos recolectados
-- autenticación
-- pruebas automatizadas completas
+## Reglas de acotación de la Fase 2.3
+- una sola fuente: **Remotive API** (ninguna otra; ningún conector múltiple aún)
+- **no** scraping HTML
+- no modificar módulos `perfil` ni `recomendaciones`, ni añadir `auth`
+- prioridad: que el worker persista ofertas legibles luego vía `GET /api/empleos`
 
-## Regla de avance actual
-Puede avanzarse a filtros SQL y detalle de empleo en frontend según roadmap; perfil y recomendaciones siguen pendientes de diseño de producto.
+## Condiciones de uso a respetar en la integración inicial
+La integración con Remotive debe:
+- conservar el enlace original de la oferta
+- registrar a Remotive como fuente
+- considerar que la API pública muestra empleos con retraso de 24 horas
+- no reutilizar esta integración para redistribuir empleos a terceros no permitidos por sus términos
 
-## Siguiente paso sugerido
-- filtros básicos en SQL para GET /api/empleos
-- pantalla de detalle de empleo en frontend
+## Siguiente paso: Fase 2.3
+- Worker: Remotive → normalizar → deduplicar → SQLite (misma base que `apps/api`)
+- Verificación: empleos visibles en `GET /api/empleos` y detalle

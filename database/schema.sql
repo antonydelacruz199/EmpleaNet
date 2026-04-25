@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS empleo (
   titulo TEXT NOT NULL,
   empresa TEXT NOT NULL,
   ubicacion TEXT,
+  modalidad TEXT,
   descripcion TEXT,
   url_oferta TEXT,
   salario TEXT,
@@ -40,3 +41,9 @@ CREATE TABLE IF NOT EXISTS recomendacion (
   FOREIGN KEY (perfil_id) REFERENCES perfil(id),
   FOREIGN KEY (empleo_id) REFERENCES empleo(id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_empleo_fuente_id ON empleo(fuente_id);
+CREATE INDEX IF NOT EXISTS idx_empleo_fecha_publicacion ON empleo(fecha_publicacion);
+CREATE INDEX IF NOT EXISTS idx_recomendacion_perfil_id ON recomendacion(perfil_id);
+CREATE INDEX IF NOT EXISTS idx_recomendacion_empleo_id ON recomendacion(empleo_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_recomendacion_perfil_empleo_unica ON recomendacion(perfil_id, empleo_id);

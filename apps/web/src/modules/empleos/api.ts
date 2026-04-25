@@ -1,11 +1,32 @@
 import { httpJson } from "../../core/http/clienteHttp";
-import type { Empleo, EmpleoDetalle } from "./tipos";
+import type { EmpleoDetalle, ListadoEmpleos } from "./tipos";
 
-export async function fetchEmpleos(filters: { q?: string; location?: string }): Promise<Empleo[]> {
-  return httpJson<Empleo[]>("/empleos", {
+export type FiltrosListadoEmpleos = {
+  q?: string;
+  ubicacion?: string;
+  location?: string;
+  modalidad?: string;
+  fuente?: string;
+  page?: number;
+  limit?: number;
+};
+
+function paramNumero(n: number | undefined) {
+  return n === undefined ? undefined : String(n);
+}
+
+export async function fetchEmpleos(
+  params: FiltrosListadoEmpleos = {},
+): Promise<ListadoEmpleos> {
+  return httpJson<ListadoEmpleos>("/empleos", {
     searchParams: {
-      q: filters.q,
-      location: filters.location,
+      q: params.q,
+      ubicacion: params.ubicacion,
+      location: params.location,
+      modalidad: params.modalidad,
+      fuente: params.fuente,
+      page: paramNumero(params.page),
+      limit: paramNumero(params.limit),
     },
   });
 }

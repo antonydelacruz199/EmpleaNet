@@ -8,8 +8,8 @@ export class EmpleosController {
   async list(req: Request, res: Response, next: NextFunction) {
     try {
       const query = listEmpleosQuerySchema.parse(req.query);
-      const empleos = await this.empleosService.list(query);
-      res.json(empleos);
+      const listado = await this.empleosService.list(query);
+      res.json(listado);
     } catch (err) {
       next(err);
     }
