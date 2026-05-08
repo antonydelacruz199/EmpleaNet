@@ -1,23 +1,37 @@
 from __future__ import annotations
 
-import logging
 import sys
 
 from .extractores import extraer_ofertas
-from .normalizadores import normalizar_ofertas
-from .repositorio import guardar_ofertas
+from .normalizadores import normalizar_lote
+from .repositorio import ResultadoIngesta, resolve_database_path, guardar_ofertas
+
 
 def run_once() -> int:
-    """Un ciclo de recolección: extraer, normalizar y guardar ofertas."""
     crudas = extraer_ofertas()
-    normalizadas = normalizar_ofertas(crudas)
-    total = guardar_ofertas(normalizadas)
-    logging.info("Ciclo de recolección completado con %s ofertas.", total)
+    normalizadas = normalizar_lote(crudas)
+    resultado: ResultadoIngesta = guardar_ofertas(
+        normalizadas,
+        obtenidos_api=len(crudas),
+    )
+
+    db_path = resolve_database_path()
+    print("")
+    print("EmpleaNet recolector - Remotive API")
+    print(f"  Base de datos:     {db_path}")
+    print(f"  Obtenidos (API):   {resultado.obtenidos}")
+    print(f"  Normalizados:      {resultado.normalizados}")
+    print(f"  Insertados:        {resultado.insertados}")
+    print(f"  Omitidos (dup.):   {resultado.omitidos_duplicado}")
+    if resultado.obtenidos > resultado.normalizados:
+        n_inv = resultado.invalidas_mal_forma
+        print(f"  Descartados (faltan id/url/título): {n_inv}")
+    print("  Criterio duplicado: misma url_oferta para la fuente Remotive (lote + base).")
+    print("")
     return 0
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     code = run_once()
     sys.exit(code)
 
