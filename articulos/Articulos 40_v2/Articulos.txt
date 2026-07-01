@@ -1,0 +1,124 @@
+-6033/2026 Revisión, Capacitación, Soporte de TIcketera.
+
+07/04/2026.- Problemas con tickets no enviados, enviamos tickets, revisamos el requerimiento de impresión de tickets, presentación de sistema
+08/04/2026.- Revisión de comprobantes, realizamos los requerimientos de premios Huarcaya, Presentación del sistema ecofactura
+09/04/2026.- Revisar comprobantes, cambio de versión de negocios y financiera, Excel para inventario de demo, anydesk para soporte de ticketera a Botica Peru Salud
+
+
+En el capitulo 1: mínimo 2 hojas el planteamiento del problema debe ser amplio a nivel internacional, nacional y local. Mínimo un grafico estadístico. Dentro del problema especifico tiene que estar con las dimensiones de manera literal las dimensiones a trabajar. De todos los artículos debe generar la matriz de operacionalización de variables.
+la variable dependiente va al inicio del titulo, la variable dependiente después y finalmente la variable intermedia. Todo debe estar citado en formato iso. Minimo 3 objetivos específicos con la variable dependiente.
+
+Genera la matriz fusionada que sea viable para el tema que estoy desarrollando.
+Genera el nuevo constructo.
+Genera la variable
+
+
+13/03, Revisión de comprobantes, pasamos a producción licorería rj3 realizando la verificación de la serie y habilitando las facturas electrónicas.
+Presentación del sistema para Pasteleria.
+Grabación de video sobre como ingresar porductos de compras con factura o boleta para negocio de mangueras.
+Soporte a Mangueras 
+
+15/04/2026,
+05/05/2026, Soporte para 
+
+
+
+16/04/2026, Presentación del sistema a automotriz. Presentación del sistema a parking.
+
+28/04/2026, Capacitación del sistema a Grifo Contreras
+
+04/05/2026, Entrega de inventario a Óptica
+05/05/2026, Se realizo meet para Optica jAJR, Se realizo soporte a Dermotienda Madeline restablecer caja
+_____________________________________________________________________________________________________________
+
+MEJORAS:
+Ya está bien, ahora en el top bar eliminaremos el rol que se muestra a la izquierada de Cerrar sesión. Ahora en la barra de los modulos de la izquierda eliminaremos Usuario atenticado y lo cambiaremos por Bienvenido.
+
+En el modulo de Dashboard eliminaremos el cuadro de Bienvenida y ACCESOS RÁPIDOS no mostraran los modulos. Mostraran los 7 ultimos expedientes ingresados y la accion de ver. Tambien, se mostrar los ultimos 5 pagos ingresados con la accion de ver.
+
+En el módulo de Clientes todo esta bien solo necesitamos agregar la accion de ver expedientes agregar
+
+========================================================================================================================================================================================
+
+INVESTIGACIÓN:
+____________________________________________________________________________________________________________________________________________________________________________________________
+
+Todos los artículos, libros y gráficos estadísticos deben de estar ingresados en la parte de citas.
+Agregar gráficos estadísticos Internacionales, Nacionales, Regionales y Distritales.
+Cada articulo tiene sus variables y debe de estar definido en el estado del arte.
+
+____________________________________________________________________________________________________________________________________________________________________________________________
+
+El planteamiento del Problema debe estar citado, 
+Las dimensiones tienen que tener  y de qué artículos se esta teniendo referencia.
+
+Introducción citado utilizando consensus, encontrando un articulo que me ayude a formularlo. Añadir gráficos estadísticos nacionales e internacionales.
+
+En problemática añadir gráficos estadísticos nacionales e internacionales.
+
+Referenciar el autor de las dimensiones.
+
+El resumen es en tiempo pasado. 
+
+
+
+Para el capitulo III puntos mas importantes.
+
+En bases teóricas, necesariamente se necesita libros y libro para la variable independiente, dependiente e intermedia.
+	variable 1 es el libro
+	variable 2 es el otro libro
+
+En metodología se va para el libro
+
+
+ARTICULOS:
+############################################################################################################################################################################################
+1. Person-job fit estimation from candidate profile and related recruitment history with co-attention neural networks
+
+2. Talent recommendation based on attentive deep neural network and implicit relationships of resumes
+
+3. Job Seeker Recommendation for Employers: A Graph-Based Recommendation Approach Using Node Embedding
+
+4. BOSS: A Bilateral Occupational-Suitability-Aware Recommender System for Online Recruitment.
+
+5. A Challenge-based Survey of E-recruitmentRecommendation Systems.
+
+6. Zero-Shot Recommendation AI Models for Efficient Job–Candidate Matching in Recruitment Process. 
+
+7. Leveraging multiple behaviors and explicit preferences for job recommendation. 
+
+8. Bilateral Multi-Behavior Modeling for Reciprocal Recommendation in Online Recruitment. 
+
+9. MIRROR: A Multi-View Reciprocal Recommender System for Online Recruitment
+
+10. Knowledge-Aware Explainable Reciprocal Recommendation.
+
+11. JobFormer: Skill-Aware Job Recommendation with Semantic-Enhanced Transformer.
+
+12. An improved heterogeneous graph convolutional network for job recommendation.
+
+13. Design and implementation of student job matching system based on personalized recommendation algorithm.
+
+14. Enhancing E-Recruitment Recommendations Through Text Summarization Techniques.
+
+15. Enhancing job recommendations with LLM-based resume completion: A behavior-denoised alignment approach.
+
+16. CareerBERT: Matching resumes to ESCO jobs in a shared embedding space for generic job recommendations.
+
+17. Graph Neural Networks for Candidate-Job Matching: An Inductive Learning Approach.
+
+A novel approach for job matching and skill recommendation using
+transformers and the O*NET database
+
+
+Palabra clave relacionado al titulo.	
+El estado del arte puede ir en anexos.
+VOSviewwr para ver como se relacionan los autores.
+
+
+
+de 40 ariticulos mínimo.
+Sacar las graficas de las paginas del ministerio.
+Escribir que variable vamos a trabajar la independiente o dependiente.
+Las dimensiones son de la variable independiente o dependiente?
+Carpeta de todos los artículos con estado del arte, carpeta de plan de tesis con versiones.
