@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración del Motor de Recomendación - Soporte</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#365ca7",
+                        "on-tertiary-container": "#9fa5ad",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary-container": "#353b41",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "surface-dim": "#dad9e0",
+                        "on-tertiary-fixed": "#161c22",
+                        "tertiary": "#1f262b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-highest": "#e2e2e9",
+                        "outline": "#747782",
+                        "error": "#ba1a1a",
+                        "primary": "#002356",
+                        "secondary-fixed": "#d3e4fe",
+                        "outline-variant": "#c3c6d3",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001944",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1b20",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#afc6ff",
+                        "surface-container": "#eeedf4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e8e7ee",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#434751",
+                        "surface-variant": "#e2e2e9",
+                        "on-primary-container": "#80a4f4",
+                        "primary-container": "#003781",
+                        "on-primary-fixed-variant": "#18448e",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "surface-container-low": "#f4f3fa",
+                        "tertiary-fixed": "#dde3eb",
+                        "on-secondary-container": "#54647a",
+                        "inverse-surface": "#2f3036",
+                        "inverse-on-surface": "#f1f0f7",
+                        "secondary-container": "#d0e1fb",
+                        "on-background": "#1a1b20",
+                        "inverse-primary": "#afc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "sidebar-width": "260px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "header-height": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom scrollbar for dense interfaces */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c3c6d3; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9fa5ad; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex overflow-hidden h-screen w-full">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-tertiary fixed left-0 top-header-height h-screen w-sidebar-width border-r border-outline-variant dark:border-on-tertiary-container flat no shadows flex-col gap-xs p-sm z-40 mt-16">
+<div class="mb-lg px-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim">Gestión Institucional</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Universidad Continental</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md rounded-xl py-sm px-md mb-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors duration-200 shadow-sm">
+<span class="material-symbols-outlined">add</span>
+            Nueva Oferta
+        </button>
+<div class="flex-1 flex flex-col gap-xs overflow-y-auto">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Estratégico
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">work</span>
+                Operativo
+            </a>
+<a class="flex items-center gap-sm px-md py-sm bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl font-bold font-label-md text-label-md active:opacity-90 active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined fill">support_agent</span>
+                Soporte
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+                Oportunidades
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                Configuración
+            </a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-sm flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">help</span>
+                Ayuda
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-on-tertiary-container shadow-sm dark:shadow-none">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Toggle (Visible only on small screens) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight hidden md:block">Continental Oportunidades</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative hidden md:block mr-md">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-lg pr-sm py-xs bg-surface-container rounded-full border-none focus:ring-1 focus:ring-primary text-body-sm w-64" placeholder="Buscar..." type="text"/>
+</div>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-sm w-8 h-8 rounded-full overflow-hidden bg-primary-container border border-outline-variant cursor-pointer">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional corporate headshot of a person, well-lit, neutral background, suitable for an enterprise software avatar. The image maintains a clean, modern aesthetic consistent with an academic or professional institutional portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXnRW8F66sRIIa2xZYZfJcSlfBsbaqBTZm1SzgH59UrMTWbJvWSnPeLy1B6RqQqqRXU-k2MM_TlDNPYYVTqgHlcsne-99JHYHYtfuFIu3lHXd7ep3sQM0MM8Wn_gU8A8Egz5xj2dWXBj5Dx7FPrm5mUfJPhcFZBs_2etqjjlDr4-Qmnq8CbI6j0yVu3saRUXljIFXk-EUklDpTZE7ftoMqVlDXJW4bXRzm4SJcpP-xAhH8_m2thJ3"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-sidebar-width mt-header-height overflow-y-auto bg-surface-container-low p-md">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold mb-xs">Configuración del Motor de Recomendación (S2)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ajuste de parámetros técnicos, reglas de negocio y logs del sistema para el algoritmo de emparejamiento.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm bg-surface text-primary border border-primary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+                    Descartar Cambios
+                </button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Guardar Config.
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-md">
+<!-- Col 1: Parámetros & Reglas (Left 8 cols) -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-md">
+<!-- Pesos del Algoritmo -->
+<section class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant flex flex-col">
+<div class="flex items-center gap-sm mb-md pb-xs border-b border-surface-variant">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold">Pesos de Coincidencia (Algoritmo Principal)</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Carrera -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface">Importancia Carrera</label>
+<span class="font-body-sm text-body-sm font-medium text-primary">45%</span>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="45"/>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1 leading-tight">Peso asignado a la coincidencia exacta de facultad o programa.</p>
+</div>
+<!-- Habilidades -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface">Importancia Habilidades</label>
+<span class="font-body-sm text-body-sm font-medium text-primary">35%</span>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="35"/>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1 leading-tight">Peso del NLP aplicado sobre CV vs. Requisitos.</p>
+</div>
+<!-- Intereses -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface">Importancia Intereses</label>
+<span class="font-body-sm text-body-sm font-medium text-primary">20%</span>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="20"/>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1 leading-tight">Afinidad por etiquetas y preferencias de ubicación.</p>
+</div>
+</div>
+<div class="mt-sm pt-sm border-t border-surface-variant flex justify-end">
+<span class="font-label-md text-[10px] text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">info</span> Total debe sumar 100% (Actual: 100%)</span>
+</div>
+</section>
+<!-- Reglas de Negocio -->
+<section class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant flex-1">
+<div class="flex items-center justify-between mb-md pb-xs border-b border-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">rule</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold">Reglas de Filtrado Automático</h3>
+</div>
+<button class="text-primary hover:text-primary-container text-sm font-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">add</span> Add Regla
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant text-on-surface-variant font-label-md text-label-md uppercase bg-surface-container-lowest">
+<th class="py-sm px-xs font-semibold">ID Regla</th>
+<th class="py-sm px-xs font-semibold">Condición</th>
+<th class="py-sm px-xs font-semibold">Acción</th>
+<th class="py-sm px-xs font-semibold text-center">Estado</th>
+<th class="py-sm px-xs text-right"></th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-surface-variant hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-xs text-primary font-mono text-xs">R-001</td>
+<td class="py-sm px-xs">Si <code class="bg-surface-variant px-1 rounded">GPA &lt; 12.0</code></td>
+<td class="py-sm px-xs">Excluir de 'Oportunidades Top'</td>
+<td class="py-sm px-xs text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-[#d3e4fe] text-primary">Activo</span>
+</td>
+<td class="py-sm px-xs text-right text-on-surface-variant">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-xs text-primary font-mono text-xs">R-002</td>
+<td class="py-sm px-xs">Si <code class="bg-surface-variant px-1 rounded">Estado == 'Egresado'</code></td>
+<td class="py-sm px-xs">Priorizar ofertas 'Senior' +10%</td>
+<td class="py-sm px-xs text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-[#d3e4fe] text-primary">Activo</span>
+</td>
+<td class="py-sm px-xs text-right text-on-surface-variant">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-lowest transition-colors opacity-60">
+<td class="py-sm px-xs text-primary font-mono text-xs">R-003</td>
+<td class="py-sm px-xs">Si <code class="bg-surface-variant px-1 rounded">Habilidad == 'Python'</code></td>
+<td class="py-sm px-xs">Sugerir 'Ciencia de Datos'</td>
+<td class="py-sm px-xs text-center">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-surface-variant text-on-surface-variant">Inactivo</span>
+</td>
+<td class="py-sm px-xs text-right text-on-surface-variant">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Col 2: Sync & Logs (Right 4 cols) -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-md">
+<!-- Estado S5 -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">sync</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold">Estado Sincronización (S5)</h3>
+</div>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant" title="Forzar Sincronización">
+<span class="material-symbols-outlined text-sm">autorenew</span>
+</button>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center p-xs bg-surface-container-lowest rounded border border-surface-variant">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-body-sm text-[13px]">ERP Académico</span>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant">Hace 2m</span>
+</div>
+<div class="flex justify-between items-center p-xs bg-surface-container-lowest rounded border border-surface-variant">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-body-sm text-[13px]">Bolsa Laboral Ext.</span>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant">Hace 15m</span>
+</div>
+<div class="flex justify-between items-center p-xs bg-[#ffdad6] rounded border border-error-container">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-body-sm text-[13px] text-error font-medium">NLP Service API</span>
+</div>
+<span class="font-mono text-[10px] text-error">Timeout S5</span>
+</div>
+</div>
+</div>
+<!-- System Logs -->
+<div class="bg-inverse-surface rounded-xl p-md shadow-sm flex-1 flex flex-col h-full min-h-[300px]">
+<div class="flex items-center justify-between mb-sm border-b border-tertiary-container pb-xs">
+<div class="flex items-center gap-sm text-on-tertiary">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<h3 class="font-label-md text-label-md font-semibold tracking-wider">Bitácora de Ejecución</h3>
+</div>
+<button class="text-on-tertiary-container hover:text-on-tertiary"><span class="material-symbols-outlined text-sm">download</span></button>
+</div>
+<div class="bg-tertiary rounded-lg p-sm font-mono text-[11px] text-on-tertiary-container flex-1 overflow-y-auto leading-relaxed border border-tertiary-container h-full">
+<div class="mb-1"><span class="text-[#a3defe]">[14:02:45]</span> INFO: Cron S2_Matcher initiated.</div>
+<div class="mb-1"><span class="text-[#a3defe]">[14:02:46]</span> LOAD: Weights {C:0.45, H:0.35, I:0.20}</div>
+<div class="mb-1"><span class="text-[#a3defe]">[14:02:48]</span> PROCESS: Batch 1/450 (Users: 1000)</div>
+<div class="mb-1"><span class="text-[#f4d47c]">[14:02:51]</span> WARN: Rule R-003 skipped (Inactive)</div>
+<div class="mb-1"><span class="text-[#ffb4ab]">[14:03:02]</span> ERR: NLP S5 Connection Timeout. Retrying...</div>
+<div class="mb-1"><span class="text-[#ffb4ab]">[14:03:15]</span> ERR: NLP Fallback to Keyword Match.</div>
+<div class="mb-1"><span class="text-[#a3defe]">[14:03:45]</span> PROCESS: Batch 2/450 (Users: 1000)</div>
+<div class="mb-1"><span class="text-[#a3defe]">[14:04:12]</span> INFO: Garbage collection invoked.</div>
+<div class="mb-1 animate-pulse">_</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

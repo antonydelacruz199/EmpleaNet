@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panel de Gestión Estratégica - Universidad Continental</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#365ca7",
+                    "on-tertiary-container": "#9fa5ad",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#41474e",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-container": "#353b41",
+                    "on-secondary": "#ffffff",
+                    "background": "#faf8ff",
+                    "tertiary-fixed-dim": "#c1c7cf",
+                    "surface-dim": "#dad9e0",
+                    "on-tertiary-fixed": "#161c22",
+                    "tertiary": "#1f262b",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-highest": "#e2e2e9",
+                    "outline": "#747782",
+                    "error": "#ba1a1a",
+                    "primary": "#002356",
+                    "secondary-fixed": "#d3e4fe",
+                    "outline-variant": "#c3c6d3",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001944",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1b20",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#afc6ff",
+                    "surface-container": "#eeedf4",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-high": "#e8e7ee",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#434751",
+                    "surface-variant": "#e2e2e9",
+                    "on-primary-container": "#80a4f4",
+                    "primary-container": "#003781",
+                    "on-primary-fixed-variant": "#18448e",
+                    "surface": "#faf8ff",
+                    "secondary": "#505f76",
+                    "surface-container-low": "#f4f3fa",
+                    "tertiary-fixed": "#dde3eb",
+                    "on-secondary-container": "#54647a",
+                    "inverse-surface": "#2f3036",
+                    "inverse-on-surface": "#f1f0f7",
+                    "secondary-container": "#d0e1fb",
+                    "on-background": "#1a1b20",
+                    "inverse-primary": "#afc6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "sidebar-width": "260px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "header-height": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for data density areas */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #c3c6d3; border-radius: 4px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm">
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden text-on-surface p-xs rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight hidden md:block">Continental Oportunidades</h1>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight md:hidden">Continental Oportunidades</h1>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar -->
+<div class="hidden md:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-sm py-xs focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-[200px] placeholder:text-on-surface-variant" placeholder="Buscar reportes..." type="text"/>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-xs text-on-surface-variant">
+<button aria-label="notifications" class="p-xs rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="help" class="p-xs rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform hidden sm:block">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button aria-label="settings" class="p-xs rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform hidden sm:block">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<!-- Profile Image -->
+<div class="w-[36px] h-[36px] rounded-full overflow-hidden border border-outline-variant cursor-pointer active:scale-95 transition-transform">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a senior academic administrator, sharp focus, well-lit studio lighting against a neutral background. The person exudes competence and institutional authority, dressed in business casual attire suitable for a modern university setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9vXwc4KMI182FQrLLoH6Pjtse3yBoXq6m8jH6B5RjX_6mO3V10FB97UvCN91xFWcyjcafux1YYIKDrGH1D7dIWQ65Uh14LG8YeWkjucoRuVYTqbQJjVl1aecnmdto_UERtFcYA9AHfAua2s5ehdaKaKFDSVcef6UnCDhET1QydJXb8V2JGfSG4jl9T2Nn-7rfkBa9us5mQJ144kPo7zAkwDPP8t8jSukLqGihAGg0upcSYiA4bhMY"/>
+</div>
+</div>
+</header>
+<div class="flex pt-header-height h-screen w-full">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex flex-col gap-xs bg-surface-container-low border-r border-outline-variant hidden md:flex z-40">
+<!-- Header Section -->
+<div class="flex items-center gap-sm px-sm py-xs mb-sm">
+<div class="w-[40px] h-[40px] bg-primary rounded-lg flex items-center justify-center shrink-0">
+<span class="font-headline-md text-headline-md text-on-primary font-bold">UC</span>
+</div>
+<div class="overflow-hidden">
+<div class="font-headline-md text-headline-md text-primary truncate leading-tight">Gestión Institucional</div>
+<div class="font-label-md text-label-md text-on-surface-variant truncate">Universidad Continental</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md font-bold py-[10px] px-md rounded-xl mb-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Nueva Oferta
+            </button>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-xs">
+<!-- Active Tab: Estratégico -->
+<a class="flex items-center gap-sm px-sm py-[10px] bg-primary-container text-on-primary-container rounded-xl font-bold font-label-md text-label-md opacity-90 scale-98 transition-all hover:translate-x-1 duration-300 group" href="#">
+<span class="material-symbols-outlined icon-fill">analytics</span>
+                    Estratégico
+                </a>
+<a class="flex items-center gap-sm px-sm py-[10px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">work</span>
+                    Operativo
+                </a>
+<a class="flex items-center gap-sm px-sm py-[10px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+                    Soporte
+                </a>
+<a class="flex items-center gap-sm px-sm py-[10px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-sm px-sm py-[10px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+                    Oportunidades
+                </a>
+<a class="flex items-center gap-sm px-sm py-[10px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                    Configuración
+                </a>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto pt-sm border-t border-outline-variant flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-[8px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                    Ayuda
+                </a>
+<a class="flex items-center gap-sm px-sm py-[8px] text-on-surface-variant hover:bg-surface-container-high rounded-xl font-label-md text-label-md font-medium hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                    Cerrar Sesión
+                </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[260px] h-full overflow-y-auto bg-surface pb-[100px]">
+<div class="max-w-[1440px] mx-auto p-4 md:p-md flex flex-col gap-md">
+<!-- Page Header -->
+<div class="flex flex-col gap-xs mb-sm">
+<h2 class="font-headline-lg text-headline-lg hidden md:block text-on-surface">Panel de Gestión Estratégica</h2>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:hidden text-on-surface">Panel Estratégico</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Planificación y Seguimiento del Servicio - Ciclo 2024-II</p>
+</div>
+<!-- Bento Grid: Objetivos Estratégicos (OKRs) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- OKR Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="bg-primary-container text-on-primary-container font-label-md text-label-md px-2 py-1 rounded-full">E1 - Calidad Educativa</span>
+<span class="material-symbols-outlined text-outline">trending_up</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Aumentar empleabilidad al 1er año</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">KR1: Lograr el 85% de egresados insertados en su campo de estudio.</p>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-xs">
+<span class="text-on-surface">Progreso Actual</span>
+<span class="text-primary font-bold">78%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-[6px]">
+<div class="bg-primary h-[6px] rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<!-- OKR Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-2 py-1 rounded-full">E2 - Vinculación Corporativa</span>
+<span class="material-symbols-outlined text-outline">handshake</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Expandir red de convenios Top 100</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">KR1: Firmar 20 nuevos convenios con empresas del ranking Merco.</p>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-xs">
+<span class="text-on-surface">Progreso Actual</span>
+<span class="text-primary font-bold">12 / 20</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-[6px]">
+<div class="bg-primary h-[6px] rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<!-- OKR Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="bg-tertiary-container text-on-tertiary font-label-md text-label-md px-2 py-1 rounded-full">E3 - Satisfacción del Servicio</span>
+<span class="material-symbols-outlined text-outline">sentiment_very_satisfied</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Optimizar experiencia del portal</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">KR1: Alcanzar un NPS &gt; 65 en la evaluación de fin de ciclo por alumnos.</p>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-xs">
+<span class="text-on-surface">Progreso Actual</span>
+<span class="text-[#006A60] font-bold">NPS 58</span> <!-- Custom status color for specific metric -->
+</div>
+<div class="w-full bg-surface-variant rounded-full h-[6px]">
+<div class="bg-[#006A60] h-[6px] rounded-full" style="width: 89%"></div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Seguimiento de Metas Institucionales (Data Table) -->
+<section class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface">
+<h3 class="font-headline-md text-headline-md text-on-surface">Seguimiento de Inserción Laboral</h3>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+                                Ver Reporte Completo <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto custom-scrollbar flex-1">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead class="bg-surface-container-low sticky top-0 z-10">
+<tr>
+<th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Facultad / Programa</th>
+<th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">Meta (%)</th>
+<th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">Actual (%)</th>
+<th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-center">Variación</th>
+<th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="h-[48px] border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-body-sm text-body-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Ingeniería de Sistemas</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface-variant text-right">90.0%</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface text-right font-medium">92.5%</td>
+<td class="p-sm font-body-sm text-body-sm text-[#006A60] text-center flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 2.5%</td>
+<td class="p-sm"><span class="bg-[#e6f4ea] text-[#137333] px-2 py-1 rounded-full font-label-md text-[10px] uppercase tracking-wider">Superado</span></td>
+</tr>
+<tr class="h-[48px] border-b border-outline-variant hover:bg-surface-container-low transition-colors group bg-surface-bright">
+<td class="p-sm font-body-sm text-body-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Administración y Negocios</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface-variant text-right">85.0%</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface text-right font-medium">84.2%</td>
+<td class="p-sm font-body-sm text-body-sm text-secondary text-center flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">remove</span> -0.8%</td>
+<td class="p-sm"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full font-label-md text-[10px] uppercase tracking-wider">En Rango</span></td>
+</tr>
+<tr class="h-[48px] border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="p-sm font-body-sm text-body-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Derecho</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface-variant text-right">80.0%</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface text-right font-medium">72.1%</td>
+<td class="p-sm font-body-sm text-body-sm text-error text-center flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">arrow_downward</span> -7.9%</td>
+<td class="p-sm"><span class="bg-error-container text-on-error-container px-2 py-1 rounded-full font-label-md text-[10px] uppercase tracking-wider">Riesgo</span></td>
+</tr>
+<tr class="h-[48px] hover:bg-surface-container-low transition-colors group bg-surface-bright">
+<td class="p-sm font-body-sm text-body-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Psicología</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface-variant text-right">75.0%</td>
+<td class="p-sm font-body-sm text-body-sm text-on-surface text-right font-medium">76.5%</td>
+<td class="p-sm font-body-sm text-body-sm text-[#006A60] text-center flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 1.5%</td>
+<td class="p-sm"><span class="bg-[#e6f4ea] text-[#137333] px-2 py-1 rounded-full font-label-md text-[10px] uppercase tracking-wider">Alcanzado</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Mejora Continua (Acciones Correctivas) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex flex-col h-full">
+<div class="p-md border-b border-outline-variant bg-surface rounded-t-xl">
+<div class="flex justify-between items-center mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Mejora Continua</h3>
+<span class="material-symbols-outlined text-primary">engineering</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Acciones derivadas de alertas del sistema.</p>
+</div>
+<div class="p-sm flex-1 flex flex-col gap-sm overflow-y-auto custom-scrollbar">
+<!-- Action Item 1 -->
+<div class="p-sm bg-error-container/20 border border-error-container rounded-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-error flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">priority_high</span> Alta Prioridad</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Vence: 15 Oct</span>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Revisión Curricular - Derecho</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2 line-clamp-2">Analizar causas de baja inserción y ajustar perfil de egreso en base a demandas del sector público y privado.</p>
+<div class="flex gap-2">
+<span class="bg-surface text-on-surface-variant border border-outline-variant px-2 py-0.5 rounded text-[11px] font-medium">Asignado: Dir. Académica</span>
+</div>
+</div>
+<!-- Action Item 2 -->
+<div class="p-sm bg-surface-container-low border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> En Proceso</span>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Campaña de Actualización de CVs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2 line-clamp-2">Notificación masiva a egresados 2023 para actualizar perfil en bolsa de trabajo.</p>
+<div class="w-full bg-surface-variant rounded-full h-[4px] mt-1 mb-1">
+<div class="bg-secondary h-[4px] rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Action Item 3 -->
+<div class="p-sm bg-surface-container-low border border-outline-variant rounded-lg opacity-70">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-[#137333] flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Completado</span>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Feria Laboral Virtual Tech</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Ejecutada con participación de 45 empresas IT.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md bg-surface-container-lowest border-t border-outline-variant mt-[40px]">
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-label-md text-label-md text-primary font-bold">Universidad Continental</span>
+<span class="font-body-sm text-body-sm text-secondary">© 2024 Universidad Continental - Dirección de Oportunidades Laborales</span>
+</div>
+<div class="flex gap-md mt-sm md:mt-0 font-body-sm text-body-sm text-on-surface-variant">
+<a class="hover:text-primary underline transition-all cursor-pointer" href="#">Términos y Condiciones</a>
+<a class="hover:text-primary underline transition-all cursor-pointer" href="#">Política de Privacidad</a>
+<a class="hover:text-primary underline transition-all cursor-pointer" href="#">Soporte Técnico</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

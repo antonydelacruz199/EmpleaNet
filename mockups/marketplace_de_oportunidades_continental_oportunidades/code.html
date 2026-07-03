@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketplace de Oportunidades - Continental</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#365ca7",
+                      "on-tertiary-container": "#9fa5ad",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#41474e",
+                      "primary-fixed": "#d9e2ff",
+                      "tertiary-container": "#353b41",
+                      "on-secondary": "#ffffff",
+                      "background": "#faf8ff",
+                      "tertiary-fixed-dim": "#c1c7cf",
+                      "surface-dim": "#dad9e0",
+                      "on-tertiary-fixed": "#161c22",
+                      "tertiary": "#1f262b",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "surface-container-highest": "#e2e2e9",
+                      "outline": "#747782",
+                      "error": "#ba1a1a",
+                      "primary": "#002356",
+                      "secondary-fixed": "#d3e4fe",
+                      "outline-variant": "#c3c6d3",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001944",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1a1b20",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#afc6ff",
+                      "surface-container": "#eeedf4",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e8e7ee",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#434751",
+                      "surface-variant": "#e2e2e9",
+                      "on-primary-container": "#80a4f4",
+                      "primary-container": "#003781",
+                      "on-primary-fixed-variant": "#18448e",
+                      "surface": "#faf8ff",
+                      "secondary": "#505f76",
+                      "surface-container-low": "#f4f3fa",
+                      "tertiary-fixed": "#dde3eb",
+                      "on-secondary-container": "#54647a",
+                      "inverse-surface": "#2f3036",
+                      "inverse-on-surface": "#f1f0f7",
+                      "secondary-container": "#d0e1fb",
+                      "on-background": "#1a1b20",
+                      "inverse-primary": "#afc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "lg": "48px",
+                      "sm": "12px",
+                      "sidebar-width": "260px",
+                      "md": "24px",
+                      "xs": "4px",
+                      "header-height": "64px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-on-tertiary-container fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight">Continental Oportunidades</h1>
+</div>
+<!-- Search and Actions -->
+<div class="flex items-center gap-md">
+<!-- Search -->
+<div class="relative hidden md:flex items-center">
+<span class="material-symbols-outlined absolute left-sm text-on-surface-variant">search</span>
+<input class="pl-lg pr-sm py-sm rounded-full bg-surface-container-low border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md text-on-surface w-64 transition-all focus:w-80" placeholder="Buscar oportunidades..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button aria-label="notifications" class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="help" class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button aria-label="settings" class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="ml-xs">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A small, circular avatar portrait of a professional student or young professional, softly lit against a neutral corporate background. The image should be clean, modern, and suitable for a high-end academic institutional dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvcnmfmnJAtbebDya3Jg_3ENVfVBHvfc1y-IwcUu_dMapmOxo1GjkwsFveAothGO1BQ-1QkkiTK8OEuXBANCV0DTu69e2ymtsL0ueIheTl3wpEwbNcHBUq41oTaIUjuvzmU3CPZ7bV0Agh1NnxgXfcamtdwQFzYRbr0vphAc9aCfXdXRUntLXoT-RgfYqpo9N-d30wDSOwQRv3CwcuwuTrJ10JHdO3YudhUJ6YPKGLQorsbas9z3XE"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-tertiary border-r border-outline-variant dark:border-on-tertiary-container fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex-col gap-xs z-40">
+<div class="px-sm py-md mb-sm flex items-center gap-sm">
+<img alt="Continental Logo" class="w-8 h-8 object-contain" data-alt="A minimalistic, solid institutional blue logo representing a university crest or modern academic shield. It should be crisp, scalable, and fit perfectly in a top-left sidebar header area for a corporate modern dashboard design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZfVjj8oZRRjwH0Z014sIeIJWlwiJJbcuMKXSPFwDjDiI-P8XRVsoCbgF0J4GjtDfjydmIUhVIm3kzhEGA_mzohSQPtqT3IXNVPoy6ThidoKIKgfeShrj4VGwrr-ifwbAm5KDVLPtfNzKX-TJ78m6tn0VVVTkSDGpLyEBS_KTLFMoomRKS7RFbyuXMh0G_YQzyyIqeQYUihScCS9Au5LbGZedvP6VTDUv_v7tuJIr0LmVMjjfmVMEj"/>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Gestión Institucional</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Universidad Continental</p>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Estratégico
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                Operativo
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                Soporte
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl font-bold font-label-md text-label-md hover:translate-x-1 transition-all duration-300 opacity-90 scale-98" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="assignment_ind">assignment_ind</span>
+                Oportunidades
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+                Configuración
+            </a>
+</div>
+<button class="mt-md mb-md mx-xs py-sm px-md bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+            Nueva Oferta
+        </button>
+<div class="mt-auto border-t border-outline-variant pt-sm flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Ayuda
+            </a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-header-height md:ml-sidebar-width min-h-screen bg-background flex flex-col p-md md:p-lg gap-md max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-sm mb-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Marketplace de Oportunidades</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Encuentra empleos y prácticas recomendadas para tu perfil académico.</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">Ordenar por:</span>
+<select class="bg-surface rounded-md border border-outline-variant px-sm py-xs font-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Relevancia</option>
+<option>Más recientes</option>
+<option>Salario (Mayor a Menor)</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-lg items-start">
+<!-- Filters Sidebar (Bento Style Card) -->
+<aside class="w-full lg:w-1/4 bg-surface rounded-xl shadow-sm border border-outline-variant p-md flex flex-col gap-md sticky top-[calc(theme(spacing.header-height)+theme(spacing.md))]">
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Filtros Avanzados</h3>
+<button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors">Limpiar</button>
+</div>
+<!-- Filter Group: Tipo -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface-variant">TIPO DE OPORTUNIDAD</h4>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Prácticas Pre-profesionales</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Empleo Full-time</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Empleo Part-time</span>
+</label>
+</div>
+<!-- Filter Group: Modalidad -->
+<div class="flex flex-col gap-sm pt-sm border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-on-surface-variant">MODALIDAD</h4>
+<div class="flex flex-wrap gap-xs">
+<button class="px-sm py-xs rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-colors">Remoto</button>
+<button class="px-sm py-xs rounded-full border border-outline-variant bg-surface text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-colors">Presencial</button>
+<button class="px-sm py-xs rounded-full border border-outline-variant bg-surface text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-colors">Híbrido</button>
+</div>
+</div>
+<!-- Filter Group: Carrera -->
+<div class="flex flex-col gap-sm pt-sm border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-on-surface-variant">CARRERA</h4>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-lg pr-sm py-xs rounded-md border border-outline-variant font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Buscar carrera..." type="text"/>
+</div>
+<div class="max-h-32 overflow-y-auto flex flex-col gap-xs mt-xs">
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm">Ingeniería de Sistemas</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm">Administración</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm">Derecho</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Opportunities List -->
+<div class="w-full lg:w-3/4 flex flex-col gap-md">
+<!-- Job Card 1 -->
+<article class="bg-surface rounded-xl shadow-sm border border-outline-variant p-md hover:shadow-md transition-shadow flex flex-col sm:flex-row gap-md relative overflow-hidden group cursor-pointer">
+<!-- Decorator Line -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="shrink-0">
+<img alt="Company Logo" class="w-16 h-16 rounded-lg border border-outline-variant object-cover" data-alt="A sleek, modern corporate logo for a tech company, featuring a stylized geometric shape in deep blue and white, set inside a rounded square container. Clean light-mode aesthetic, professional and institutional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0ODwBzmnicLlrEp-gPyHq3CaAelbduhysljG1okf1-8xtGWp7_xQ7zVYuWNHH3cJx3kdJeddIkjN91_mbnI2j_4nQV23YIjk31QSUVHc12r3g0WMqP4z9ViVij_eu5kom4kQOxDYYwW4aDXtosJrKZx2hmmTHcBnqH7UqVsUr9KKEDiOQENqy_Qlheqa8T4xrxhJ8x9AJgXZyH7_FYTTt95a7LwJvwhsC2BNo8t0fVaOwggdeAAMK"/>
+</div>
+<div class="flex-grow flex flex-col gap-xs">
+<div class="flex justify-between items-start gap-sm">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Analista Funcional Junior</h3>
+<p class="font-body-md text-body-md text-secondary">TechSolutions S.A.C.</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+                                Recomendado para ti
+                            </span>
+</div>
+<div class="flex flex-wrap gap-sm mt-sm">
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">work</span> Empleo Full-time
+                            </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">location_on</span> Remoto
+                            </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Publicado hace 2 días
+                            </div>
+</div>
+<div class="mt-md flex justify-between items-center pt-sm border-t border-surface-variant">
+<span class="font-label-md text-label-md text-on-surface-variant">Fuente: Bumeran Connect</span>
+<button class="bg-primary text-on-primary px-md py-xs rounded-md font-label-md hover:bg-primary-container transition-colors">Ver Detalle</button>
+</div>
+</div>
+</article>
+<!-- Job Card 2 -->
+<article class="bg-surface rounded-xl shadow-sm border border-outline-variant p-md hover:shadow-md transition-shadow flex flex-col sm:flex-row gap-md relative overflow-hidden group cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="shrink-0">
+<img alt="Company Logo" class="w-16 h-16 rounded-lg border border-outline-variant object-cover" data-alt="A minimalist logo for a financial consulting firm, featuring an abstract graph motif in subtle grey and navy tones, centered in a rounded white container. High-end corporate style, light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQj8UKT8KN9KzJvvuYm7QmGr3USp2iPhlXSvpy5tNXg9habMcXxoOxWzGWa0ODNmkpKA834XJ6MDvnL29-b66ujxs-4H_mN1z3xFdea1e6p_bVpHsjuPcE-PljUpp1RerRRfzgczMAZsLa72DkOUgEAZIm9HjsDytLBbQE5fKnQmKcnnPm4dmzEFoTb-S2DiIaEI6UDzz36nzAbPCUJXj1nQ3r7Ta3NGzbrXlKJV0FGULuYb7GxliW"/>
+</div>
+<div class="flex-grow flex flex-col gap-xs">
+<div class="flex justify-between items-start gap-sm">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Practicante Pre-Profesional de Datos</h3>
+<p class="font-body-md text-body-md text-secondary">Banco Continental Financiera</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm mt-sm">
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">school</span> Prácticas
+                            </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">location_on</span> Híbrido - Lima, Perú
+                            </div>
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Publicado hoy
+                            </div>
+</div>
+<div class="mt-md flex justify-between items-center pt-sm border-t border-surface-variant">
+<span class="font-label-md text-label-md text-on-surface-variant">Fuente: Portal Institucional</span>
+<button class="border border-primary text-primary px-md py-xs rounded-md font-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors">Ver Detalle</button>
+</div>
+</div>
+</article>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-xs mt-lg">
+<button class="p-xs rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-md bg-primary text-on-primary font-label-md flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant text-on-surface font-label-md hover:bg-surface-container-high hover:text-primary transition-colors flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-md border border-outline-variant text-on-surface font-label-md hover:bg-surface-container-high hover:text-primary transition-colors flex items-center justify-center">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded-md border border-outline-variant text-on-surface font-label-md hover:bg-surface-container-high hover:text-primary transition-colors flex items-center justify-center">12</button>
+<button class="p-xs rounded-md border border-outline-variant text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim w-full flex flex-col md:flex-row justify-between items-center px-lg py-md border-t border-outline-variant dark:border-on-tertiary-container md:ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] absolute bottom-0">
+<div class="font-label-md text-label-md text-primary dark:text-primary-fixed mb-sm md:mb-0">
+            © 2024 Universidad Continental - Dirección de Oportunidades Laborales
+        </div>
+<div class="flex gap-md font-body-sm text-body-sm text-secondary dark:text-secondary-fixed">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Términos y Condiciones</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Política de Privacidad</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Soporte Técnico</a>
+</div>
+</footer>
+</body></html>
