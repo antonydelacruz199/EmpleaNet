@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panel de Gestión de Ofertas Laborales - Universidad Continental</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#365ca7",
+                      "on-tertiary-container": "#9fa5ad",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#41474e",
+                      "primary-fixed": "#d9e2ff",
+                      "tertiary-container": "#353b41",
+                      "on-secondary": "#ffffff",
+                      "background": "#faf8ff",
+                      "tertiary-fixed-dim": "#c1c7cf",
+                      "surface-dim": "#dad9e0",
+                      "on-tertiary-fixed": "#161c22",
+                      "tertiary": "#1f262b",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "surface-container-highest": "#e2e2e9",
+                      "outline": "#747782",
+                      "error": "#ba1a1a",
+                      "primary": "#002356",
+                      "secondary-fixed": "#d3e4fe",
+                      "outline-variant": "#c3c6d3",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001944",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1a1b20",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#afc6ff",
+                      "surface-container": "#eeedf4",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e8e7ee",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#434751",
+                      "surface-variant": "#e2e2e9",
+                      "on-primary-container": "#80a4f4",
+                      "primary-container": "#003781",
+                      "on-primary-fixed-variant": "#18448e",
+                      "surface": "#faf8ff",
+                      "secondary": "#505f76",
+                      "surface-container-low": "#f4f3fa",
+                      "tertiary-fixed": "#dde3eb",
+                      "on-secondary-container": "#54647a",
+                      "inverse-surface": "#2f3036",
+                      "inverse-on-surface": "#f1f0f7",
+                      "secondary-container": "#d0e1fb",
+                      "on-background": "#1a1b20",
+                      "inverse-primary": "#afc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "lg": "48px",
+                      "sm": "12px",
+                      "sidebar-width": "260px",
+                      "md": "24px",
+                      "xs": "4px",
+                      "header-height": "64px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Ambient shadows for clean UI */
+        .shadow-ambient {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .shadow-dropdown {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-sans text-on-surface h-full flex overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-on-tertiary-container shadow-sm dark:shadow-none">
+<div class="flex items-center gap-sm">
+<span class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight">Continental Oportunidades</span>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar (on_right) -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-full text-body-sm font-body-sm bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64" placeholder="Buscar..." type="text"/>
+</div>
+<!-- Trailing Icons -->
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<!-- Profile Image -->
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate administrator in a modern office setting. The lighting is bright and even, highlighting a trustworthy and competent demeanor. Corporate modern aesthetic, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8vUjaQmO2O7TFZVTTBijPa2LjKY99rJcgSGyxp1r5GcTpJ7y7zmv5wtc-mfobG6duCe76u8Fj2kSCCZrx_kt78Q5PkXbAXu1gx8wE6tjMJJCyZ6QjKhuBQU4T-Y-xPpVIDXGkrVOugzIi11EJCyuWQPR--EP1BqR5YfzPnX8BQfoO8g9eCMVFyVEQO04AoDVvPFAbflicOuUYAsG5cHY18WlRuG2K6oYX8w1nOqni2r8b7fhM_q5I"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex-col gap-xs bg-surface-container-low dark:bg-tertiary border-r border-outline-variant dark:border-on-tertiary-container z-40">
+<div class="mb-lg px-2">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Gestión Institucional</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Universidad Continental</p>
+</div>
+<button class="mb-md w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+            Nueva Oferta
+        </button>
+<ul class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container hover:translate-x-1 transition-all duration-300 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Estratégico
+                </a>
+</li>
+<li>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-bold opacity-90 scale-98 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+                    Operativo
+                </a>
+<!-- Submenu for active item -->
+<ul class="ml-11 mt-1 flex flex-col gap-1 border-l-2 border-outline-variant pl-3">
+<li><a class="block py-2 text-primary font-label-md text-label-md font-semibold" href="#">Ofertas</a></li>
+<li><a class="block py-2 text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Empresas</a></li>
+<li><a class="block py-2 text-on-surface-variant hover:text-primary font-label-md text-label-md" href="#">Postulantes</a></li>
+</ul>
+</li>
+<li class="mt-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container hover:translate-x-1 transition-all duration-300 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+                    Soporte
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container hover:translate-x-1 transition-all duration-300 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container hover:translate-x-1 transition-all duration-300 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+                    Oportunidades
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container hover:translate-x-1 transition-all duration-300 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                    Configuración
+                </a>
+</li>
+</ul>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                Ayuda
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-error-container hover:text-on-error-container transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-sidebar-width mt-header-height h-[calc(100vh-theme(spacing.header-height))] overflow-y-auto bg-surface-bright flex flex-col">
+<div class="flex-1 p-md md:p-lg max-w-container-max mx-auto w-full">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Gestión de Ofertas Laborales</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Administre, valide y clasifique las ofertas laborales publicadas en la bolsa de trabajo.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline text-primary font-label-md text-label-md rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                        Carga Masiva
+                    </button>
+<button class="px-4 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center gap-2 hover:bg-primary-container shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Nueva Oferta
+                    </button>
+</div>
+</div>
+<!-- Dashboard / Overview Cards (Bento-ish layout) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md mb-lg">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-ambient border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">work_history</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Ofertas (Mes)</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">1,245</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-ambient border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Pendientes Validación</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">42</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-ambient border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Publicadas Activas</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">856</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-ambient border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined">block</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Rechazadas</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">18</p>
+</div>
+</div>
+</div>
+<!-- Filters & Search Bar for Table -->
+<div class="bg-surface-container-lowest p-md rounded-t-xl border border-outline-variant border-b-0 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg text-body-sm font-body-sm bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Buscar por título o empresa..." type="text"/>
+</div>
+<div class="relative hidden md:block">
+<select class="appearance-none bg-surface border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option>Todos los orígenes</option>
+<option>Fuente Interna</option>
+<option>Fuente Externa</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" title="Filtrar">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" title="Exportar">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-b-xl shadow-ambient overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead class="bg-surface-container-low border-b border-outline-variant sticky top-0 z-10">
+<tr>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold">Título de la Oferta</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold">Empresa</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold">Fecha Registro</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold">Origen</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold">Estado</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant font-semibold text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<!-- Row 1: Pendiente Validacion -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Analista de Datos Senior</span>
+<span class="text-on-surface-variant text-[12px]">Lima, Híbrido</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface">Interbank S.A.</td>
+<td class="py-4 px-4 text-on-surface-variant">24 Oct 2024</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-[11px] font-medium text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] mr-1">api</span> Externa
+                                </span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-label-md">
+                                    Borrador / Pendiente
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-primary hover:bg-primary-container rounded transition-colors" title="Validar">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Clasificar">
+<span class="material-symbols-outlined text-[20px]">category</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Publicada -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Desarrollador Full Stack Jr.</span>
+<span class="text-on-surface-variant text-[12px]">Remoto</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface">TechSolutions Peru</td>
+<td class="py-4 px-4 text-on-surface-variant">22 Oct 2024</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-[11px] font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">business</span> Interna
+                                </span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+                                    Publicada
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Clasificar">
+<span class="material-symbols-outlined text-[20px]">category</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Validada -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Coordinador de Marketing</span>
+<span class="text-on-surface-variant text-[12px]">Arequipa, Presencial</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface">Grupo Retail Andino</td>
+<td class="py-4 px-4 text-on-surface-variant">20 Oct 2024</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-[11px] font-medium text-primary">
+<span class="material-symbols-outlined text-[14px] mr-1">business</span> Interna
+                                </span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-primary-fixed-dim text-on-primary-fixed-variant font-label-md text-label-md">
+                                    Validada
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-primary hover:bg-primary-container rounded transition-colors" title="Publicar">
+<span class="material-symbols-outlined text-[20px]">publish</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Clasificar">
+<span class="material-symbols-outlined text-[20px]">category</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Rechazada -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface text-opacity-60">Asistente Administrativo</span>
+<span class="text-on-surface-variant text-opacity-60 text-[12px]">Cusco, Presencial</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface text-opacity-60">Empresa XYZ E.I.R.L</td>
+<td class="py-4 px-4 text-on-surface-variant text-opacity-60">15 Oct 2024</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded border border-outline-variant text-[11px] font-medium text-on-surface-variant text-opacity-60">
+<span class="material-symbols-outlined text-[14px] mr-1">api</span> Externa
+                                </span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-label-md">
+                                    Rechazada
+                                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-highest rounded transition-colors" title="Ver Motivo">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-4 py-3 border-t border-outline-variant flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mostrando 1 - 4 de 1,245 resultados</span>
+<div class="flex items-center gap-1">
+<button class="p-1 text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center transition-colors">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="p-1 text-on-surface hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-on-tertiary-container">
+<div class="font-label-md text-label-md text-primary dark:text-primary-fixed mb-4 md:mb-0">
+<span class="text-secondary dark:text-secondary-fixed">© 2024 Universidad Continental - Dirección de Oportunidades Laborales</span>
+</div>
+<ul class="flex flex-wrap gap-4 md:gap-6 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Términos y Condiciones</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Política de Privacidad</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Soporte Técnico</a></li>
+</ul>
+</footer>
+</main>
+</body></html>

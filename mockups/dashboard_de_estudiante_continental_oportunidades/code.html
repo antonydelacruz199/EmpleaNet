@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Estudiante - Universidad Continental</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#365ca7",
+                        "on-tertiary-container": "#9fa5ad",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary-container": "#353b41",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "surface-dim": "#dad9e0",
+                        "on-tertiary-fixed": "#161c22",
+                        "tertiary": "#1f262b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-highest": "#e2e2e9",
+                        "outline": "#747782",
+                        "error": "#ba1a1a",
+                        "primary": "#002356",
+                        "secondary-fixed": "#d3e4fe",
+                        "outline-variant": "#c3c6d3",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001944",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1b20",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#afc6ff",
+                        "surface-container": "#eeedf4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e8e7ee",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#434751",
+                        "surface-variant": "#e2e2e9",
+                        "on-primary-container": "#80a4f4",
+                        "primary-container": "#003781",
+                        "on-primary-fixed-variant": "#18448e",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "surface-container-low": "#f4f3fa",
+                        "tertiary-fixed": "#dde3eb",
+                        "on-secondary-container": "#54647a",
+                        "inverse-surface": "#2f3036",
+                        "inverse-on-surface": "#f1f0f7",
+                        "secondary-container": "#d0e1fb",
+                        "on-background": "#1a1b20",
+                        "inverse-primary": "#afc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "sidebar-width": "260px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "header-height": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-on-tertiary-container shadow-sm dark:shadow-none fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight">Continental Oportunidades</h1>
+</div>
+<div class="flex-1 max-w-2xl mx-lg relative hidden md:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-lg pr-sm py-sm rounded-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-sm text-body-sm text-on-surface" placeholder="Buscar oportunidades, empresas o roles..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="p-sm rounded-full text-on-surface-variant dark:text-on-tertiary-container font-medium hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="ml-sm w-[40px] h-[40px] rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young university student in a well-lit academic setting. The student is wearing smart casual attire, smiling confidently. The lighting is bright and modern, creating a trustworthy and academic corporate modern aesthetic. The color palette features clean whites and soft natural skin tones against a slightly blurred institutional blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdCskyeTlB0kUZuMs7l288KULitPBJi31sZuP4qe6TSU2XcgzqP4dXfQMDHPV45RZaztIZQacB1j-o2ocpiw0mjPYhstiTLLNStC4tHpMDojESFaw-Y2bdH2mlAVyFeZbVZNq7fOVXesomFMTZev4jNPL78OOvkEhJi3LOCxDYTpWFT0P_e-Jfs38w6uUFy0RfzeRlNiVwxErVpgIy3jUYny7L-M92Ey33dUVyK2WSTewlgiER8lDg"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar & Main Content Wrapper -->
+<div class="flex flex-1 pt-header-height">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-tertiary border-r border-outline-variant dark:border-on-tertiary-container fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex flex-col gap-xs z-40 hidden lg:flex">
+<div class="px-sm py-md mb-sm flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center border border-outline-variant shadow-sm">
+<img alt="Continental Logo" class="w-8 h-8 object-contain" data-alt="A minimalist and sharp rendering of a fictional university emblem, featuring subtle geometric crest details. The design emphasizes a corporate modern academic identity with crisp edges, utilizing a deep primary blue (#002356) set cleanly on a stark white background. Lighting is perfectly even and flat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD43yj9zFTR6L6PXMuzyckzEvRFrNlilT_gT9ST2YqgCiX-y5bxpQtkQ_MJ-zdaaLu7IOJI03eJ2ahh7GxiKg-7j-UmmdLoMKZHWveccjsY-0vqWJCGNbPw0oOggVDdV6NsU9JHgUPAYjy4Hzmp1cZququftb-sTwlgWn5Xqql4nPnzH4-bwnJeb1ncuYSbYEec2x7_R-e96i1u-o4HqU9NJyfqO7vHFN9cKr98jmsEAZ2FVRgRxtrb"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Gestión Institucional</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Universidad Continental</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-sm px-md rounded-xl font-label-md text-label-md font-semibold mb-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 flex items-center justify-center gap-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Nueva Oferta
+            </button>
+<div class="flex-1 overflow-y-auto flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Estratégico
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                    Operativo
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                    Soporte
+                </a>
+<a class="flex items-center gap-sm px-md py-sm bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl font-bold font-label-md text-label-md hover:translate-x-1 transition-all duration-300 opacity-90 scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_ind">assignment_ind</span>
+                    Oportunidades
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+                    Configuración
+                </a>
+</div>
+<div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Ayuda
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl font-label-md text-label-md hover:translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Cerrar Sesión
+                </a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-sidebar-width p-md md:p-lg lg:px-12 max-w-container-max mx-auto w-full flex flex-col gap-md">
+<!-- Welcome Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-sm mb-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Hola, Alejandro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Aquí tienes el resumen de tu progreso y oportunidades para hoy.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary-fixed transition-colors">
+                        Actualizar CV
+                    </button>
+<button class="px-md py-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm">
+                        Buscar Ofertas
+                    </button>
+</div>
+</div>
+<!-- Top Grid: Profile Stats & Next Steps -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- Profile Completeness Card (Spans 4) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Perfil Profesional</h3>
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-xs rounded-full">person_check</span>
+</div>
+<div class="relative w-full h-3 bg-surface-container-high rounded-full overflow-hidden mb-sm">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-1000 w-[85%]"></div>
+</div>
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface-variant">Completitud</span>
+<span class="text-primary font-bold">85%</span>
+</div>
+</div>
+<div class="mt-lg pt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Falta adjuntar portafolio</span>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Completar ahora</a>
+</div>
+</div>
+<!-- Active Postulations Summary (Spans 8) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Resumen de Actividad</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-sm h-full pb-lg">
+<div class="p-sm bg-surface-container-low rounded-lg border border-outline-variant flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-[32px] text-secondary mb-xs">work_history</span>
+<span class="font-headline-xl text-headline-xl text-on-surface">12</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Postulaciones Activas</span>
+</div>
+<div class="p-sm bg-secondary-fixed rounded-lg border border-outline-variant flex flex-col justify-center items-center text-center relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-white opacity-20 rounded-full blur-md"></div>
+<span class="material-symbols-outlined text-[32px] text-primary mb-xs">visibility</span>
+<span class="font-headline-xl text-headline-xl text-on-primary-fixed">45</span>
+<span class="font-label-md text-label-md text-on-secondary-fixed-variant">Visualizaciones de CV</span>
+</div>
+<div class="p-sm bg-surface-container-low rounded-lg border border-outline-variant flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-[32px] text-secondary mb-xs">handshake</span>
+<span class="font-headline-xl text-headline-xl text-on-surface">2</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Entrevistas Programadas</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommendations Section -->
+<div class="mt-sm">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Recomendaciones Personalizadas</h3>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center" href="#">
+                        Ver todas <span class="material-symbols-outlined text-[18px] ml-xs">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Offer Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex flex-col h-full relative overflow-hidden group">
+<div class="absolute top-0 right-0 bg-primary-fixed px-sm py-xs rounded-bl-lg border-l border-b border-primary-fixed-dim">
+<span class="font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">stars</span> 95% Match
+                            </span>
+</div>
+<div class="p-md flex-1">
+<div class="w-12 h-12 mb-sm rounded bg-surface-variant flex items-center justify-center border border-outline-variant">
+<img alt="Tech Corp Logo" class="w-8 h-8 object-contain" data-alt="A clean, minimalist logo of a modern tech company. The design features a stylized blue geometric leaf shape against a pure white background. The aesthetic is flat, crisp, and fits perfectly within a corporate academic dashboard interface, maintaining high contrast and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCpkwzrLcgqVkm9qSDJAzwnf3mc6NmunaNeyMSr19QoZLIIHUBSqVxYNB76jXZGXtGgJd3ml9-dStNHe0av-fduQaEqhAieGRIdlRzk1xWZX6IKMIiTrLnbX5cTAb7-hOv2nEy6SojWeUpC6manYhoQJ6uFVXMn1DesCZiXWpvPXKBPoFZWI4en9eg9OImejCOa_5B2v35opsOLZo0fR7Et-wk9sBSRnpKYvoramLp26kWcjaMqN7C"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Analista de Datos Jr.</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Tech Solutions Inc. • Remoto</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">Python</span>
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">SQL</span>
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">PowerBI</span>
+</div>
+</div>
+<div class="p-sm border-t border-outline-variant bg-surface-container-low flex justify-between items-center mt-auto">
+<span class="font-body-sm text-body-sm text-on-surface-variant">S/ 3,000 - S/ 4,000</span>
+<button class="text-primary font-label-md text-label-md hover:underline">Postular</button>
+</div>
+</div>
+<!-- Offer Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex flex-col h-full relative overflow-hidden group">
+<div class="absolute top-0 right-0 bg-primary-fixed px-sm py-xs rounded-bl-lg border-l border-b border-primary-fixed-dim">
+<span class="font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">stars</span> 88% Match
+                            </span>
+</div>
+<div class="p-md flex-1">
+<div class="w-12 h-12 mb-sm rounded bg-surface-variant flex items-center justify-center border border-outline-variant">
+<img alt="Bank Logo" class="w-8 h-8 object-contain" data-alt="A sharp, minimalist bank logo suitable for a corporate dashboard. It depicts a simplified, solid blue structural pillar or shield motif on a stark white background. The image is flat, well-lit, and strictly professional, aligning with a modern academic styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZzN32RfctnAJKTOjnP3wsDEnA_dyg8vhygB_h9AOhVB_ZfY9rBTlioyZJi5i--9NTiI0m682Dfas_Ng-yKEX9mcMw1hMCuTmfs057QetNHIH3sqxLe3hvrxBThrINliRFq3aFYbp1I4XDmy-WO1rWpCpJo21JPn9uj6kYPgaIijxWiM3_fNzV1KZdR4HAnpCzH9b-7GVLopVE_HGJi8JHHd3FW65JZZxiATIIsJUTPM-KKcgttQJn"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Especialista en BI</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Banco Nacional • Híbrido (Lima)</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">Tableau</span>
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">Excel Avanzado</span>
+</div>
+</div>
+<div class="p-sm border-t border-outline-variant bg-surface-container-low flex justify-between items-center mt-auto">
+<span class="font-body-sm text-body-sm text-on-surface-variant">S/ 4,500 - S/ 5,500</span>
+<button class="text-primary font-label-md text-label-md hover:underline">Postular</button>
+</div>
+</div>
+<!-- Offer Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] hover:shadow-[0px_4px_12px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex flex-col h-full relative overflow-hidden group">
+<div class="absolute top-0 right-0 bg-primary-fixed px-sm py-xs rounded-bl-lg border-l border-b border-primary-fixed-dim">
+<span class="font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">stars</span> 82% Match
+                            </span>
+</div>
+<div class="p-md flex-1">
+<div class="w-12 h-12 mb-sm rounded bg-surface-variant flex items-center justify-center border border-outline-variant">
+<img alt="Consulting Logo" class="w-8 h-8 object-contain" data-alt="A clean, modern corporate logo showing a stylized letter 'C' integrated with a subtle upward trend arrow. The design uses institutional blue (#002356) on a pure white background. The aesthetic is highly professional, crisp, and suited for a data-dense academic dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsikhTNDwVKMV689OzBoHIrpRm-UNchgX6b8YTypomdNM9u5PgdoJwT6Gw4twxwjc2lCfrlhJXKT3yAEwQrpvfAxjZLr7-gEK432ocwd94KFlxxnShVivgwR1Pi-h-bZv22NrKDMqLssWoPRgqrp5B0tOHimB-X2fWKrdC-o9c4x_RrDflKrUDiPZ58bUmvOblGRHTdp3x0swQbFyi18zCc8lK57PzlEoPsd5p5RC-lEMxX3u6QW_0"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-xs group-hover:text-primary transition-colors">Consultor de Estrategia</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Global Consulting • Presencial</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">Gestión de Proyectos</span>
+<span class="px-xs py-[2px] bg-surface-container-high rounded text-on-surface-variant font-label-md text-[10px]">SCRUM</span>
+</div>
+</div>
+<div class="p-sm border-t border-outline-variant bg-surface-container-low flex justify-between items-center mt-auto">
+<span class="font-body-sm text-body-sm text-on-surface-variant">No especificado</span>
+<button class="text-primary font-label-md text-label-md hover:underline">Postular</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Applications Table -->
+<div class="mt-sm bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_2px_4px_rgba(0,0,0,0.05)] overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-on-surface">Historial Reciente de Postulaciones</h3>
+<button class="p-xs hover:bg-surface-variant rounded-full text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-outline-variant text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="p-sm font-semibold pl-md">Puesto</th>
+<th class="p-sm font-semibold">Empresa</th>
+<th class="p-sm font-semibold">Fecha</th>
+<th class="p-sm font-semibold">Estado</th>
+<th class="p-sm font-semibold pr-md text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="p-sm pl-md font-medium">Ingeniero de Software Trainee</td>
+<td class="p-sm">Fintech Solutions S.A.</td>
+<td class="p-sm text-on-surface-variant">12 Oct 2023</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[11px]">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> En Revisión
+                                    </span>
+</td>
+<td class="p-sm pr-md text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Ver detalle</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors bg-surface-bright">
+<td class="p-sm pl-md font-medium">Practicante Pre-Profesional de Marketing</td>
+<td class="p-sm">Agencia Creativa Plus</td>
+<td class="p-sm text-on-surface-variant">05 Oct 2023</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-[11px]">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Entrevista
+                                    </span>
+</td>
+<td class="p-sm pr-md text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Ver detalle</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-sm pl-md font-medium">Asistente Administrativo</td>
+<td class="p-sm">Corporación Logística Del Sur</td>
+<td class="p-sm text-on-surface-variant">28 Sep 2023</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-[11px]">
+<span class="w-2 h-2 rounded-full bg-outline"></span> Cerrado
+                                    </span>
+</td>
+<td class="p-sm pr-md text-right">
+<button class="text-primary hover:underline font-label-md text-label-md">Ver detalle</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-on-tertiary-container lg:pl-[calc(theme(spacing.sidebar-width)+theme(spacing.lg))] z-30 relative">
+<div class="font-label-md text-label-md text-primary dark:text-primary-fixed mb-sm md:mb-0 font-bold">
+            © 2024 Universidad Continental - Dirección de Oportunidades Laborales
+        </div>
+<div class="flex gap-md font-body-sm text-body-sm">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Términos y Condiciones</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Política de Privacidad</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Soporte Técnico</a>
+</div>
+</footer>
+</body></html>

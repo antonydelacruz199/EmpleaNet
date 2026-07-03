@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - Continental Oportunidades</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#365ca7",
+                      "on-tertiary-container": "#9fa5ad",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#41474e",
+                      "primary-fixed": "#d9e2ff",
+                      "tertiary-container": "#353b41",
+                      "on-secondary": "#ffffff",
+                      "background": "#faf8ff",
+                      "tertiary-fixed-dim": "#c1c7cf",
+                      "surface-dim": "#dad9e0",
+                      "on-tertiary-fixed": "#161c22",
+                      "tertiary": "#1f262b",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "surface-container-highest": "#e2e2e9",
+                      "outline": "#747782",
+                      "error": "#ba1a1a",
+                      "primary": "#002356",
+                      "secondary-fixed": "#d3e4fe",
+                      "outline-variant": "#c3c6d3",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001944",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1a1b20",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#afc6ff",
+                      "surface-container": "#eeedf4",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e8e7ee",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#434751",
+                      "surface-variant": "#e2e2e9",
+                      "on-primary-container": "#80a4f4",
+                      "primary-container": "#003781",
+                      "on-primary-fixed-variant": "#18448e",
+                      "surface": "#faf8ff",
+                      "secondary": "#505f76",
+                      "surface-container-low": "#f4f3fa",
+                      "tertiary-fixed": "#dde3eb",
+                      "on-secondary-container": "#54647a",
+                      "inverse-surface": "#2f3036",
+                      "inverse-on-surface": "#f1f0f7",
+                      "secondary-container": "#d0e1fb",
+                      "on-background": "#1a1b20",
+                      "inverse-primary": "#afc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "lg": "48px",
+                      "sm": "12px",
+                      "sidebar-width": "260px",
+                      "md": "24px",
+                      "xs": "4px",
+                      "header-height": "64px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary selection:text-on-primary">
+<main class="flex-grow flex items-center justify-center p-md lg:p-0">
+<div class="w-full max-w-[1200px] flex rounded-xl overflow-hidden shadow-lg border border-outline-variant/30 bg-surface-container-lowest mx-auto my-lg h-[819px] min-h-[600px]">
+<div class="hidden lg:flex w-1/2 bg-surface-container-low relative flex-col justify-between p-lg overflow-hidden group">
+<div class="absolute inset-0 z-0 opacity-40 mix-blend-multiply transition-transform duration-[20s] group-hover:scale-105" data-alt="A high-quality architectural photograph of a modern university campus building facade featuring clean geometric lines, large glass windows reflecting a clear blue sky, and integrated green spaces. The composition is professional, sharp, and aspirational, utilizing a corporate modern aesthetic with a cool, institutional color palette dominated by steel blues and clean whites. The lighting is bright and natural, suggesting progress and opportunity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqTSa5WSd-ZxQaYDWiE45a0KNKnCRXR5ql2KliZLZVJ-rBBjqFcov2qYRY3b_gX9reCPsaywReHyGuQE3PGdH188yQM2lbWP-b4VarIs0BcAg1un4Aol-1iUTE7jqK1dW97QNhUs65x8TteToTdHJPMXWqz-SE2Y8fFvgTD5mwnsgD1o_dadT3WiZDgLSDRXVqDn_u9n7zo73z1MgC--kAfz7Lp-2aSIBPwLOeK5Zp9YJCJF3MjElA')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent z-0"></div>
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-primary font-bold mb-xs">Universidad Continental</h2>
+<p class="font-body-md text-body-md text-primary-fixed">Dirección de Oportunidades Laborales</p>
+</div>
+<div class="relative z-10">
+<div class="inline-flex items-center justify-center p-sm bg-surface-container-lowest/20 backdrop-blur-sm rounded-lg mb-md border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">hub</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-primary font-bold tracking-tight mb-sm">Conectando talento con grandes oportunidades.</h1>
+<p class="font-body-lg text-body-lg text-primary-fixed max-w-md">Accede a la plataforma exclusiva para estudiantes y egresados y descubre tu próximo paso profesional.</p>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col justify-center px-md py-lg sm:px-lg md:px-24 bg-surface-container-lowest">
+<div class="mb-lg lg:hidden">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">Continental Oportunidades</h2>
+</div>
+<div class="mb-lg">
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-semibold mb-xs">Iniciar Sesión</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ingresa tus credenciales institucionales para continuar.</p>
+</div>
+<form action="#" class="flex flex-col gap-md" method="POST">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">Correo Institucional</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/70 text-[20px]">mail</span>
+</div>
+<input class="w-full pl-10 pr-sm py-sm bg-surface rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-200 placeholder:text-on-surface-variant/50" id="email" name="email" placeholder="ejemplo@continental.edu.pe" required="" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Contraseña</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/70 text-[20px]">lock</span>
+</div>
+<input class="w-full pl-10 pr-10 py-sm bg-surface rounded-lg border border-outline-variant text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all duration-200 placeholder:text-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-sm flex items-center text-on-surface-variant/70 hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between mt-xs">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary focus:ring-offset-surface-container-lowest bg-surface" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">
+                                Recordarme
+                            </label>
+</div>
+<a class="font-label-md text-label-md text-primary hover:text-primary-container underline-offset-4 hover:underline transition-all" href="#">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+</div>
+<button class="mt-sm w-full flex justify-center items-center gap-2 py-sm px-4 border border-transparent rounded-lg text-on-primary bg-primary hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary font-label-md text-label-md uppercase tracking-wider transition-all duration-200 shadow-sm active:scale-[0.98]" type="submit">
+<span>Iniciar Sesión</span>
+<span class="material-symbols-outlined text-[18px]">login</span>
+</button>
+</form>
+<div class="mt-lg">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/50"></div>
+</div>
+<div class="relative flex justify-center font-body-sm text-body-sm">
+<span class="px-2 bg-surface-container-lowest text-on-surface-variant">¿No tienes una cuenta?</span>
+</div>
+</div>
+<div class="mt-md text-center">
+<a class="inline-flex items-center justify-center gap-2 font-label-md text-label-md text-primary hover:text-primary-container hover:bg-surface-container-low px-4 py-2 rounded-lg transition-colors border border-outline-variant/30 w-full sm:w-auto" href="#">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                            Registrarse como nuevo usuario (Estudiante/Egresado)
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component Execution -->
+<footer class="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-on-tertiary-container font-body-sm text-body-sm">
+<div class="text-secondary dark:text-secondary-fixed mb-4 md:mb-0 text-center md:text-left">
+            © 2024 Universidad Continental - Dirección de Oportunidades Laborales
+        </div>
+<nav class="flex gap-md flex-wrap justify-center">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Términos y Condiciones</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Política de Privacidad</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Soporte Técnico</a>
+</nav>
+</footer>
+</body></html>

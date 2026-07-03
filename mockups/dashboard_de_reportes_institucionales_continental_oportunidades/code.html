@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard de Reportes y Análisis - Continental Oportunidades</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#365ca7",
+                      "on-tertiary-container": "#9fa5ad",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#41474e",
+                      "primary-fixed": "#d9e2ff",
+                      "tertiary-container": "#353b41",
+                      "on-secondary": "#ffffff",
+                      "background": "#faf8ff",
+                      "tertiary-fixed-dim": "#c1c7cf",
+                      "surface-dim": "#dad9e0",
+                      "on-tertiary-fixed": "#161c22",
+                      "tertiary": "#1f262b",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "surface-container-highest": "#e2e2e9",
+                      "outline": "#747782",
+                      "error": "#ba1a1a",
+                      "primary": "#002356",
+                      "secondary-fixed": "#d3e4fe",
+                      "outline-variant": "#c3c6d3",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001944",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1a1b20",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#afc6ff",
+                      "surface-container": "#eeedf4",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e8e7ee",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#434751",
+                      "surface-variant": "#e2e2e9",
+                      "on-primary-container": "#80a4f4",
+                      "primary-container": "#003781",
+                      "on-primary-fixed-variant": "#18448e",
+                      "surface": "#faf8ff",
+                      "secondary": "#505f76",
+                      "surface-container-low": "#f4f3fa",
+                      "tertiary-fixed": "#dde3eb",
+                      "on-secondary-container": "#54647a",
+                      "inverse-surface": "#2f3036",
+                      "inverse-on-surface": "#f1f0f7",
+                      "secondary-container": "#d0e1fb",
+                      "on-background": "#1a1b20",
+                      "inverse-primary": "#afc6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "lg": "48px",
+                      "sm": "12px",
+                      "sidebar-width": "260px",
+                      "md": "24px",
+                      "xs": "4px",
+                      "header-height": "64px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-sans antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-on-tertiary-container shadow-sm dark:shadow-none">
+<div class="flex items-center gap-sm">
+<span class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight">Continental Oportunidades</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden md:flex items-center">
+<span class="material-symbols-outlined absolute left-sm text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="pl-lg pr-sm py-xs border border-outline-variant rounded-full bg-surface-container-low focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-sm text-body-sm text-on-surface w-64 transition-all" placeholder="Buscar..." type="text"/>
+</div>
+<div class="flex items-center gap-xs">
+<button class="p-xs rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer ml-sm">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate user, neutral background, bright even lighting, establishing a clean and trustworthy corporate identity suitable for an academic portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYTpeQm3zLCBSszoYasbdgtXZcX47WBJ66VQFaQfXKQJAU08D0AmLSarGPu7YKm-3BauN1DoaIr4VxXfKcNRamDtQyCMoMxgzjAbNuRiGrRvAc6XHBGOU9S-9bq2FEgo3JB2HlR0NjaGO8Hu4cgy74GY7JokGfH4rIdu0qBNrXC7DWs-allCCwqERcAG9S57WW1ipPIF3Sae5k62fxSjkIAocxIRXyFWD_VH3VL25gm1Lu_VrcBwVM"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-[64px]">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex-col gap-xs bg-surface-container-low dark:bg-tertiary border-r border-outline-variant dark:border-on-tertiary-container z-40">
+<div class="mb-md px-sm py-xs flex flex-col">
+<span class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed-dim">Gestión Institucional</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-xs">Universidad Continental</span>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-sm rounded-xl mb-md flex items-center justify-center gap-xs hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                Nueva Oferta
+            </button>
+<div class="flex-1 flex flex-col gap-xs overflow-y-auto">
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-label-md text-label-md">Estratégico</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">work</span>
+<span class="font-label-md text-label-md">Operativo</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">support_agent</span>
+<span class="font-label-md text-label-md">Soporte</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl font-bold transition-all opacity-90 scale-98" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">assignment_ind</span>
+<span class="font-label-md text-label-md">Oportunidades</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+<span class="font-label-md text-label-md">Ayuda</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-xl text-error hover:bg-error-container hover:text-on-error-container transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-label-md text-label-md">Cerrar Sesión</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] p-4 md:p-md bg-background flex flex-col overflow-y-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-md gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Reportes y Análisis de Resultados</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Métricas clave e indicadores institucionales de oportunidades laborales.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-4 py-2 border border-outline rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Últimos 30 días
+                    </button>
+<button class="flex items-center gap-xs px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Exportar Reporte
+                    </button>
+</div>
+</div>
+<!-- KPIs Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Tasa de Postulación</span>
+<div class="p-1.5 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-on-surface">42.8%</div>
+<div class="flex items-center gap-1 mt-1 text-green-600 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>+5.2% vs mes anterior</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Efectividad Recom.</span>
+<div class="p-1.5 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-on-surface">68.3%</div>
+<div class="flex items-center gap-1 mt-1 text-green-600 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>+2.1% vs mes anterior</span>
+</div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Usuarios</span>
+<div class="p-1.5 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-on-surface">12,450</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>Activos en plataforma</span>
+</div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Ofertas Activas</span>
+<div class="p-1.5 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">work_outline</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-on-surface">845</div>
+<div class="flex items-center gap-1 mt-1 text-red-500 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+<span>-1.5% vs mes anterior</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-md">
+<!-- Main Bar Chart: Ofertas vs Postulaciones -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Ofertas vs Postulaciones por Mes</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="w-full h-[300px] relative">
+<canvas id="barChart"></canvas>
+</div>
+</div>
+<!-- Donut Chart: Ofertas por Modalidad -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Ofertas por Modalidad</h2>
+</div>
+<div class="w-full h-[220px] relative flex justify-center">
+<canvas id="donutChart"></canvas>
+</div>
+<div class="mt-4 flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#002356]"></div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Presencial</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">45%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#003781]"></div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Híbrido</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">35%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#80a4f4]"></div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Remoto</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">20%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Table & Small Chart -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-md">
+<!-- Table: Usuarios por Carrera -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant/50 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Total de Usuarios por Carrera (Top 5)</h2>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Ver todas</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant">
+<th class="px-md py-sm font-label-md text-label-md font-semibold border-b border-outline-variant/30">Carrera</th>
+<th class="px-md py-sm font-label-md text-label-md font-semibold border-b border-outline-variant/30">Estudiantes</th>
+<th class="px-md py-sm font-label-md text-label-md font-semibold border-b border-outline-variant/30">Egresados</th>
+<th class="px-md py-sm font-label-md text-label-md font-semibold border-b border-outline-variant/30 text-right">Total</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">engineering</span>
+</div>
+                                        Ingeniería de Sistemas
+                                    </td>
+<td class="px-md py-sm">1,240</td>
+<td class="px-md py-sm">850</td>
+<td class="px-md py-sm text-right font-medium">2,090</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">business_center</span>
+</div>
+                                        Administración
+                                    </td>
+<td class="px-md py-sm">1,100</td>
+<td class="px-md py-sm">720</td>
+<td class="px-md py-sm text-right font-medium">1,820</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</div>
+                                        Derecho
+                                    </td>
+<td class="px-md py-sm">950</td>
+<td class="px-md py-sm">680</td>
+<td class="px-md py-sm text-right font-medium">1,630</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</div>
+                                        Psicología
+                                    </td>
+<td class="px-md py-sm">820</td>
+<td class="px-md py-sm">540</td>
+<td class="px-md py-sm text-right font-medium">1,360</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">architecture</span>
+</div>
+                                        Arquitectura
+                                    </td>
+<td class="px-md py-sm">780</td>
+<td class="px-md py-sm">490</td>
+<td class="px-md py-sm text-right font-medium">1,270</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Insight Card -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-center items-center text-center relative overflow-hidden">
+<!-- Background aesthetic -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center mb-4 shadow-sm z-10">
+<span class="material-symbols-outlined text-[32px]">lightbulb</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 z-10">Insight del Mes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 z-10">
+                        Las postulaciones a ofertas de modalidad <strong>Remota</strong> han incrementado un 15% este mes, mientras que las presenciales mantienen su volumen. Se sugiere contactar más empresas tech.
+                    </p>
+<button class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary/5 transition-colors font-label-md text-label-md z-10 w-full">
+                        Ver Análisis Detallado
+                    </button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-on-tertiary-container rounded-t-xl">
+<div class="font-label-md text-label-md text-primary dark:text-primary-fixed mb-4 md:mb-0">
+                    © 2024 Universidad Continental - Dirección de Oportunidades Laborales
+                </div>
+<div class="flex gap-md font-body-sm text-body-sm text-secondary dark:text-secondary-fixed">
+<a class="cursor-pointer text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Términos y Condiciones</a>
+<a class="cursor-pointer text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Política de Privacidad</a>
+<a class="cursor-pointer text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Soporte Técnico</a>
+</div>
+</footer>
+</main>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bar Chart Initialization
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Ofertas Publicadas',
+                            data: [120, 150, 180, 140, 200, 220],
+                            backgroundColor: '#002356', // primary
+                            borderRadius: 4,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        },
+                        {
+                            label: 'Postulaciones Realizadas',
+                            data: [450, 520, 680, 550, 750, 890],
+                            backgroundColor: '#80a4f4', // on-primary-container / lighter blue
+                            borderRadius: 4,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e2e2e9', // outline-variant approx
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 11
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Donut Chart Initialization
+            const ctxDonut = document.getElementById('donutChart').getContext('2d');
+            new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Presencial', 'Híbrido', 'Remoto'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: [
+                            '#002356', // primary
+                            '#003781', // primary-container
+                            '#80a4f4'  // on-primary-container
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false // Custom legend built in HTML
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

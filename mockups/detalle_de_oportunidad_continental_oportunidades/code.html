@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Oferta - Continental Oportunidades</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#365ca7",
+                        "on-tertiary-container": "#9fa5ad",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary-container": "#353b41",
+                        "on-secondary": "#ffffff",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "surface-dim": "#dad9e0",
+                        "on-tertiary-fixed": "#161c22",
+                        "tertiary": "#1f262b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-highest": "#e2e2e9",
+                        "outline": "#747782",
+                        "error": "#ba1a1a",
+                        "primary": "#002356",
+                        "secondary-fixed": "#d3e4fe",
+                        "outline-variant": "#c3c6d3",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001944",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1b20",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#afc6ff",
+                        "surface-container": "#eeedf4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e8e7ee",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#434751",
+                        "surface-variant": "#e2e2e9",
+                        "on-primary-container": "#80a4f4",
+                        "primary-container": "#003781",
+                        "on-primary-fixed-variant": "#18448e",
+                        "surface": "#faf8ff",
+                        "secondary": "#505f76",
+                        "surface-container-low": "#f4f3fa",
+                        "tertiary-fixed": "#dde3eb",
+                        "on-secondary-container": "#54647a",
+                        "inverse-surface": "#2f3036",
+                        "inverse-on-surface": "#f1f0f7",
+                        "secondary-container": "#d0e1fb",
+                        "on-background": "#1a1b20",
+                        "inverse-primary": "#afc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "sidebar-width": "260px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "header-height": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 z-50 border-b border-outline-variant dark:border-on-tertiary-container shadow-sm dark:shadow-none fixed top-0 left-0 w-full h-header-height flex justify-between items-center px-md z-50">
+<div class="flex items-center gap-sm">
+<span class="font-headline-xl text-headline-xl text-primary dark:text-primary-fixed font-bold tracking-tight">Continental Oportunidades</span>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar placeholder for "on_right" -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-lg pr-sm py-xs rounded-full border border-outline-variant bg-surface-container-low text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64" placeholder="Buscar..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 p-xs rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 p-xs rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 p-xs rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full border border-outline-variant object-cover ml-sm" data-alt="A professional user profile avatar showing a young adult with a friendly expression in a corporate setting. The background is slightly blurred with soft, high-key lighting indicative of a modern office environment. The overall tone is approachable and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHajy_hXCajtE0xfrjFuXByNWkfPx-l1M5IJoun9c6fAZNGFKptZsdxnpt_210izXQRJUMU8_qCxW4GCEkX5Ax3SlI0fA58BcyZFOem3WBmaeGCGvbkjM4iJk2cM_7tFT0kpAVAQdwIbnVM4GQ9kSnJek8-7OW-Bys3--zxgsnQ-iIWb7TVLBWRHCOJGNbB1YHYbdISkSlPnCSNo18-wWgnhG3mUAyXUHohoCqVwNKDNzZ4GmRWlot"/>
+</div>
+</header>
+<div class="flex flex-1 pt-header-height">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex bg-surface-container-low dark:bg-tertiary fixed left-0 top-header-height w-sidebar-width h-[calc(100vh-theme(spacing.header-height))] p-sm flex-col gap-xs border-r border-outline-variant dark:border-on-tertiary-container z-40">
+<div class="mb-md flex items-center gap-sm px-sm pt-sm">
+<img alt="Continental Logo" class="w-8 h-8 object-contain" data-alt="A crisp, modern logo mark for 'Universidad Continental' featuring geometric shapes in institutional blue and white. The design is clean, minimalist, and conveys a sense of academic prestige and forward-thinking education within a light-mode layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1qH7nDhmzbkVUL67t7s11ZijsfpwEJb-edLa-s4-YUc_dKMLg5XoBe97gPStOlZTlw3ETfo8qCAJptt8auzyZnaF-XGwI9puFbyXsEu_ImpNga9PcSIX4iezabSl0mPPHRixi1bwUENmDy1g01cVru6BZqtFc0v1Zz6xXgSkXvOJQQCmWlSXm0M1OjVXpUIlKPPJymqNFR3W22Uim3v9owvj8gbL1vg2croCYy4orLgMHtjSSMZmv"/>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Gestión Institucional</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Universidad Continental</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-sm rounded-lg mb-md hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                Nueva Oferta
+            </button>
+<ul class="flex flex-col gap-xs flex-1 overflow-y-auto">
+<li class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span> Estratégico
+                </li>
+<li class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="work">work</span> Operativo
+                </li>
+<li class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span> Soporte
+                </li>
+<li class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+                </li>
+<!-- Active Navigation Item -->
+<li class="flex items-center gap-sm p-sm bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl font-bold font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="assignment_ind">assignment_ind</span> Oportunidades
+                </li>
+<li class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span> Configuración
+                </li>
+</ul>
+<div class="mt-auto flex flex-col gap-xs pt-sm border-t border-outline-variant">
+<div class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="help">help</span> Ayuda
+                </div>
+<div class="flex items-center gap-sm p-sm text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl hover:translate-x-1 transition-all duration-300 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Cerrar Sesión
+                </div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 w-full lg:ml-sidebar-width p-4 md:p-md lg:p-lg bg-surface">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-body-sm text-body-sm mb-md">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center hover:text-primary transition-colors" href="#">
+                            Inicio
+                        </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Oportunidades</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<span class="text-on-surface font-semibold">Analista de Datos Senior</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Left Column: Job Details (Spans 8 columns on desktop) -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<!-- Header Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Analista de Datos Senior</h1>
+<p class="font-body-md text-body-md text-secondary">TechCorp Innovators S.A. • Lima, Perú (Híbrido)</p>
+</div>
+<img alt="TechCorp Logo" class="w-16 h-16 rounded border border-outline-variant object-cover" data-alt="A modern corporate logo for 'TechCorp Innovators S.A.' featuring abstract tech-inspired geometry in deep blue and teal colors against a clean white background. It represents a forward-thinking, established tech company." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLaYZWEqcelzbSlbKNvgPftTIFIG18rdwfwzmStBCQNw9O8nXxeqChMPFtQEyNzGfa7EnGp-rfoBqrcz0NvgM9gtI2otcPFbLhYUbjiX-HOiUvVcJLEqBanQ792lYmCINSDS1r0RFQe6U1lsMh5Qx4QubY9P3ftdkWCMopB37wmDdUWdEOEOkp4giF6TvYOVoR46Mm4KC_E3xEpyk0MhU3d4cEwXrGArOQ29kRrQhAl0J5vdHd6hae"/>
+</div>
+<div class="flex flex-wrap gap-xs mt-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm mr-1">schedule</span> Tiempo Completo
+                            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm mr-1">payments</span> S/ 6,000 - S/ 8,000
+                            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm mr-1">calendar_today</span> Publicado hace 2 días
+                            </span>
+</div>
+</div>
+<!-- Description Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm border-b border-outline-variant pb-2">Descripción del Puesto</h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-3">
+<p>Buscamos un Analista de Datos Senior apasionado por extraer insights de conjuntos de datos complejos para guiar decisiones estratégicas. Trabajarás estrechamente con los equipos de producto y marketing para entender el comportamiento del usuario y optimizar nuestras plataformas.</p>
+<p>El candidato ideal tiene una sólida base analítica, excelente capacidad de comunicación para presentar hallazgos a stakeholders no técnicos, y experiencia comprobada en modelado de datos y creación de dashboards interactivos.</p>
+</div>
+</div>
+<!-- Requirements & Skills Card (Bento-style split) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fact_check</span> Requisitos
+                             </h3>
+<ul class="list-disc list-inside font-body-sm text-body-sm text-on-surface-variant space-y-2">
+<li>Bachiller en Ingeniería de Sistemas, Estadística o afines.</li>
+<li>Mínimo 3 años de experiencia en análisis de datos.</li>
+<li>Dominio avanzado de SQL y Python (Pandas, NumPy).</li>
+<li>Experiencia con herramientas de visualización (Tableau, PowerBI).</li>
+<li>Nivel de inglés intermedio-avanzado.</li>
+</ul>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">star</span> Habilidades Valoradas
+                             </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface-variant font-label-md text-label-md border border-outline-variant">Machine Learning Basico</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface-variant font-label-md text-label-md border border-outline-variant">AWS / GCP</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface-variant font-label-md text-label-md border border-outline-variant">Comunicación Asertiva</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface-variant font-label-md text-label-md border border-outline-variant">A/B Testing</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface-variant font-label-md text-label-md border border-outline-variant">Scrum / Agile</span>
+</div>
+</div>
+</div>
+<!-- Benefits Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)]">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm border-b border-outline-variant pb-2">Beneficios</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-3">
+<div class="p-2 bg-primary-fixed rounded-full text-on-primary-fixed">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">EPS Cubierta al 100%</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Para titular y dependientes directos.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-primary-fixed rounded-full text-on-primary-fixed">
+<span class="material-symbols-outlined">home_work</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Modelo Híbrido Flexible</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 días remoto, 2 en oficina.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-primary-fixed rounded-full text-on-primary-fixed">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Bono de Capacitación</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">S/ 2,000 anuales para cursos o certificaciones.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-primary-fixed rounded-full text-on-primary-fixed">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Membresía de Gimnasio</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Convenio con red de gimnasios nacional.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Actions & Match Analysis (Spans 4 columns on desktop) -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<!-- Sticky Container for Desktop -->
+<div class="sticky top-[calc(theme(spacing.header-height)+theme(spacing.md))] flex flex-col gap-md">
+<!-- CTA Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_4px_12px_rgba(0,0,0,0.08)] flex flex-col items-center text-center">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">¿Te interesa esta oportunidad?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Tu perfil tiene una alta compatibilidad. Postula ahora para destacar ante los reclutadores.</p>
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-headline-md text-body-md py-3 px-4 rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2" id="btn-postular">
+<span class="material-symbols-outlined">send</span> Postular ahora
+                            </button>
+<button class="w-full mt-3 bg-transparent border border-outline hover:bg-surface-container-high text-primary font-label-md text-label-md py-2 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">bookmark_border</span> Guardar Oferta
+                            </button>
+</div>
+<!-- Match Analysis Card (Glassmorphism inspired light overlay) -->
+<div class="bg-gradient-to-br from-primary-fixed/20 to-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-[0px_2px_4px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[100px]">radar</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-sm">
+<span class="material-symbols-outlined text-primary">model_training</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Análisis de Coincidencia</h3>
+</div>
+<div class="flex items-end gap-2 mb-4">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">85%</span>
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Match Score</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                                    Te recomendamos esta oferta porque tus habilidades académicas y proyectos registrados se alinean fuertemente con los requisitos técnicos.
+                                </p>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span class="text-on-surface">SQL &amp; Bases de Datos</span>
+<span class="text-primary font-bold">¡Lo tienes!</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span class="text-on-surface">Python (Data Science)</span>
+<span class="text-primary font-bold">¡Lo tienes!</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span class="text-on-surface">PowerBI / Tableau</span>
+<span class="text-on-surface-variant">En desarrollo</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim full-width py-md border-t border-outline-variant dark:border-on-tertiary-container flat w-full mt-auto flex flex-col md:flex-row justify-between items-center px-lg py-md lg:ml-sidebar-width">
+<div class="mb-4 md:mb-0">
+<span class="font-label-md text-label-md text-primary dark:text-primary-fixed">© 2024 Universidad Continental - Dirección de Oportunidades Laborales</span>
+</div>
+<div class="flex gap-md font-body-sm text-body-sm">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Términos y Condiciones</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Política de Privacidad</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer" href="#">Soporte Técnico</a>
+</div>
+</footer>
+<!-- Postulation Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center" id="postulation-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-surface/50 backdrop-blur-sm" id="modal-backdrop"></div>
+<!-- Modal Content -->
+<div class="relative bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)] w-[90%] max-w-md p-lg z-10 flex flex-col animate-[fadeIn_0.2s_ease-out]">
+<div class="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Confirmar Postulación</h2>
+<button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-surface-container-high transition-colors" id="close-modal">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">
+                Estás a punto de postular a <strong>Analista de Datos Senior</strong> en TechCorp Innovators S.A.
+            </p>
+<form class="flex flex-col gap-md">
+<!-- CV Upload Section -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Curriculum Vitae (Requerido)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-md text-center hover:bg-surface-container-low hover:border-primary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary mb-2">upload_file</span>
+<p class="font-body-sm text-body-sm text-on-surface">Haz clic para subir o arrastra tu archivo aquí</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">PDF, DOCX (Max 5MB)</p>
+<!-- Hidden input for functionality, not styled -->
+<input accept=".pdf,.doc,.docx" class="hidden" type="file"/>
+</div>
+</div>
+<!-- Portfolio Link Optional -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="portfolio-url">Enlace a Portafolio / GitHub (Opcional)</label>
+<input class="w-full px-sm py-2 rounded-lg border border-outline-variant bg-surface text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="portfolio-url" placeholder="https://..." type="url"/>
+</div>
+<!-- Actions -->
+<div class="flex justify-end gap-sm mt-sm">
+<button class="px-4 py-2 rounded-lg border border-outline text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="cancel-modal" type="button">
+                        Cancelar
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-sm">check_circle</span> Enviar Postulación
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        // Simple modal toggle logic
+        const btnPostular = document.getElementById('btn-postular');
+        const modal = document.getElementById('postulation-modal');
+        const btnClose = document.getElementById('close-modal');
+        const btnCancel = document.getElementById('cancel-modal');
+        const backdrop = document.getElementById('modal-backdrop');
+
+        function toggleModal() {
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        btnPostular.addEventListener('click', toggleModal);
+        btnClose.addEventListener('click', toggleModal);
+        btnCancel.addEventListener('click', toggleModal);
+        backdrop.addEventListener('click', toggleModal);
+    </script>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body></html>
