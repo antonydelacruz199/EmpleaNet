@@ -105,23 +105,23 @@ flowchart TD
 
 | Paso | Acción | Mockup | Bizagi | Estado |
 |------|--------|--------|--------|--------|
-| 1 | Acceder panel admin | `gesti_n_de_ofertas_*` | O2 | ❌ |
-| 2 | Crear oferta manual | gestión (formulario + tabla) | O2 t1 | ❌ |
-| 3 | Revisar ofertas importadas | gestión (tabla con fuente) | O2 t2, S5 | ❌ |
-| 4 | Validar y publicar | gestión (acciones fila) | O2 t3-t5 | ❌ |
-| 5 | Cerrar/actualizar oferta | gestión | O2 t6 | ❌ |
+| 1 | Acceder panel admin | `gesti_n_de_ofertas_*` | O2 | ✅ |
+| 2 | Crear oferta manual | gestión (formulario + tabla) | O2 t1 | ✅ |
+| 3 | Revisar ofertas importadas | gestión (tabla con fuente) | O2 t2, S5 | ✅ |
+| 4 | Validar y publicar | gestión (acciones fila) | O2 t3-t5 | ⚠️ Manual directo |
+| 5 | Cerrar/actualizar oferta | gestión (archivar) | O2 t6 | ✅ |
 
-**Ruta planificada:** `/admin/ofertas`
+**Ruta:** `/admin/ofertas`
 
 ### 2.2 Reportes institucionales
 
 | Paso | Acción | Mockup | Bizagi | Estado |
 |------|--------|--------|--------|--------|
-| 1 | Consultar indicadores | `dashboard_de_reportes_*` | O5 t1 | ❌ |
-| 2 | Ver reportes paralelos (usuarios, ofertas, rec., postulaciones) | dashboard reportes (cards + gráficos) | O5 r1-r4 | ❌ |
-| 3 | Exportar / visualizar | dashboard reportes (export CSV) | O5 t2 | ❌ |
+| 1 | Consultar indicadores | `dashboard_de_reportes_*` | O5 t1 | ✅ |
+| 2 | Ver reportes paralelos (usuarios, ofertas, rec., postulaciones) | dashboard reportes (cards + gráficos) | O5 r1-r4 | ✅ |
+| 3 | Exportar / visualizar | dashboard reportes (export CSV) | O5 t2 | ✅ |
 
-**Ruta planificada:** `/admin/reportes`
+**Ruta:** `/admin/reportes`
 
 ### 2.3 Panel estratégico (baja prioridad)
 

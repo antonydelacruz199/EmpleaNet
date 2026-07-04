@@ -47,24 +47,27 @@ python -m recolector
 apps/web              Frontend React
 apps/api              API REST Express
 workers/recolector    Recolección Remotive → SQLite
-database/             schema.sql, seeds.sql, empleanet.db
+database/             schema.sql, seeds.sql, migraciones, empleanet.db
 docs/                 Documentación canónica y roadmap
 bizagi/               Diagramas BPMN (procesos E, O, S)
 mockups/              Pantallas Stitch + design system
+articulos/            Estado del arte y plan de pruebas
 ```
 
 ## Estado actual (resumen)
 
 | Área | Estado |
 |------|--------|
-| Módulo `empleos` (API + SQLite) | ✅ Implementado |
-| Worker Remotive | ⚠️ Código presente; verificar ejecución |
-| Frontend UI (mockups) | ⚠️ Esqueleto básico |
-| Perfil, recomendaciones, auth | ⚠️ Auth + perfil/recomendaciones (Fase 2–3) |
+| Empleos + worker Remotive | ✅ Fase 1 |
+| Perfil y recomendaciones | ✅ Fase 2 |
+| Auth JWT y roles | ✅ Fase 3 |
+| Postulaciones y favoritos | ✅ Fase 4 |
+| Admin ofertas + reportes CSV | ✅ Fase 5 |
+| Soporte y panel estratégico | ❌ Fase 6 |
 
-Consulta la auditoría completa en [`docs/IMPLEMENTATION_AUDIT.md`](docs/IMPLEMENTATION_AUDIT.md) y el plan de fases en [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md).
+Consulta [`docs/00-estado-actual.md`](docs/00-estado-actual.md), el roadmap en [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md) y el cierre de Fase 5 en [`docs/FASE-5-ADMIN-REPORTES.md`](docs/FASE-5-ADMIN-REPORTES.md).
 
-### Usuarios demo (Fase 3)
+### Usuarios demo
 
 Contraseña para todos: `Continental2026`
 
@@ -80,10 +83,11 @@ Contraseña para todos: `Continental2026`
 | Documento | Descripción |
 |-----------|-------------|
 | `docs/00-estado-actual.md` | Estado oficial del proyecto |
-| `docs/IMPLEMENTATION_AUDIT.md` | Auditoría técnica inicial |
+| `docs/FASE-5-ADMIN-REPORTES.md` | Cierre Fase 5: admin y reportes |
 | `docs/DEVELOPMENT_ROADMAP.md` | Roadmap de implementación por fases |
-| `docs/PROJECT_CONTEXT.md` | Contexto institucional y alcance |
 | `docs/MODULES.md` | Mapa de módulos del sistema |
+| `docs/06-contratos-api.md` | Contratos API |
+| `articulos/plan de pruebas/` | Plan de pruebas institucional |
 
 ## Licencia y contexto académico
 

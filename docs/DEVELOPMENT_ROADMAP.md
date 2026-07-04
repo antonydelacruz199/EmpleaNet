@@ -131,6 +131,8 @@ Perfil editado → recomendaciones distintas → motivo visible en UI.
 - [x] Panel gestión ofertas (`/admin/ofertas`)
 - [x] Dashboard reportes con exportación CSV (`/admin/reportes`)
 
+Ver detalle en [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md).
+
 ---
 
 ## Fase 6 — Soporte, estrategia y endurecimiento *(siguiente)*

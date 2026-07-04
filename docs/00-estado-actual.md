@@ -25,6 +25,9 @@ Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendac
 - Sin SSO institucional (fase futura)
 - Panel estratégico y config. motor pendientes (Fase 6)
 
+## Documentación de cierre
+- [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md) — alcance, API, verificación y exclusiones
+
 ## Siguiente paso: Fase 6
 - Configuración del motor de recomendación (soporte)
 - Panel estratégico, auditoría y respaldos SQLite

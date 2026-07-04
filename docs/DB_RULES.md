@@ -58,7 +58,7 @@ Reglas de integridad, relaciones y restricciones para SQLite. Complementa `docs/
 
 **Borrado:**
 - MVP: no DELETE físico de empleos con postulaciones (fase futura)
-- Archivado lógico: campo `activo` planificado Fase 5 (no existe aún)
+- Archivado lógico: columna `empleo.activo` (Fase 5 ✅)
 
 **Bizagi:** O2, O3, S5 | **Mockup:** marketplace, detalle
 
@@ -203,7 +203,7 @@ usuario (1) ──< (1) perfil                       [Fase 3]
 | Tabla | DELETE físico | Borrado lógico |
 |-------|---------------|----------------|
 | `fuente_empleo` | ❌ Prohibido si hay empleos | `activa=0` |
-| `empleo` | ❌ Prohibido si hay postulaciones | `activo=0` (Fase 5) |
+| `empleo` | ❌ Prohibido si hay postulaciones | `activo=0` ✅ Fase 5 |
 | `perfil` | ❌ | `activo=0` vía usuario |
 | `recomendacion` | ✅ Al recalcular perfil | — |
 | `postulacion` | ❌ Inmutable | Solo cambio de `estado` |
@@ -247,14 +247,15 @@ usuario (1) ──< (1) perfil                       [Fase 3]
 
 ## 9. Migraciones
 
-**Estado actual:** sin carpeta `database/migrations/`. Cambios ad hoc (ej. ALTER `modalidad` en runtime).
+**Estado actual:** migraciones incrementales en `database/migrations/` (003 auth, 004 postulaciones/favoritos, 005 admin).
 
 **Regla a partir de Fase 2:**
 ```
 database/migrations/
   001_initial.sql          ← equivalente a schema.sql
   002_add_usuario.sql      ← Fase 3
-  003_add_postulacion_favorito.sql ← Fase 4
+  004_postulacion_favorito.sql
+  005_admin_empleo_activo.sql   ← Fase 5
 ```
 
 Cada migración: idempotente donde sea posible; numerada secuencialmente.

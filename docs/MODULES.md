@@ -12,7 +12,7 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Control de acceso por roles institucionales |
 | **Actores** | Todos |
-| **Estado** | ❌ Pendiente (Fase 3) |
+| **Estado** | ✅ Implementado (Fase 3) |
 | **Bizagi** | O1 (autenticación e inicio de sesión), S3 (validación credenciales, permisos) |
 | **Mockup** | `mockups/inicio_de_sesi_n_continental_oportunidades/` |
 | **Rutas planificadas** | `/login`, middleware API auth |
@@ -31,19 +31,16 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Registro y mantenimiento del perfil académico-profesional |
 | **Actores** | Estudiante, egresado |
-| **Estado** | ⚠️ Stub (`GET /api/perfil/me` hardcodeado) |
+| **Estado** | ✅ Implementado (Fase 2) |
 | **Bizagi** | O1 (registro datos personales/académicos, habilidades, actualización) |
 | **Mockup** | `mockups/dashboard_de_estudiante_continental_oportunidades/` |
 | **Rutas actuales** | `/perfil` |
 | **Rutas planificadas** | `/perfil/editar`, `/dashboard` |
 | **Tabla** | `perfil` 📋 |
 
-**API actual:**
-- `GET /api/perfil/me` → stub "Ana Pérez"
-
-**API planificada (Fase 2):**
+**API implementada:**
 - `GET /api/perfil/me` → SQLite
-- `PUT /api/perfil/me` → actualizar habilidades, ubicación
+- `PUT /api/perfil/me` → actualizar habilidades, ubicación; recalcula recomendaciones
 
 ---
 
@@ -53,19 +50,16 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Centralizar, listar, filtrar y mostrar detalle de oportunidades |
 | **Actores** | Todos (lectura); administrador (escritura manual, Fase 5) |
-| **Estado** | ✅ API real · ⚠️ UI básica |
+| **Estado** | ✅ API + UI marketplace y detalle |
 | **Bizagi** | O2 (registro manual, importación, validación, publicación), O3 (consulta, filtros) |
 | **Mockups** | `marketplace_de_oportunidades_*`, `detalle_de_oportunidad_*`, `gesti_n_de_ofertas_*` |
-| **Rutas actuales** | `/empleos` |
-| **Rutas planificadas** | `/empleos/:id`, `/admin/ofertas` |
+| **Rutas actuales** | `/empleos`, `/empleos/:id`, `/admin/ofertas` |
 | **Tablas** | `empleo`, `fuente_empleo` ✅ |
 
 **API implementada:**
-- `GET /api/empleos` — filtros `q`, `ubicacion`, `modalidad`, `fuente`, paginación
+- `GET /api/empleos` — filtros `q`, `ubicacion`, `modalidad`, `fuente`, paginación (solo `activo=1`)
 - `GET /api/empleos/:id` — detalle
-
-**Frontend pendiente:**
-- Design system, filtros UI, paginación, página detalle
+- `GET/POST/PUT/PATCH /api/admin/empleos*` — gestión admin (Fase 5)
 
 ---
 
@@ -75,20 +69,16 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Sugerir ofertas por afinidad con perfil del usuario |
 | **Actores** | Estudiante, egresado; soporte (config., Fase 6) |
-| **Estado** | ⚠️ Stub (filtra campo `tags` inexistente) |
+| **Estado** | ✅ Implementado (Fase 2) |
 | **Bizagi** | O3 (análisis coincidencia, generación, ordenamiento), S2 (reglas, parámetros, evaluación) |
 | **Mockups** | `dashboard_de_estudiante_*`, `configuraci_n_del_motor_*` |
 | **Rutas actuales** | `/recomendados` |
 | **Tabla** | `recomendacion` 📋 |
 
-**API actual:**
-- `GET /api/recomendaciones` → stub parcial
+**API implementada:**
+- `GET /api/recomendaciones` → scores desde `recomendacion` + motivo (JWT estudiantil)
 
-**API planificada (Fase 2):**
-- `GET /api/recomendaciones` → scores desde `recomendacion` + motivo
-- `POST /api/recomendaciones/recalcular` (interno o admin)
-
-**Motor:** reglas ponderadas en `docs/08-motor-recomendacion.md`
+**Motor:** reglas ponderadas en `docs/08-motor-recomendacion.md` (`recomendacion.motor.ts`)
 
 ---
 
@@ -98,13 +88,13 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Registrar intención de postulación y seguimiento de estado |
 | **Actores** | Estudiante, egresado |
-| **Estado** | ❌ Pendiente (Fase 4) |
+| **Estado** | ✅ Implementado (Fase 4) |
 | **Bizagi** | O4 (verificación requisitos, registro, confirmación, historial, seguimiento) |
 | **Mockup** | Acciones en `detalle_de_oportunidad_*`; historial en `dashboard_de_estudiante_*` |
-| **Rutas planificadas** | `/postulaciones`, acción en `/empleos/:id` |
-| **Tabla planificada** | `postulacion` |
+| **Rutas actuales** | `/postulaciones`, acción en `/empleos/:id` |
+| **Tabla** | `postulacion` ✅ |
 
-**Regla:** redirección a `url_oferta` externa; registro interno de postulación.
+**API:** `GET/POST /api/postulaciones`, `GET /api/postulaciones/resumen`, `GET /api/postulaciones/empleo/:id`
 
 ---
 
@@ -114,11 +104,13 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Guardar ofertas de interés para consulta posterior |
 | **Actores** | Estudiante, egresado |
-| **Estado** | ❌ Pendiente (Fase 4) |
+| **Estado** | ✅ Implementado (Fase 4) |
 | **Bizagi** | O4 (gestión ofertas favoritas o guardadas) |
 | **Mockup** | Detalle oportunidad (acción guardar) |
-| **Rutas planificadas** | `/favoritos` o sección en dashboard |
-| **Tabla planificada** | `favorito` |
+| **Rutas actuales** | `/favoritos`, acción en `/empleos/:id` |
+| **Tabla** | `favorito` ✅ |
+
+**API:** `GET/POST /api/favoritos`, `DELETE /api/favoritos/:empleoId`
 
 ---
 
@@ -128,16 +120,20 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Indicadores de uso para gestión institucional |
 | **Actores** | Administrador |
-| **Estado** | ❌ Pendiente (Fase 5) |
+| **Estado** | ✅ Implementado (Fase 5) |
 | **Bizagi** | O5 (reportes usuarios, ofertas, recomendaciones, postulaciones; exportación) |
 | **Mockup** | `dashboard_de_reportes_institucionales_continental_oportunidades/` |
-| **Rutas planificadas** | `/admin/reportes` |
+| **Rutas actuales** | `/admin/reportes` |
 
 **Indicadores MVP:**
 - Total usuarios activos
 - Ofertas publicadas / fuente
 - Recomendaciones generadas
 - Postulaciones registradas
+- Favoritos guardados
+- Exportación CSV
+
+**Documentación:** [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md)
 
 ---
 
@@ -147,10 +143,13 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Gestión operativa de ofertas y supervisión del servicio |
 | **Actores** | Administrador |
-| **Estado** | ❌ Pendiente (Fase 5) |
+| **Estado** | ✅ Ofertas manuales (Fase 5) · ❌ Panel estratégico (Fase 6) |
 | **Bizagi** | O2 (registro manual), O5 (consulta indicadores), E2 (monitoreo) |
 | **Mockups** | `gesti_n_de_ofertas_*`, `dashboard_de_reportes_*`, `panel_estrat_gico_*` |
-| **Rutas planificadas** | `/admin/ofertas`, `/admin/reportes`, `/admin/estrategico` |
+| **Rutas actuales** | `/admin/ofertas`, `/admin/reportes` |
+| **Rutas pendientes** | `/admin/estrategico` (Fase 6) |
+
+**API:** `GET/POST/PUT/PATCH /api/admin/empleos*`
 
 ---
 
@@ -173,7 +172,7 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Recolección automática desde fuentes externas |
 | **Actores** | Sistema (worker) |
-| **Estado** | ⚠️ Código Remotive presente; verificación pendiente |
+| **Estado** | ✅ Remotive verificado (Fase 1 / 2.3) |
 | **Bizagi** | S5 (identificación fuentes, conexión, validación, transformación, sincronización), O2 (importación) |
 | **Mockup** | — (proceso backend) |
 | **Ubicación** | `workers/recolector/` |
@@ -192,10 +191,10 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 | Módulo | Ubicación | Estado |
 |--------|-----------|--------|
 | **Health** | `GET /api/health` | ✅ |
-| **Fuentes** | `GET /api/fuentes` | ⚠️ Stub |
-| **Seguridad base** | Helmet, CORS, rate-limit | ✅ |
-| **Base de datos** | `database/schema.sql` | ✅ 4 tablas |
-| **Design system** | `mockups/continental_oportunidades_design_system/` | 📋 No aplicado en web |
+| **Fuentes** | `GET /api/fuentes` | ✅ SQLite |
+| **Seguridad base** | Helmet, CORS, rate-limit, JWT | ✅ |
+| **Base de datos** | `database/schema.sql` + migraciones 003–005 | ✅ |
+| **Design system** | `apps/web/src/styles/` + mockups | ✅ Aplicado (Fase 1+) |
 
 ---
 

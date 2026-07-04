@@ -49,16 +49,16 @@ Un punto único institucional que normaliza ofertas, las hace buscables y priori
 
 | Módulo | Descripción | Estado código |
 |--------|-------------|---------------|
-| Autenticación | Login, roles, control de acceso | ❌ Pendiente |
-| Usuarios y perfiles | Registro académico-profesional | ⚠️ Stub |
-| Ofertas (empleos) | Listado, detalle, filtros, fuentes | ✅ API real |
-| Recomendaciones | Motor por reglas + puntaje | ⚠️ Stub |
-| Postulaciones | Registro y seguimiento | ❌ Pendiente |
-| Favoritos | Ofertas guardadas | ❌ Pendiente |
-| Reportes | Indicadores institucionales | ❌ Pendiente |
-| Administración | CRUD ofertas, usuarios | ❌ Pendiente |
-| Soporte | Mantenimiento, config. motor | ❌ Pendiente |
-| Integraciones | Worker Remotive → SQLite | ⚠️ Código presente |
+| Autenticación | Login, roles, control de acceso | ✅ Fase 3 |
+| Usuarios y perfiles | Registro académico-profesional | ✅ Fase 2 |
+| Ofertas (empleos) | Listado, detalle, filtros, fuentes | ✅ Fase 1 |
+| Recomendaciones | Motor por reglas + puntaje | ✅ Fase 2 |
+| Postulaciones | Registro y seguimiento | ✅ Fase 4 |
+| Favoritos | Ofertas guardadas | ✅ Fase 4 |
+| Reportes | Indicadores institucionales + CSV | ✅ Fase 5 |
+| Administración | CRUD ofertas manuales | ✅ Fase 5 |
+| Soporte | Mantenimiento, config. motor | ❌ Fase 6 |
+| Integraciones | Worker Remotive → SQLite | ✅ Fase 1 |
 
 Detalle en [`MODULES.md`](MODULES.md).
 
@@ -66,19 +66,12 @@ Detalle en [`MODULES.md`](MODULES.md).
 
 Según `docs/02-alcance-funcional.md`:
 
-**Incluido en el MVP técnico:**
-- Recopilación desde fuente externa (Remotive, fase 2.3)
-- Almacenamiento normalizado en SQLite
-- Búsqueda y filtrado de empleos (API)
-- Recomendación por puntaje (diseñado, pendiente implementación real)
-- Perfil básico del usuario (diseñado, pendiente implementación real)
-- Gestión de fuentes de empleo
+**Implementado (Fases 1–5):**
+- Recopilación Remotive, empleos end-to-end, perfil, recomendaciones, auth, postulaciones, favoritos
+- Administración de ofertas manuales y reportes institucionales (O5)
 
-**Incluido en alcance de tesis (fases posteriores):**
-- Autenticación con roles institucionales
-- Postulaciones y favoritos (O4)
-- Paneles administrativos y reportes (O5)
-- Configuración del motor (S2) y panel estratégico (E3)
+**Pendiente (Fase 6):**
+- Configuración del motor (S2), panel estratégico (E3), auditoría y endurecimiento
 
 ## Exclusiones explícitas
 
@@ -119,4 +112,5 @@ Reglas: frontend sin lógica de negocio pesada; backend con validación y servic
 - [`DEVELOPMENT_ROADMAP.md`](DEVELOPMENT_ROADMAP.md) — plan por fases
 - [`SYSTEM_RULES.md`](SYSTEM_RULES.md) — reglas de negocio
 - [`UI_FLOW.md`](UI_FLOW.md) — flujos de interfaz
+- [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md) — cierre Fase 5
 - [`DB_RULES.md`](DB_RULES.md) — reglas de datos

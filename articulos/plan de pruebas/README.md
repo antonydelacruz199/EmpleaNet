@@ -12,5 +12,15 @@ El plan cubre la verificación de los módulos implementados según el roadmap (
 
 ## Estado de fases al momento del plan
 
-- Fases 1–4 implementadas: empleos, perfil, recomendaciones, auth, postulaciones y favoritos
-- Fases 5–6 pendientes: administración, reportes, soporte y endurecimiento
+- **Fases 1–5 implementadas:** empleos, perfil, recomendaciones, auth, postulaciones, favoritos, administración y reportes
+- **Fase 6 pendiente:** soporte, panel estratégico y endurecimiento
+
+## Casos sugeridos Fase 5 (admin / reportes)
+
+Ver [`docs/FASE-5-ADMIN-REPORTES.md`](../../docs/FASE-5-ADMIN-REPORTES.md) sección 5 (verificación manual).
+
+- Login administrador y acceso a `/admin/ofertas` y `/admin/reportes`
+- Alta, edición y archivado de oferta manual (fuente Institucional)
+- Visibilidad en marketplace según `empleo.activo`
+- Exportación CSV de indicadores O5
+- Denegación de rutas admin para rol estudiante
