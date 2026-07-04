@@ -47,3 +47,7 @@ export async function logoutApi(): Promise<void> {
 export function isStudentRole(rol: RolUsuario): boolean {
   return rol === "estudiante" || rol === "egresado";
 }
+
+export function isAdminRole(rol: RolUsuario): boolean {
+  return rol === "administrador";
+}

@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { env } from "../../config/env.js";
 import { ensureAuthSchema } from "../../modules/auth/auth.repository.js";
+import { ensureAdminSchema } from "../../modules/admin/admin.repository.js";
 import { ensurePostulacionFavoritoSchema } from "../../modules/postulaciones/postulaciones.repository.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -77,6 +78,7 @@ export function getDb(): Database.Database {
     ensureDevDatabase(db);
     ensureAuthSchema();
     ensurePostulacionFavoritoSchema();
+    ensureAdminSchema();
   }
   return db;
 }

@@ -67,6 +67,7 @@ function buildFiltroClauses(
       }
     }
   }
+  conds.push(`(e.activo = 1)`);
   const whereSql = conds.length > 0 ? `WHERE ${conds.join(" AND ")}` : "";
   return { whereSql, values };
 }
@@ -101,7 +102,7 @@ export class EmpleosRepository {
   }
 
   findAll(): Promise<Empleo[]> {
-    const sql = `SELECT ${selectColumns} ${fromJoin} ORDER BY e.id`;
+    const sql = `SELECT ${selectColumns} ${fromJoin} WHERE e.activo = 1 ORDER BY e.id`;
     const rows = getDb().prepare(sql).all() as EmpleoRow[];
     return Promise.resolve(rows.map(mapRow));
   }

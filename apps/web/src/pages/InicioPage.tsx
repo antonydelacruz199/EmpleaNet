@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../core/auth/AuthContext";
-import { isStudentRole } from "../core/auth/authApi";
+import { isAdminRole, isStudentRole } from "../core/auth/authApi";
+import { fetchReportesResumen } from "../modules/admin/api";
+import type { ReportesResumen } from "../modules/admin/tipos";
 import { fetchFavoritos } from "../modules/favoritos/api";
 import { fetchPerfil } from "../modules/perfil/api";
 import type { Perfil } from "../modules/perfil/tipos";
@@ -22,10 +24,28 @@ export function InicioPage() {
   const [cargando, setCargando] = useState(true);
 
   const esEstudiante = user ? isStudentRole(user.rol) : false;
+  const esAdmin = user ? isAdminRole(user.rol) : false;
+  const [reportes, setReportes] = useState<ReportesResumen | null>(null);
 
   useEffect(() => {
     if (!user) return;
     let cancelled = false;
+
+    if (esAdmin) {
+      void fetchReportesResumen()
+        .then((data) => {
+          if (!cancelled) setReportes(data);
+        })
+        .catch(() => {
+          if (!cancelled) setReportes(null);
+        })
+        .finally(() => {
+          if (!cancelled) setCargando(false);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }
 
     if (!esEstudiante) {
       setCargando(false);
@@ -62,7 +82,7 @@ export function InicioPage() {
     return () => {
       cancelled = true;
     };
-  }, [user, esEstudiante]);
+  }, [user, esEstudiante, esAdmin]);
 
   return (
     <>
@@ -75,18 +95,63 @@ export function InicioPage() {
       </header>
 
       {!esEstudiante ? (
-        <section className="card detail-main">
-          <h2 style={{ marginTop: 0, color: "var(--co-primary)" }}>
-            Panel {user?.rol === "administrador" ? "administrativo" : "de soporte"}
-          </h2>
-          <p>
-            Desde aquí puedes consultar las oportunidades centralizadas. Las funciones
-            de gestión avanzada se habilitarán en fases posteriores del roadmap.
-          </p>
-          <Link to="/empleos" className="btn btn--primary">
-            Ver oportunidades
-          </Link>
-        </section>
+        esAdmin ? (
+          <>
+            <div className="stats-grid">
+              <div className="stat-card card">
+                <span className="stat-card__label">Usuarios activos</span>
+                <strong className="stat-card__value">
+                  {cargando ? "—" : (reportes?.usuariosActivos ?? 0)}
+                </strong>
+              </div>
+              <div className="stat-card card">
+                <span className="stat-card__label">Ofertas publicadas</span>
+                <strong className="stat-card__value">
+                  {cargando ? "—" : (reportes?.ofertasPublicadas ?? 0)}
+                </strong>
+              </div>
+              <div className="stat-card card">
+                <span className="stat-card__label">Postulaciones</span>
+                <strong className="stat-card__value">
+                  {cargando ? "—" : (reportes?.postulacionesRegistradas ?? 0)}
+                </strong>
+              </div>
+            </div>
+            <section className="card detail-main">
+              <h2 style={{ marginTop: 0, color: "var(--co-primary)" }}>
+                Panel administrativo
+              </h2>
+              <p>
+                Gestiona ofertas institucionales y consulta indicadores de uso de la
+                plataforma.
+              </p>
+              <div className="empleo-card__actions">
+                <Link to="/admin/ofertas" className="btn btn--primary">
+                  Gestión de ofertas
+                </Link>
+                <Link to="/admin/reportes" className="btn btn--secondary">
+                  Reportes institucionales
+                </Link>
+                <Link to="/empleos" className="btn btn--secondary">
+                  Ver marketplace
+                </Link>
+              </div>
+            </section>
+          </>
+        ) : (
+          <section className="card detail-main">
+            <h2 style={{ marginTop: 0, color: "var(--co-primary)" }}>
+              Panel de soporte
+            </h2>
+            <p>
+              Desde aquí puedes consultar las oportunidades centralizadas. La
+              configuración del motor de recomendación se habilitará en la Fase 6.
+            </p>
+            <Link to="/empleos" className="btn btn--primary">
+              Ver oportunidades
+            </Link>
+          </section>
+        )
       ) : (
         <>
           <div className="stats-grid">

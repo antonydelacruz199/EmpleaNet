@@ -1,7 +1,7 @@
 # Estado actual del proyecto - Continental Oportunidades
 
 ## Estado general
-Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendaciones), Fase 3 (autenticación y roles), **Fase 4 (postulaciones y favoritos)**.
+Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendaciones), Fase 3 (autenticación y roles), Fase 4 (postulaciones y favoritos), **Fase 5 (administración y reportes)**.
 
 ## Implementado actualmente
 - Autenticación JWT con roles: estudiante, egresado, administrador, soporte
@@ -9,11 +9,11 @@ Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendac
 - Endpoints `POST /api/auth/login`, `GET /api/auth/me`, `POST /api/auth/logout`
 - Protección API: `perfil` y `recomendaciones` requieren token y rol estudiantil
 - UI login institucional, rutas protegidas, cierre de sesión
-- **Postulaciones:** registro, historial, estados (`registrada`, `en_proceso`, `cerrada`), redirección a `url_oferta`
-- **Favoritos:** guardar/quitar oferta, listado en dashboard
-- Tablas `postulacion` y `favorito` con índices únicos por perfil+empleo
-- Endpoints `GET/POST /api/postulaciones`, `GET/POST/DELETE /api/favoritos`
-- UI: acciones en detalle `/empleos/:id`, historial en dashboard, rutas `/postulaciones` y `/favoritos`
+- Postulaciones y favoritos (proceso O4)
+- **Administración:** CRUD ofertas manuales (fuente Institucional), archivado lógico `empleo.activo`
+- **Reportes:** indicadores institucionales y exportación CSV (O5)
+- Endpoints `GET/POST/PUT/PATCH /api/admin/empleos`, `GET /api/admin/reportes/*`
+- UI admin: `/admin/ofertas`, `/admin/reportes` (rol administrador)
 - Usuarios demo (contraseña `Continental2026`):
   - estudiante@continental.edu.pe
   - egresado@continental.edu.pe
@@ -23,8 +23,8 @@ Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendac
 
 ## Restricción técnica actual
 - Sin SSO institucional (fase futura)
-- Paneles admin/reportes pendientes (Fase 5)
+- Panel estratégico y config. motor pendientes (Fase 6)
 
-## Siguiente paso: Fase 5
-- CRUD ofertas manuales (admin)
-- Dashboard reportes institucionales (O5)
+## Siguiente paso: Fase 6
+- Configuración del motor de recomendación (soporte)
+- Panel estratégico, auditoría y respaldos SQLite

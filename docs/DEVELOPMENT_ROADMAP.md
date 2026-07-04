@@ -117,22 +117,23 @@ Perfil editado → recomendaciones distintas → motivo visible en UI.
 
 ---
 
-## Fase 5 — Administración y reportes *(siguiente)*
+## Fase 5 — Administración y reportes ✅
 
 **Prioridad:** 🟡 Media  
 **Bizagi:** O2 (manual), O5 | **Mockups:** gestión ofertas, dashboard reportes
 
 ### Backend
-- [ ] CRUD ofertas manuales (admin)
-- [ ] Endpoints reportes: conteos usuarios, ofertas, recomendaciones, postulaciones
+- [x] CRUD ofertas manuales (admin)
+- [x] Endpoints reportes: conteos usuarios, ofertas, recomendaciones, postulaciones
+- [x] Columna `empleo.activo` para archivado lógico
 
 ### Frontend
-- [ ] Panel gestión ofertas
-- [ ] Dashboard reportes con exportación básica (CSV)
+- [x] Panel gestión ofertas (`/admin/ofertas`)
+- [x] Dashboard reportes con exportación CSV (`/admin/reportes`)
 
 ---
 
-## Fase 6 — Soporte, estrategia y endurecimiento
+## Fase 6 — Soporte, estrategia y endurecimiento *(siguiente)*
 
 **Prioridad:** 🟢 Baja  
 **Bizagi:** E1–E3, S4 | **Mockups:** panel estratégico, config. motor
@@ -175,6 +176,6 @@ Este documento **extiende** `docs/10-roadmap.md` con fases de auth, postulacione
 
 ## Próximo paso inmediato
 
-**Fase 5:** panel de gestión de ofertas manuales y dashboard de reportes institucionales.
+**Fase 6:** pantalla soporte del motor, panel estratégico, auditoría y endurecimiento.
 
 Ver también: [`IMPLEMENTATION_AUDIT.md`](IMPLEMENTATION_AUDIT.md) · [`MODULES.md`](MODULES.md) · [`UI_FLOW.md`](UI_FLOW.md)

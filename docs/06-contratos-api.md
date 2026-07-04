@@ -141,3 +141,28 @@ Listado de ofertas guardadas.
 
 ### DELETE /api/favoritos/:empleoId
 Quita favorito. Respuesta `204`.
+
+## Endpoints: módulo admin (implementados)
+
+Requieren JWT. Rol: `administrador`.
+
+### GET /api/admin/empleos
+Listado completo (activas y archivadas) para gestión.
+
+### POST /api/admin/empleos
+Crea oferta manual con fuente `Institucional`.
+
+### PUT /api/admin/empleos/:id
+Actualiza campos de la oferta.
+
+### PATCH /api/admin/empleos/:id/activo
+```json
+{ "activo": false }
+```
+Archivado lógico: `activo=false` oculta la oferta del marketplace.
+
+### GET /api/admin/reportes/resumen
+Indicadores: usuarios activos, ofertas, recomendaciones, postulaciones, favoritos y desglose por fuente.
+
+### GET /api/admin/reportes/export.csv
+Descarga CSV con los mismos indicadores.
