@@ -41,3 +41,11 @@ adminRouter.get("/estrategico/resumen", (req, res, next) => {
 adminRouter.get("/reportes/export.csv", (req, res, next) => {
   controller.reportesExportCsv(req, res, next);
 });
+
+adminRouter.get("/usuarios", (req, res, next) => {
+  controller.listUsuarios(req, res, next);
+});
+
+adminRouter.get("/usuarios/:usuarioId/perfil", (req, res, next) => {
+  controller.getUsuarioPerfil(req, res, next);
+});

@@ -104,7 +104,13 @@ export class RecomendacionesRepository {
     const pesos = this.motorConfigRepository.getPesos();
     return empleos.map((empleo) => {
       const resultado = calcularRecomendacion(
-        { skills: perfil.skills, location: perfil.location },
+        {
+          skills: perfil.skills,
+          location: perfil.location,
+          carreraNombre: perfil.carreraNombre,
+          intereses: perfil.intereses,
+          aniosExperiencia: perfil.aniosExperiencia,
+        },
         {
           title: empleo.title,
           descripcion: empleo.descripcion,

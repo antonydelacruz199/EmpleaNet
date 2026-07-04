@@ -10,6 +10,7 @@ import type {
   UpdateEmpleoActivoBody,
   UpdateEmpleoAdminBody,
 } from "./admin.schema.js";
+import { PerfilService } from "../perfil/perfil.service.js";
 import { AdminRepository } from "./admin.repository.js";
 
 function parseId(raw: string): number {
@@ -23,6 +24,7 @@ function parseId(raw: string): number {
 export class AdminService {
   private readonly repository = new AdminRepository();
   private readonly auditoriaRepository = new AuditoriaRepository();
+  private readonly perfilService = new PerfilService();
 
   listEmpleos(): ListEmpleosAdminResult {
     const empleos = this.repository.listEmpleos();
@@ -95,5 +97,13 @@ export class AdminService {
       ...resumen.ofertasPorFuente.map((item) => `${item.fuente},${item.total}`),
     ];
     return lines.join("\n");
+  }
+
+  listUsuariosPerfil(page = 1) {
+    return this.perfilService.listUsuariosAdmin(page);
+  }
+
+  getUsuarioPerfil(usuarioId: number) {
+    return this.perfilService.getPerfilAdmin(usuarioId);
   }
 }

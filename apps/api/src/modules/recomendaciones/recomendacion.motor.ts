@@ -24,6 +24,9 @@ export const PESOS_DEFAULT: PesosMotor = {
 export type EntradaPerfilMotor = {
   skills: string[];
   location?: string;
+  carreraNombre?: string;
+  intereses?: string[];
+  aniosExperiencia?: number;
 };
 
 export type EntradaEmpleoMotor = {
@@ -63,15 +66,38 @@ function puntajeHabilidades(
   return (coincidencias.length / skills.length) * pesos.habilidades;
 }
 
-function puntajeCarrera(skills: string[], empleo: EntradaEmpleoMotor, pesos: PesosMotor) {
-  if (skills.length === 0) return 0;
+function puntajeCarrera(
+  perfil: EntradaPerfilMotor,
+  skills: string[],
+  empleo: EntradaEmpleoMotor,
+  pesos: PesosMotor,
+) {
+  const carrera = normalizar(perfil.carreraNombre ?? "");
   const titulo = normalizar(empleo.title);
+  const cuerpo = textoEmpleo(empleo);
+  if (carrera && (titulo.includes(carrera) || cuerpo.includes(carrera))) {
+    return pesos.carrera;
+  }
+  if (skills.length === 0) return 0;
   const enTitulo = skills.filter((skill) => titulo.includes(skill));
   return (enTitulo.length / skills.length) * pesos.carrera;
 }
 
-function puntajeExperiencia(pesos: PesosMotor) {
-  return pesos.experiencia * 0.5;
+function puntajeExperiencia(anios: number | undefined, pesos: PesosMotor) {
+  if (!anios || anios <= 0) return pesos.experiencia * 0.3;
+  if (anios >= 5) return pesos.experiencia;
+  return pesos.experiencia * (0.4 + (anios / 5) * 0.6);
+}
+
+function puntajeIntereses(
+  intereses: string[] | undefined,
+  empleo: EntradaEmpleoMotor,
+  pesos: PesosMotor,
+) {
+  if (!intereses?.length) return 0;
+  const cuerpo = textoEmpleo(empleo);
+  const coincidencias = intereses.filter((i) => cuerpo.includes(normalizar(i)));
+  return (coincidencias.length / intereses.length) * Math.min(pesos.carrera * 0.4, 10);
 }
 
 function preferenciaModalidad(location?: string) {
@@ -152,13 +178,14 @@ export function calcularRecomendacion(
   const perfilNorm = { ...perfil, skills };
 
   const ph = puntajeHabilidades(skills, empleo, pesos);
-  const pc = puntajeCarrera(skills, empleo, pesos);
-  const pe = puntajeExperiencia(pesos);
+  const pc = puntajeCarrera(perfilNorm, skills, empleo, pesos);
+  const pe = puntajeExperiencia(perfilNorm.aniosExperiencia, pesos);
+  const pi = puntajeIntereses(perfilNorm.intereses, empleo, pesos);
   const pm = puntajeModalidad(perfilNorm, empleo, pesos);
   const pu = puntajeUbicacion(perfilNorm, empleo, pesos);
   const pa = puntajeActualidad(empleo.fechaPublicacion, pesos);
 
-  const puntaje = Math.round((ph + pc + pe + pm + pu + pa) * 10) / 10;
+  const puntaje = Math.round((ph + pc + pe + pi + pm + pu + pa) * 10) / 10;
   const coincidencias = habilidadesCoincidentes(skills, empleo);
   const motivo = construirMotivo(coincidencias, empleo, { modalidad: pm, ubicacion: pu }, pesos);
 
