@@ -40,7 +40,12 @@
 - manejo centralizado de errores
 - desactivación de x-powered-by
 
-## Decisiones iniciales
-- no implementar autenticación avanzada en esta fase
+## Decisiones actuales (Fase 3)
+- Autenticación con JWT firmado (HS256) y contraseñas con scrypt (`node:crypto`)
+- Secret configurable: `JWT_SECRET` (mín. 16 caracteres)
+- Expiración configurable: `JWT_EXPIRES_IN_SECONDS` (default 8 h)
+- SSO institucional: fase futura
+
+## Decisiones iniciales (MVP)
 - no abrir endpoints innecesarios
 - mantener la superficie de ataque pequeña en el MVP

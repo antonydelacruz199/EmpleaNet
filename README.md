@@ -60,9 +60,20 @@ mockups/              Pantallas Stitch + design system
 | Módulo `empleos` (API + SQLite) | ✅ Implementado |
 | Worker Remotive | ⚠️ Código presente; verificar ejecución |
 | Frontend UI (mockups) | ⚠️ Esqueleto básico |
-| Perfil, recomendaciones, auth | ❌ Stub o pendiente |
+| Perfil, recomendaciones, auth | ⚠️ Auth + perfil/recomendaciones (Fase 2–3) |
 
 Consulta la auditoría completa en [`docs/IMPLEMENTATION_AUDIT.md`](docs/IMPLEMENTATION_AUDIT.md) y el plan de fases en [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md).
+
+### Usuarios demo (Fase 3)
+
+Contraseña para todos: `Continental2026`
+
+| Correo | Rol |
+|--------|-----|
+| estudiante@continental.edu.pe | estudiante |
+| egresado@continental.edu.pe | egresado |
+| admin@continental.edu.pe | administrador |
+| soporte@continental.edu.pe | soporte |
 
 ## Documentación
 

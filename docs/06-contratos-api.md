@@ -51,10 +51,10 @@ Detalle de un empleo por `id` numérico. Incluye `modalidad`, `fuenteNombre` y d
 ## Endpoints: módulo perfil (implementados)
 
 ### GET /api/perfil/me
-Perfil activo del usuario demo (Fase 2, sin auth: `id=1`).
+Requiere JWT. Rol: `estudiante` o `egresado`. Devuelve el perfil del usuario autenticado.
 
 ### PUT /api/perfil/me
-Actualiza nombre, ubicación y habilidades. Recalcula recomendaciones automáticamente.
+Requiere JWT. Rol: `estudiante` o `egresado`. Recalcula recomendaciones automáticamente.
 
 ```json
 {
@@ -67,7 +67,7 @@ Actualiza nombre, ubicación y habilidades. Recalcula recomendaciones automátic
 ## Endpoints: módulo recomendaciones (implementados)
 
 ### GET /api/recomendaciones
-Lista ordenada por `puntaje` descendente. Query opcional: `limit` (1–50, default 20).
+Requiere JWT. Rol: `estudiante` o `egresado`. Lista ordenada por `puntaje` descendente. Query opcional: `limit` (1–50, default 20).
 
 ```json
 {
@@ -80,3 +80,17 @@ Lista ordenada por `puntaje` descendente. Query opcional: `limit` (1–50, defau
   ]
 }
 ```
+
+## Endpoints: autenticación (implementados)
+
+### POST /api/auth/login
+```json
+{ "email": "estudiante@continental.edu.pe", "password": "Continental2026" }
+```
+Respuesta: `{ "token": "...", "user": { "id", "email", "rol", "name", "perfilId" } }`
+
+### GET /api/auth/me
+Header: `Authorization: Bearer <token>`
+
+### POST /api/auth/logout
+Header: `Authorization: Bearer <token>`. Respuesta `204`.

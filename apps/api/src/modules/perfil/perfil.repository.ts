@@ -1,9 +1,6 @@
 import { getDb } from "../../core/db/conexion.js";
-import {
-  PERFIL_DEMO_ID,
-  type Perfil,
-  type UpdatePerfilBody,
-} from "./perfil.schema.js";
+import { AppError } from "../../core/errors/AppError.js";
+import type { Perfil, UpdatePerfilBody } from "./perfil.schema.js";
 
 type PerfilRow = {
   id: number;
@@ -11,6 +8,7 @@ type PerfilRow = {
   email: string;
   ubicacion: string | null;
   habilidades: string;
+  usuario_id: number | null;
 };
 
 function parseSkills(raw: string): string[] {
@@ -35,55 +33,41 @@ function mapRow(row: PerfilRow): Perfil {
 }
 
 export class PerfilRepository {
-  private ensureDemoPerfil(): PerfilRow {
-    const db = getDb();
-    const existing = db
+  findById(perfilId: number): Perfil | null {
+    const row = getDb()
       .prepare(
-        "SELECT id, nombre, email, ubicacion, habilidades FROM perfil WHERE id = ?",
+        "SELECT id, nombre, email, ubicacion, habilidades, usuario_id FROM perfil WHERE id = ?",
       )
-      .get(PERFIL_DEMO_ID) as PerfilRow | undefined;
-
-    if (existing) return existing;
-
-    db.prepare(
-      `INSERT INTO perfil (id, nombre, email, ubicacion, habilidades)
-       VALUES (?, ?, ?, ?, ?)`,
-    ).run(
-      PERFIL_DEMO_ID,
-      "Estudiante Continental",
-      "estudiante@continental.edu.pe",
-      "Remoto",
-      "typescript,react",
-    );
-
-    return db
-      .prepare(
-        "SELECT id, nombre, email, ubicacion, habilidades FROM perfil WHERE id = ?",
-      )
-      .get(PERFIL_DEMO_ID) as PerfilRow;
+      .get(perfilId) as PerfilRow | undefined;
+    return row ? mapRow(row) : null;
   }
 
-  getCurrent(): Promise<Perfil> {
-    const row = this.ensureDemoPerfil();
-    return Promise.resolve(mapRow(row));
+  getByIdForUser(perfilId: number, userId: number): Perfil {
+    const row = getDb()
+      .prepare(
+        `SELECT id, nombre, email, ubicacion, habilidades, usuario_id
+         FROM perfil WHERE id = ? AND usuario_id = ?`,
+      )
+      .get(perfilId, userId) as PerfilRow | undefined;
+
+    if (!row) {
+      throw new AppError(404, "Perfil no encontrado");
+    }
+    return mapRow(row);
   }
 
-  updateCurrent(data: UpdatePerfilBody): Promise<Perfil> {
-    this.ensureDemoPerfil();
+  updateById(perfilId: number, userId: number, data: UpdatePerfilBody): Perfil {
+    this.getByIdForUser(perfilId, userId);
     const db = getDb();
     db.prepare(
-      `UPDATE perfil SET nombre = ?, ubicacion = ?, habilidades = ? WHERE id = ?`,
+      `UPDATE perfil SET nombre = ?, ubicacion = ?, habilidades = ? WHERE id = ? AND usuario_id = ?`,
     ).run(
       data.name,
       data.location ?? null,
       serializeSkills(data.skills),
-      PERFIL_DEMO_ID,
+      perfilId,
+      userId,
     );
-    const row = db
-      .prepare(
-        "SELECT id, nombre, email, ubicacion, habilidades FROM perfil WHERE id = ?",
-      )
-      .get(PERFIL_DEMO_ID) as PerfilRow;
-    return Promise.resolve(mapRow(row));
+    return this.getByIdForUser(perfilId, userId);
   }
 }

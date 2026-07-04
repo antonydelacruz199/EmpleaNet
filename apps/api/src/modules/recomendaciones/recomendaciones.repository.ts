@@ -1,18 +1,10 @@
 import { getDb } from "../../core/db/conexion.js";
 import type { Empleo } from "../empleos/empleos.schema.js";
 import { EmpleosRepository } from "../empleos/empleos.repository.js";
-import { PERFIL_DEMO_ID } from "../perfil/perfil.schema.js";
 import type { Perfil } from "../perfil/perfil.schema.js";
+import { PerfilRepository } from "../perfil/perfil.repository.js";
 import { calcularRecomendacion } from "./recomendacion.motor.js";
 import type { RecomendacionItem } from "./recomendaciones.schema.js";
-
-type PerfilRow = {
-  id: number;
-  nombre: string;
-  email: string;
-  ubicacion: string | null;
-  habilidades: string;
-};
 
 type RecomendacionRow = {
   puntaje: number;
@@ -28,19 +20,6 @@ type RecomendacionRow = {
   fecha_publicacion: string | null;
   fuente_nombre: string | null;
 };
-
-function mapPerfil(row: PerfilRow): Perfil {
-  return {
-    id: String(row.id),
-    name: row.nombre,
-    email: row.email,
-    location: row.ubicacion ?? undefined,
-    skills: row.habilidades
-      .split(",")
-      .map((s) => s.trim().toLowerCase())
-      .filter(Boolean),
-  };
-}
 
 function mapEmpleo(row: RecomendacionRow): Empleo {
   return {
@@ -59,14 +38,10 @@ function mapEmpleo(row: RecomendacionRow): Empleo {
 
 export class RecomendacionesRepository {
   private readonly empleosRepository = new EmpleosRepository();
+  private readonly perfilRepository = new PerfilRepository();
 
-  getPerfilDemo(): Perfil | null {
-    const row = getDb()
-      .prepare(
-        "SELECT id, nombre, email, ubicacion, habilidades FROM perfil WHERE id = ?",
-      )
-      .get(PERFIL_DEMO_ID) as PerfilRow | undefined;
-    return row ? mapPerfil(row) : null;
+  getPerfilById(perfilId: number): Perfil | null {
+    return this.perfilRepository.findById(perfilId);
   }
 
   async findAllEmpleos() {

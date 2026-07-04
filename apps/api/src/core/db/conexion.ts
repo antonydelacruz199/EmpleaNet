@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { env } from "../../config/env.js";
+import { ensureAuthSchema } from "../../modules/auth/auth.repository.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(dirname, "../../../../..");
@@ -73,6 +74,7 @@ export function getDb(): Database.Database {
     db = new Database(dbPath);
     db.pragma("foreign_keys = ON");
     ensureDevDatabase(db);
+    ensureAuthSchema();
   }
   return db;
 }

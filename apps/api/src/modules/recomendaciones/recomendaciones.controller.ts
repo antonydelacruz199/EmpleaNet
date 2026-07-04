@@ -7,8 +7,12 @@ export class RecomendacionesController {
 
   async list(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.auth) {
+        res.status(401).json({ error: "Autenticación requerida" });
+        return;
+      }
       const query = recomendacionesQuerySchema.parse(req.query);
-      const resultado = await this.recomendacionesService.list(query);
+      const resultado = await this.recomendacionesService.list(req.auth, query);
       res.json(resultado);
     } catch (err) {
       next(err);

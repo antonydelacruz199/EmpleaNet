@@ -1,34 +1,25 @@
 # Estado actual del proyecto - Continental Oportunidades
 
 ## Estado general
-El proyecto tiene arquitectura base, documentación canónica, frontend y backend operativos, worker con integración Remotive y persistencia real en SQLite. **Fases cerradas:** 2.3 (Remotive), Fase 1 UI (empleos), Fase 2 (perfil + recomendaciones).
+Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendaciones), **Fase 3 (autenticación y roles)**.
 
 ## Implementado actualmente
-- estructura monorepo definida
-- apps/web operativo con layout institucional (sidebar + header)
-- apps/api operativo
-- worker Remotive en `workers/recolector`
-- endpoints `empleos`, `fuentes`, `perfil`, `recomendaciones` operativos con SQLite
-- UI marketplace, detalle, perfil editable, recomendados y dashboard estudiante
-- motor de recomendación por reglas con persistencia en `recomendacion`
-- deduplicación worker por `url_oferta` + fuente Remotive
+- Autenticación JWT con roles: estudiante, egresado, administrador, soporte
+- Tabla `usuario` + vínculo `perfil.usuario_id`
+- Endpoints `POST /api/auth/login`, `GET /api/auth/me`, `POST /api/auth/logout`
+- Protección API: `perfil` y `recomendaciones` requieren token y rol estudiantil
+- UI login institucional, rutas protegidas, cierre de sesión
+- Usuarios demo (contraseña `Continental2026`):
+  - estudiante@continental.edu.pe
+  - egresado@continental.edu.pe
+  - admin@continental.edu.pe
+  - soporte@continental.edu.pe
+- Módulos empleos, fuentes, worker Remotive, marketplace y detalle UI
 
 ## Restricción técnica actual
-- Sin autenticación ni roles (Fase 3); perfil demo fijo (`id=1`).
-- Postulaciones, favoritos, admin y reportes pendientes (Fases 4–5).
+- Sin SSO institucional (fase futura)
+- Postulaciones, favoritos, paneles admin/reportes pendientes (Fases 4–5)
 
-## Reglas de acotación vigentes
-- fuente externa integrada: **Remotive API**
-- no scraping HTML en esta etapa
-- no añadir `auth` hasta Fase 3
-
-## Condiciones de uso Remotive
-- conservar el enlace original de la oferta
-- registrar Remotive como fuente en `fuente_empleo`
-- asumir retraso ~24 h de la API pública
-- no redistribuir ofertas fuera de términos Remotive
-
-## Siguiente paso: Fase 3
-- Autenticación básica con roles institucionales
-- Protección de rutas y sesión/JWT
-- Pantalla login según mockup
+## Siguiente paso: Fase 4
+- Postulaciones y favoritos (proceso O4)
+- Tablas `postulacion`, `favorito`

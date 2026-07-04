@@ -1,3 +1,5 @@
+import { getAuthToken } from "../auth/tokenStorage";
+
 const apiBaseUrl = "/api";
 
 type MetodoHttp = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
@@ -39,11 +41,22 @@ export async function httpJson<T>(
   const requestInit: RequestInit = {
     method,
     credentials: "same-origin",
+    headers: {},
   };
 
+  const token = getAuthToken();
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  if (body !== undefined) {
+    headers["Content-Type"] = "application/json";
+  }
+  if (Object.keys(headers).length > 0) {
+    requestInit.headers = headers;
+  }
   if (signal !== undefined) requestInit.signal = signal;
   if (body !== undefined) {
-    requestInit.headers = { "Content-Type": "application/json" };
     requestInit.body = JSON.stringify(body);
   }
 

@@ -6,6 +6,7 @@ import { getDb } from "./core/db/conexion.js";
 import { errorHandler } from "./core/middlewares/errorHandler.js";
 import { notFound } from "./core/middlewares/notFound.js";
 import { setupSecurity } from "./core/security/setupSecurity.js";
+import { authRouter } from "./modules/auth/auth.routes.js";
 import { empleosRouter } from "./modules/empleos/empleos.routes.js";
 import { fuentesRouter } from "./modules/fuentes/fuentes.routes.js";
 import { perfilRouter } from "./modules/perfil/perfil.routes.js";
@@ -27,6 +28,7 @@ export function createApp(): Express {
   app.get("/api/health", (_req, res) => {
     res.json({ status: "ok" });
   });
+  app.use("/api/auth", authRouter);
   app.use("/api/empleos", empleosRouter);
   app.use("/api/perfil", perfilRouter);
   app.use("/api/recomendaciones", recomendacionesRouter);

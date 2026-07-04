@@ -90,24 +90,18 @@ Perfil editado → recomendaciones distintas → motivo visible en UI.
 
 ---
 
-## Fase 3 — Autenticación y roles *(siguiente)*
+## Fase 3 — Autenticación y roles ✅
 
 **Prioridad:** 🔴 Alta  
 **Bizagi:** O1, S3 | **Mockup:** inicio de sesión
 
 ### Alcance MVP auth
-- [ ] Roles: `estudiante`, `egresado`, `administrador`, `soporte`
-- [ ] Login/logout; protección de rutas
-- [ ] Tablas `usuario` + sesión/JWT (según `docs/04-seguridad.md`)
-- [ ] Pantalla login según mockup
+- [x] Roles: `estudiante`, `egresado`, `administrador`, `soporte`
+- [x] Login/logout; protección de rutas
+- [x] Tabla `usuario` + JWT (HS256, `node:crypto`)
+- [x] Pantalla login según mockup
 
-### Exclusiones
-- SSO institucional (fase futura)
-- Recuperación de contraseña avanzada (solo flujo básico si tiempo)
-
----
-
-## Fase 4 — Postulaciones y favoritos
+## Fase 4 — Postulaciones y favoritos *(siguiente)*
 
 **Prioridad:** 🟡 Media  
 **Bizagi:** O4

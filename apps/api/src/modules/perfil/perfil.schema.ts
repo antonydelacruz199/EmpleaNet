@@ -21,5 +21,5 @@ export const updatePerfilBodySchema = z.object({
 
 export type UpdatePerfilBody = z.infer<typeof updatePerfilBodySchema>;
 
-/** Perfil activo en fases sin autenticación (Fase 2). */
+/** @deprecated Usar perfil autenticado vía JWT (Fase 3). */
 export const PERFIL_DEMO_ID = 1;
