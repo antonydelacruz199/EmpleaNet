@@ -7,12 +7,12 @@ const controller = new PerfilController();
 
 export const perfilRouter: ExpressRouter = Router();
 
-const rolesEstudiantiles = requireRoles("estudiante", "egresado");
+const rolesConPerfil = requireRoles("estudiante", "egresado", "empresa");
 
-perfilRouter.get("/me", requireAuth, rolesEstudiantiles, (req, res, next) => {
+perfilRouter.get("/me", requireAuth, rolesConPerfil, (req, res, next) => {
   void controller.me(req, res, next);
 });
 
-perfilRouter.put("/me", requireAuth, rolesEstudiantiles, (req, res, next) => {
+perfilRouter.put("/me", requireAuth, rolesConPerfil, (req, res, next) => {
   void controller.updateMe(req, res, next);
 });

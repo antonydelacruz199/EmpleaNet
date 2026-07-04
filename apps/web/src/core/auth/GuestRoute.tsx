@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../core/auth/AuthContext";
+import { useAuth } from "./AuthContext";
+import { resolvePostAuthPath } from "./authRedirects";
 
 export function GuestRoute() {
   const { user, cargando } = useAuth();
@@ -9,7 +10,7 @@ export function GuestRoute() {
   }
 
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={resolvePostAuthPath(user)} replace />;
   }
 
   return <Outlet />;

@@ -13,13 +13,31 @@ import { PostulacionesPage } from "./modules/postulaciones/PostulacionesPage";
 import { RecomendacionesPage } from "./modules/recomendaciones/RecomendacionesPage";
 import { SoporteIncidenciasPage } from "./modules/soporte/SoporteIncidenciasPage";
 import { SoporteMotorPage } from "./modules/soporte/SoporteMotorPage";
+import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
 import { InicioPage } from "./pages/InicioPage";
 import { LoginPage } from "./pages/LoginPage";
+import { PrimerAccesoPage } from "./pages/PrimerAccesoPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { ResetPasswordPage } from "./pages/ResetPasswordPage";
 
 export const router = createBrowserRouter([
   {
     element: <GuestRoute />,
-    children: [{ path: "/login", element: <LoginPage /> }],
+    children: [
+      { path: "/login", element: <LoginPage /> },
+      { path: "/registro", element: <RegisterPage /> },
+      { path: "/recuperar-contrasena", element: <ForgotPasswordPage /> },
+      { path: "/restablecer-contrasena", element: <ResetPasswordPage /> },
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoute
+        requirePerfilCompleto={false}
+        allowedRoles={["estudiante", "egresado", "empresa"]}
+      />
+    ),
+    children: [{ path: "/primer-acceso", element: <PrimerAccesoPage /> }],
   },
   {
     element: <ProtectedRoute />,
@@ -53,7 +71,10 @@ export const router = createBrowserRouter([
             element: <ProtectedRoute allowedRoles={["soporte"]} />,
             children: [
               { path: "soporte/motor", element: <SoporteMotorPage /> },
-              { path: "soporte/incidencias", element: <SoporteIncidenciasPage /> },
+              {
+                path: "soporte/incidencias",
+                element: <SoporteIncidenciasPage />,
+              },
             ],
           },
         ],

@@ -5,7 +5,10 @@ export type RolUsuario =
   | "estudiante"
   | "egresado"
   | "administrador"
-  | "soporte";
+  | "soporte"
+  | "empresa";
+
+export type RolRegistro = "estudiante" | "egresado" | "empresa";
 
 export type UsuarioSesion = {
   id: string;
@@ -13,11 +16,17 @@ export type UsuarioSesion = {
   rol: RolUsuario;
   name: string;
   perfilId: string | null;
+  perfilCompleto: boolean;
 };
 
 export type LoginResponse = {
   token: string;
   user: UsuarioSesion;
+};
+
+export type MessageResponse = {
+  message: string;
+  devResetToken?: string;
 };
 
 export async function loginApi(
@@ -30,6 +39,41 @@ export async function loginApi(
   });
   setAuthToken(result.token);
   return result;
+}
+
+export async function registerApi(input: {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+  rol: RolRegistro;
+}): Promise<LoginResponse> {
+  const result = await httpJson<LoginResponse>("/auth/register", {
+    method: "POST",
+    body: input,
+  });
+  setAuthToken(result.token);
+  return result;
+}
+
+export async function forgotPasswordApi(
+  email: string,
+): Promise<MessageResponse> {
+  return httpJson<MessageResponse>("/auth/forgot-password", {
+    method: "POST",
+    body: { email },
+  });
+}
+
+export async function resetPasswordApi(input: {
+  token: string;
+  password: string;
+  confirmPassword: string;
+}): Promise<MessageResponse> {
+  return httpJson<MessageResponse>("/auth/reset-password", {
+    method: "POST",
+    body: input,
+  });
 }
 
 export async function fetchSessionUser(): Promise<UsuarioSesion> {
@@ -54,4 +98,8 @@ export function isAdminRole(rol: RolUsuario): boolean {
 
 export function isSoporteRole(rol: RolUsuario): boolean {
   return rol === "soporte";
+}
+
+export function isEmpresaRole(rol: RolUsuario): boolean {
+  return rol === "empresa";
 }

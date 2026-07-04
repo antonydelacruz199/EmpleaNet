@@ -495,6 +495,36 @@
   text-align: center;
 }
 
+.auth-footer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-link-row {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--co-on-surface-variant);
+}
+
+.auth-link {
+  color: var(--co-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.alert--success {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border-color: #a5d6a7;
+}
+
 /* Fase 4 — postulaciones, favoritos, modal */
 .btn--sm {
   padding: 6px 12px;

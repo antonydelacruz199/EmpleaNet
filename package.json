@@ -10,6 +10,8 @@
     "dev:api": "pnpm --filter @empleanet/api dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r --if-present lint",
+    "test": "pnpm --filter @empleanet/api test",
+    "test:api": "pnpm --filter @empleanet/api test",
     "smoke": "node scripts/smoke-test.mjs",
     "backup:db": "node -e \"require('child_process').execSync(process.platform==='win32'?'powershell -File scripts/backup-sqlite.ps1':'bash scripts/backup-sqlite.sh',{stdio:'inherit'})\""
   }

@@ -83,11 +83,26 @@ Requiere JWT. Rol: `estudiante` o `egresado`. Lista ordenada por `puntaje` desce
 
 ## Endpoints: autenticación (implementados)
 
+Ver detalle en [`AUTH_MODULE.md`](AUTH_MODULE.md).
+
 ### POST /api/auth/login
 ```json
 { "email": "estudiante@continental.edu.pe", "password": "Continental2026" }
 ```
-Respuesta: `{ "token": "...", "user": { "id", "email", "rol", "name", "perfilId" } }`
+Respuesta: `{ "token", "user": { "id", "email", "rol", "name", "perfilId", "perfilCompleto" } }`
+
+### POST /api/auth/register
+Roles permitidos: `estudiante`, `egresado`, `empresa`. Contraseña segura (8+ chars, mayúscula, minúscula, número).
+
+### POST /api/auth/forgot-password
+```json
+{ "email": "usuario@continental.edu.pe" }
+```
+
+### POST /api/auth/reset-password
+```json
+{ "token": "...", "password": "...", "confirmPassword": "..." }
+```
 
 ### GET /api/auth/me
 Header: `Authorization: Bearer <token>`

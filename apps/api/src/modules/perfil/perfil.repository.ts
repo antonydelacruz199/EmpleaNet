@@ -60,7 +60,8 @@ export class PerfilRepository {
     this.getByIdForUser(perfilId, userId);
     const db = getDb();
     db.prepare(
-      `UPDATE perfil SET nombre = ?, ubicacion = ?, habilidades = ? WHERE id = ? AND usuario_id = ?`,
+      `UPDATE perfil SET nombre = ?, ubicacion = ?, habilidades = ?, perfil_completo = 1
+       WHERE id = ? AND usuario_id = ?`,
     ).run(
       data.name,
       data.location ?? null,

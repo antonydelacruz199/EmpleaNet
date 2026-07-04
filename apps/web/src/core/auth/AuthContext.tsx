@@ -12,6 +12,8 @@ import {
   isStudentRole,
   loginApi,
   logoutApi,
+  registerApi,
+  type RolRegistro,
   type RolUsuario,
   type UsuarioSesion,
 } from "./authApi";
@@ -20,8 +22,16 @@ import { clearAuthToken, getAuthToken } from "./tokenStorage";
 type AuthContextValue = {
   user: UsuarioSesion | null;
   cargando: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<UsuarioSesion>;
+  register: (input: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+    name: string;
+    rol: RolRegistro;
+  }) => Promise<UsuarioSesion>;
   logout: () => Promise<void>;
+  refreshUser: () => Promise<void>;
   isStudent: boolean;
   rol: RolUsuario | null;
 };
@@ -57,11 +67,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     const result = await loginApi(email, password);
     setUser(result.user);
+    return result.user;
   }, []);
+
+  const register = useCallback(
+    async (input: {
+      email: string;
+      password: string;
+      confirmPassword: string;
+      name: string;
+      rol: RolRegistro;
+    }) => {
+      const result = await registerApi(input);
+      setUser(result.user);
+      return result.user;
+    },
+    [],
+  );
 
   const logout = useCallback(async () => {
     await logoutApi();
     setUser(null);
+  }, []);
+
+  const refreshUser = useCallback(async () => {
+    const data = await fetchSessionUser();
+    setUser(data);
   }, []);
 
   const value = useMemo<AuthContextValue>(
@@ -69,11 +100,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       user,
       cargando,
       login,
+      register,
       logout,
+      refreshUser,
       isStudent: user ? isStudentRole(user.rol) : false,
       rol: user?.rol ?? null,
     }),
-    [user, cargando, login, logout],
+    [user, cargando, login, register, logout, refreshUser],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
