@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getDb } from "../../core/db/conexion.js";
 import { ensureFase6Schema } from "../../core/auditoria/auditoria.repository.js";
+import { SQL_OFERTA_PUBLICA, syncOfertasVencidas } from "../ofertas/ensureOffersSchema.js";
+import { OfertasRepository } from "../ofertas/ofertas.repository.js";
 import { AppError } from "../../core/errors/AppError.js";
 import type {
   CreateEmpleoAdminBody,
@@ -183,18 +185,15 @@ export class AdminRepository {
       }
     ).c;
 
-    const ofertasPublicadas = (
-      db.prepare("SELECT COUNT(*) AS c FROM empleo WHERE activo = 1").get() as {
-        c: number;
-      }
-    ).c;
+    const ofertasPublicadas = new OfertasRepository().countPublicadasVigentes();
 
+    syncOfertasVencidas();
     const ofertasPorFuente = db
       .prepare(
         `SELECT f.nombre AS fuente, COUNT(*) AS total
          FROM empleo e
          INNER JOIN fuente_empleo f ON f.id = e.fuente_id
-         WHERE e.activo = 1
+         WHERE ${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")}
          GROUP BY f.id, f.nombre
          ORDER BY total DESC, f.nombre ASC`,
       )

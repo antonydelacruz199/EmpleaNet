@@ -57,6 +57,8 @@ const listEmpleosQueryIn = z.object({
   location: queryString(120),
   modalidad: queryString(64),
   fuente: queryString(120),
+  categoria: queryString(64),
+  tipo: queryString(64),
   page: queryPage(),
   limit: queryLimit(),
 });
@@ -66,6 +68,8 @@ export const listEmpleosQuerySchema = listEmpleosQueryIn.transform((d) => ({
   ubicacion: d.ubicacion ?? d.location,
   modalidad: d.modalidad,
   fuente: d.fuente,
+  categoria: d.categoria,
+  tipo: d.tipo,
   page: d.page,
   limit: d.limit,
 }));

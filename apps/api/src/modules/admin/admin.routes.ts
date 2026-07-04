@@ -10,6 +10,10 @@ export const adminRouter: ExpressRouter = Router();
 
 adminRouter.use(requireAuth, soloAdmin);
 
+adminRouter.get("/empleos/resumen", (req, res, next) => {
+  controller.empleosResumen(req, res, next);
+});
+
 adminRouter.get("/empleos", (req, res, next) => {
   controller.listEmpleos(req, res, next);
 });
@@ -26,8 +30,52 @@ adminRouter.put("/empleos/:id", (req, res, next) => {
   controller.updateEmpleo(req, res, next);
 });
 
+adminRouter.post("/empleos/:id/validar", (req, res, next) => {
+  controller.validarEmpleo(req, res, next);
+});
+
+adminRouter.post("/empleos/:id/clasificar", (req, res, next) => {
+  controller.clasificarEmpleo(req, res, next);
+});
+
+adminRouter.post("/empleos/:id/publicar", (req, res, next) => {
+  controller.publicarEmpleo(req, res, next);
+});
+
+adminRouter.post("/empleos/:id/rechazar", (req, res, next) => {
+  controller.rechazarEmpleo(req, res, next);
+});
+
+adminRouter.post("/empleos/:id/cerrar", (req, res, next) => {
+  controller.cerrarEmpleo(req, res, next);
+});
+
 adminRouter.patch("/empleos/:id/activo", (req, res, next) => {
   controller.setEmpleoActivo(req, res, next);
+});
+
+adminRouter.get("/empresas", (req, res, next) => {
+  controller.listEmpresas(req, res, next);
+});
+
+adminRouter.post("/empresas", (req, res, next) => {
+  controller.createEmpresa(req, res, next);
+});
+
+adminRouter.put("/empresas/:id", (req, res, next) => {
+  controller.updateEmpresa(req, res, next);
+});
+
+adminRouter.get("/fuentes", (req, res, next) => {
+  controller.listFuentes(req, res, next);
+});
+
+adminRouter.post("/fuentes", (req, res, next) => {
+  controller.createFuente(req, res, next);
+});
+
+adminRouter.put("/fuentes/:id", (req, res, next) => {
+  controller.updateFuente(req, res, next);
 });
 
 adminRouter.get("/reportes/resumen", (req, res, next) => {

@@ -1,4 +1,5 @@
 import { getDb } from "../../core/db/conexion.js";
+import { SQL_OFERTA_PUBLICA, syncOfertasVencidas } from "../ofertas/ensureOffersSchema.js";
 import type { Empleo, ListEmpleosQuery, ListEmpleosResult } from "./empleos.schema.js";
 
 type EmpleoRow = {
@@ -67,16 +68,25 @@ function buildFiltroClauses(
       }
     }
   }
-  conds.push(`(e.activo = 1)`);
+  if (f.categoria) {
+    conds.push(`(e.categoria = ?)`);
+    values.push(f.categoria);
+  }
+  if (f.tipo) {
+    conds.push(`(e.tipo_oportunidad = ?)`);
+    values.push(f.tipo);
+  }
+  syncOfertasVencidas();
+  conds.push(`(${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")})`);
   const whereSql = conds.length > 0 ? `WHERE ${conds.join(" AND ")}` : "";
   return { whereSql, values };
 }
 
-const sqlByIdSolo = `
+const sqlByIdPublico = `
   SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre
   FROM empleo e
   LEFT JOIN fuente_empleo f ON f.id = e.fuente_id
-  WHERE e.id = ?
+  WHERE e.id = ? AND (${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")})
 `;
 
 export class EmpleosRepository {
@@ -102,7 +112,8 @@ export class EmpleosRepository {
   }
 
   findAll(): Promise<Empleo[]> {
-    const sql = `SELECT ${selectColumns} ${fromJoin} WHERE e.activo = 1 ORDER BY e.id`;
+    syncOfertasVencidas();
+    const sql = `SELECT ${selectColumns} ${fromJoin} WHERE ${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")} ORDER BY e.id`;
     const rows = getDb().prepare(sql).all() as EmpleoRow[];
     return Promise.resolve(rows.map(mapRow));
   }
@@ -112,7 +123,8 @@ export class EmpleosRepository {
     if (!Number.isInteger(numericId) || numericId < 1) {
       return Promise.resolve(null);
     }
-    const row = getDb().prepare(sqlByIdSolo).get(numericId) as EmpleoRow | undefined;
+    syncOfertasVencidas();
+    const row = getDb().prepare(sqlByIdPublico).get(numericId) as EmpleoRow | undefined;
     return Promise.resolve(row === undefined ? null : mapRow(row));
   }
 }
