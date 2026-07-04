@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./core/auth/ProtectedRoute";
 import { GuestRoute } from "./core/auth/GuestRoute";
 import { LayoutPrincipal } from "./layouts/LayoutPrincipal";
+import { AdminDashboardPage } from "./modules/admin/AdminDashboardPage";
 import { AdminEmpresasPage } from "./modules/admin/AdminEmpresasPage";
 import { AdminEstrategicoPage } from "./modules/admin/AdminEstrategicoPage";
 import { AdminFuentesPage } from "./modules/admin/AdminFuentesPage";
@@ -82,6 +83,7 @@ export const router = createBrowserRouter([
           {
             element: <ProtectedRoute allowedRoles={["administrador"]} />,
             children: [
+              { path: "admin/dashboard", element: <AdminDashboardPage /> },
               { path: "admin/ofertas", element: <AdminOfertasPage /> },
               { path: "admin/empresas", element: <AdminEmpresasPage /> },
               { path: "admin/fuentes", element: <AdminFuentesPage /> },

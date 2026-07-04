@@ -126,7 +126,10 @@ export function InicioPage() {
                 plataforma.
               </p>
               <div className="empleo-card__actions">
-                <Link to="/admin/ofertas" className="btn btn--primary">
+                <Link to="/admin/dashboard" className="btn btn--primary">
+                  Dashboard administrativo
+                </Link>
+                <Link to="/admin/ofertas" className="btn btn--secondary">
                   Gestión de ofertas
                 </Link>
               <Link to="/admin/reportes" className="btn btn--secondary">

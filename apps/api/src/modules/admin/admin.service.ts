@@ -1,5 +1,15 @@
 import type { AuthUser } from "../../core/auth/types.js";
-import type { EstrategicoResumen, ReportesResumen } from "./admin.schema.js";
+import type {
+  EstrategicoResumen,
+  ListReporteResult,
+  ReporteOfertaItem,
+  ReportePostulacionItem,
+  ReporteRecomendacionItem,
+  ReporteUsuarioItem,
+  ReportesFiltros,
+  ReportesKpis,
+  ReportesResumen,
+} from "./admin.schema.js";
 import { PerfilService } from "../perfil/perfil.service.js";
 import { AdminRepository } from "./admin.repository.js";
 import { OfertasService } from "../ofertas/ofertas.service.js";
@@ -88,12 +98,36 @@ export class AdminService {
     return this.ofertasService.updateFuente(auth, idRaw, data);
   }
 
-  getReportesResumen(): ReportesResumen {
-    return this.repository.getReportesResumen();
+  getReportesResumen(filtros: ReportesFiltros = {}): ReportesResumen {
+    return this.repository.getReportesResumen(filtros);
   }
 
-  getEstrategicoResumen(): EstrategicoResumen {
-    return this.repository.getEstrategicoResumen();
+  getReportesKpis(filtros: ReportesFiltros = {}): ReportesKpis {
+    return this.repository.getReportesKpis(filtros);
+  }
+
+  getReporteUsuarios(filtros: ReportesFiltros = {}): ListReporteResult<ReporteUsuarioItem> {
+    return this.repository.getReporteUsuarios(filtros);
+  }
+
+  getReporteOfertas(filtros: ReportesFiltros = {}): ListReporteResult<ReporteOfertaItem> {
+    return this.repository.getReporteOfertas(filtros);
+  }
+
+  getReporteRecomendaciones(
+    filtros: ReportesFiltros = {},
+  ): ListReporteResult<ReporteRecomendacionItem> {
+    return this.repository.getReporteRecomendaciones(filtros);
+  }
+
+  getReportePostulaciones(
+    filtros: ReportesFiltros = {},
+  ): ListReporteResult<ReportePostulacionItem> {
+    return this.repository.getReportePostulaciones(filtros);
+  }
+
+  getEstrategicoResumen(filtros: ReportesFiltros = {}): EstrategicoResumen {
+    return this.repository.getEstrategicoResumen(filtros);
   }
 
   buildReportesCsv(resumen: ReportesResumen): string {
@@ -109,6 +143,18 @@ export class AdminService {
       ...resumen.ofertasPorFuente.map((item) => `${item.fuente},${item.total}`),
     ];
     return lines.join("\n");
+  }
+
+  buildReportesExportPayload(filtros: ReportesFiltros = {}) {
+    return {
+      generadoEn: new Date().toISOString(),
+      filtros,
+      kpis: this.getReportesKpis(filtros),
+      usuarios: this.getReporteUsuarios(filtros),
+      ofertas: this.getReporteOfertas(filtros),
+      recomendaciones: this.getReporteRecomendaciones(filtros),
+      postulaciones: this.getReportePostulaciones(filtros),
+    };
   }
 
   listUsuariosPerfil(page = 1) {

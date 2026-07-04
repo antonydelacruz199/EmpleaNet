@@ -142,6 +142,69 @@ export type ConteoPorEtiqueta = {
   total: number;
 };
 
+export type ReportesFiltros = {
+  fechaDesde?: string;
+  fechaHasta?: string;
+  estado?: string;
+  rol?: string;
+};
+
+export type ReportesKpis = ReportesResumen & {
+  postulacionesActivas: number;
+  perfilesCompletos: number;
+  tasaPerfilCompleto: number;
+  tasaPostulacionPorOferta: number;
+  recomendacionPuntajePromedio: number;
+};
+
+export type ReporteUsuarioItem = {
+  id: string;
+  email: string;
+  rol: string;
+  activo: boolean;
+  creadoEn: string;
+  perfilCompleto: boolean;
+  completitudPct: number;
+};
+
+export type ReporteOfertaItem = {
+  id: string;
+  title: string;
+  company: string;
+  estado: string;
+  modalidad?: string;
+  fuenteNombre?: string;
+  creadoEn: string;
+};
+
+export type ReporteRecomendacionItem = {
+  id: string;
+  perfilEmail: string;
+  empleoTitulo: string;
+  puntaje: number;
+  creadoEn: string;
+};
+
+export type ReportePostulacionItem = {
+  id: string;
+  perfilEmail: string;
+  empleoTitulo: string;
+  estado: string;
+  fechaPostulacion: string;
+};
+
+export type ListReporteResult<T> = {
+  items: T[];
+  total: number;
+};
+
+export type IncidenciaResumen = {
+  id: string;
+  titulo: string;
+  estado: string;
+  creadoEn: string;
+};
+
 export type EstrategicoResumen = ReportesResumen & {
   usuariosPorRol: ConteoPorEtiqueta[];
   postulacionesPorEstado: ConteoPorEtiqueta[];
@@ -149,4 +212,6 @@ export type EstrategicoResumen = ReportesResumen & {
   recomendacionPuntajePromedio: number;
   tasaPostulacionPorOferta: number;
   incidenciasAbiertas: number;
+  incidenciasRecientes: IncidenciaResumen[];
+  mejorasSugeridas: string[];
 };

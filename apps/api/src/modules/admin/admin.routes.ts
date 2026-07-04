@@ -82,12 +82,36 @@ adminRouter.get("/reportes/resumen", (req, res, next) => {
   controller.reportesResumen(req, res, next);
 });
 
+adminRouter.get("/reportes/kpis", (req, res, next) => {
+  controller.reportesKpis(req, res, next);
+});
+
+adminRouter.get("/reportes/usuarios", (req, res, next) => {
+  controller.reporteUsuarios(req, res, next);
+});
+
+adminRouter.get("/reportes/ofertas", (req, res, next) => {
+  controller.reporteOfertas(req, res, next);
+});
+
+adminRouter.get("/reportes/recomendaciones", (req, res, next) => {
+  controller.reporteRecomendaciones(req, res, next);
+});
+
+adminRouter.get("/reportes/postulaciones", (req, res, next) => {
+  controller.reportePostulaciones(req, res, next);
+});
+
 adminRouter.get("/estrategico/resumen", (req, res, next) => {
   controller.estrategicoResumen(req, res, next);
 });
 
 adminRouter.get("/reportes/export.csv", (req, res, next) => {
   controller.reportesExportCsv(req, res, next);
+});
+
+adminRouter.get("/reportes/export.json", (req, res, next) => {
+  controller.reportesExportJson(req, res, next);
 });
 
 adminRouter.get("/usuarios", (req, res, next) => {

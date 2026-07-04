@@ -190,13 +190,31 @@ Actualiza campos de la oferta.
 Archivado lógico: `activo=false` oculta la oferta del marketplace.
 
 ### GET /api/admin/reportes/resumen
-Indicadores: usuarios activos, ofertas, recomendaciones, postulaciones, favoritos y desglose por fuente.
+Indicadores agregados. Query opcional: `fechaDesde`, `fechaHasta`, `estado`, `rol` (ver `ADMIN_AND_REPORTS.md`).
+
+### GET /api/admin/reportes/kpis
+KPIs extendidos (tasas, postulaciones activas, perfiles completos). Mismos filtros query.
+
+### GET /api/admin/reportes/usuarios
+Tabla de usuarios (máx. 100). Filtros: fechas, `rol`, `estado` (`activo`|`inactivo`).
+
+### GET /api/admin/reportes/ofertas
+Tabla de ofertas. Filtros: fechas, `estado` workflow.
+
+### GET /api/admin/reportes/recomendaciones
+Tabla de recomendaciones generadas. Filtros: fechas.
+
+### GET /api/admin/reportes/postulaciones
+Tabla de postulaciones. Filtros: fechas, `estado`.
 
 ### GET /api/admin/reportes/export.csv
-Descarga CSV con los mismos indicadores.
+Descarga CSV. Respeta filtros query.
+
+### GET /api/admin/reportes/export.json
+Descarga JSON con KPIs y tablas. Respeta filtros query.
 
 ### GET /api/admin/estrategico/resumen
-Indicadores agregados para panel estratégico (E3).
+Indicadores agregados para panel estratégico (E3): desgloses, incidencias recientes, mejoras sugeridas. Filtros query opcionales.
 
 ## Endpoints: módulo soporte (implementados)
 

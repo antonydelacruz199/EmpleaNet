@@ -12,6 +12,13 @@ import type {
   ListEmpleosAdminResult,
   ListOfertasFiltros,
   OfertasResumenAdmin,
+  ReportesFiltros,
+  ReportesKpis,
+  ReporteOfertaItem,
+  ReportePostulacionItem,
+  ReporteRecomendacionItem,
+  ReporteUsuarioItem,
+  ListReporteResult,
   ReportesResumen,
   UpdateEmpleoAdminInput,
   UpdateEmpresaInput,
@@ -149,17 +156,66 @@ export async function updateAdminFuente(
   });
 }
 
-export async function fetchReportesResumen(): Promise<ReportesResumen> {
-  return httpJson<ReportesResumen>("/admin/reportes/resumen");
+function filtrosQuery(filtros: ReportesFiltros = {}): string {
+  return queryString({
+    fechaDesde: filtros.fechaDesde,
+    fechaHasta: filtros.fechaHasta,
+    estado: filtros.estado,
+    rol: filtros.rol,
+  });
 }
 
-export async function fetchEstrategicoResumen(): Promise<EstrategicoResumen> {
-  return httpJson<EstrategicoResumen>("/admin/estrategico/resumen");
+export async function fetchReportesResumen(
+  filtros: ReportesFiltros = {},
+): Promise<ReportesResumen> {
+  return httpJson<ReportesResumen>(`/admin/reportes/resumen${filtrosQuery(filtros)}`);
 }
 
-export async function downloadReportesCsv(): Promise<void> {
+export async function fetchReportesKpis(
+  filtros: ReportesFiltros = {},
+): Promise<ReportesKpis> {
+  return httpJson<ReportesKpis>(`/admin/reportes/kpis${filtrosQuery(filtros)}`);
+}
+
+export async function fetchReporteUsuarios(
+  filtros: ReportesFiltros = {},
+): Promise<ListReporteResult<ReporteUsuarioItem>> {
+  return httpJson(`/admin/reportes/usuarios${filtrosQuery(filtros)}`);
+}
+
+export async function fetchReporteOfertas(
+  filtros: ReportesFiltros = {},
+): Promise<ListReporteResult<ReporteOfertaItem>> {
+  return httpJson(`/admin/reportes/ofertas${filtrosQuery(filtros)}`);
+}
+
+export async function fetchReporteRecomendaciones(
+  filtros: ReportesFiltros = {},
+): Promise<ListReporteResult<ReporteRecomendacionItem>> {
+  return httpJson(`/admin/reportes/recomendaciones${filtrosQuery(filtros)}`);
+}
+
+export async function fetchReportePostulaciones(
+  filtros: ReportesFiltros = {},
+): Promise<ListReporteResult<ReportePostulacionItem>> {
+  return httpJson(`/admin/reportes/postulaciones${filtrosQuery(filtros)}`);
+}
+
+export async function fetchEstrategicoResumen(
+  filtros: ReportesFiltros = {},
+): Promise<EstrategicoResumen> {
+  return httpJson<EstrategicoResumen>(
+    `/admin/estrategico/resumen${filtrosQuery(filtros)}`,
+  );
+}
+
+async function downloadReportes(
+  path: string,
+  filename: string,
+  filtros: ReportesFiltros = {},
+): Promise<void> {
   const token = getAuthToken();
-  const response = await fetch("/api/admin/reportes/export.csv", {
+  const response = await fetch(`/api${path}${filtrosQuery(filtros)}`, {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     credentials: "same-origin",
   });
@@ -170,7 +226,23 @@ export async function downloadReportesCsv(): Promise<void> {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = "reportes-continental-oportunidades.csv";
+  anchor.download = filename;
   anchor.click();
   URL.revokeObjectURL(url);
+}
+
+export async function downloadReportesCsv(filtros: ReportesFiltros = {}): Promise<void> {
+  await downloadReportes(
+    "/admin/reportes/export.csv",
+    "reportes-continental-oportunidades.csv",
+    filtros,
+  );
+}
+
+export async function downloadReportesJson(filtros: ReportesFiltros = {}): Promise<void> {
+  await downloadReportes(
+    "/admin/reportes/export.json",
+    "reportes-continental-oportunidades.json",
+    filtros,
+  );
 }

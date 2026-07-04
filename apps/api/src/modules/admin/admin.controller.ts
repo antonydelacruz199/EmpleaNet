@@ -10,6 +10,7 @@ import {
   updateFuenteBodySchema,
   updateOfertaBodySchema,
 } from "../ofertas/ofertas.schema.js";
+import { reportesFiltrosQuerySchema } from "./admin.schema.js";
 import { AdminService } from "./admin.service.js";
 
 export class AdminController {
@@ -176,7 +177,53 @@ export class AdminController {
 
   reportesResumen(req: Request, res: Response, next: NextFunction) {
     try {
-      res.json(this.service.getReportesResumen());
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReportesResumen(filtros));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reportesKpis(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReportesKpis(filtros));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reporteUsuarios(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReporteUsuarios(filtros));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reporteOfertas(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReporteOfertas(filtros));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reporteRecomendaciones(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReporteRecomendaciones(filtros));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reportePostulaciones(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getReportePostulaciones(filtros));
     } catch (err) {
       next(err);
     }
@@ -184,7 +231,8 @@ export class AdminController {
 
   estrategicoResumen(req: Request, res: Response, next: NextFunction) {
     try {
-      res.json(this.service.getEstrategicoResumen());
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      res.json(this.service.getEstrategicoResumen(filtros));
     } catch (err) {
       next(err);
     }
@@ -192,7 +240,8 @@ export class AdminController {
 
   reportesExportCsv(req: Request, res: Response, next: NextFunction) {
     try {
-      const resumen = this.service.getReportesResumen();
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      const resumen = this.service.getReportesResumen(filtros);
       const csv = this.service.buildReportesCsv(resumen);
       res.setHeader("Content-Type", "text/csv; charset=utf-8");
       res.setHeader(
@@ -200,6 +249,21 @@ export class AdminController {
         'attachment; filename="reportes-continental-oportunidades.csv"',
       );
       res.send(csv);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  reportesExportJson(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filtros = reportesFiltrosQuerySchema.parse(req.query);
+      const payload = this.service.buildReportesExportPayload(filtros);
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.setHeader(
+        "Content-Disposition",
+        'attachment; filename="reportes-continental-oportunidades.json"',
+      );
+      res.json(payload);
     } catch (err) {
       next(err);
     }
