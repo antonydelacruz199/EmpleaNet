@@ -6,7 +6,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js",
-    "test": "node --import tsx --test src/modules/auth/auth.test.ts",
+    "test": "node --import tsx --test src/modules/auth/auth.test.ts src/modules/perfil/perfil.completitud.test.ts src/modules/perfil/perfil.test.ts",
     "lint": "eslint ."
   },
   "dependencies": {

@@ -101,4 +101,24 @@ export class AdminController {
       next(err);
     }
   }
+
+  listUsuarios(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = Math.max(1, Number(req.query.page ?? 1));
+      const data = this.service.listUsuariosPerfil(page);
+      res.json(data);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  getUsuarioPerfil(req: Request, res: Response, next: NextFunction) {
+    try {
+      const usuarioId = Number(req.params.usuarioId);
+      const perfil = this.service.getUsuarioPerfil(usuarioId);
+      res.json(perfil);
+    } catch (err) {
+      next(err);
+    }
+  }
 }

@@ -6,7 +6,7 @@ import { fetchReportesResumen } from "../modules/admin/api";
 import type { ReportesResumen } from "../modules/admin/tipos";
 import { fetchFavoritos } from "../modules/favoritos/api";
 import { fetchPerfil } from "../modules/perfil/api";
-import type { Perfil } from "../modules/perfil/tipos";
+import type { PerfilDetalle } from "../modules/perfil/tipos";
 import { fetchPostulaciones, fetchPostulacionesResumen } from "../modules/postulaciones/api";
 import { PostulacionesTable } from "../modules/postulaciones/PostulacionesTable";
 import type { Postulacion } from "../modules/postulaciones/tipos";
@@ -16,7 +16,7 @@ import type { Recomendacion } from "../modules/recomendaciones/tipos";
 
 export function InicioPage() {
   const { user } = useAuth();
-  const [perfil, setPerfil] = useState<Perfil | null>(null);
+  const [perfil, setPerfil] = useState<PerfilDetalle | null>(null);
   const [recomendaciones, setRecomendaciones] = useState<Recomendacion[]>([]);
   const [postulaciones, setPostulaciones] = useState<Postulacion[]>([]);
   const [postulacionesActivas, setPostulacionesActivas] = useState(0);
@@ -132,6 +132,9 @@ export function InicioPage() {
               <Link to="/admin/reportes" className="btn btn--secondary">
                 Reportes institucionales
               </Link>
+              <Link to="/admin/usuarios" className="btn btn--secondary">
+                Usuarios y perfiles
+              </Link>
               <Link to="/admin/estrategico" className="btn btn--secondary">
                 Panel estratégico
               </Link>
@@ -203,6 +206,11 @@ export function InicioPage() {
                   </p>
                   <p>Ubicación: {perfil.location ?? "Sin definir"}</p>
                   <p>Habilidades: {perfil.skills.join(", ")}</p>
+                  <p>
+                    Completitud:{" "}
+                    <strong>{perfil.completitud.porcentaje}%</strong>
+                    {!perfil.completitud.completo ? " (incompleto)" : ""}
+                  </p>
                   <Link to="/perfil" className="btn btn--secondary">
                     Editar perfil
                   </Link>

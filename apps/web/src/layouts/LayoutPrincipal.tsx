@@ -15,6 +15,7 @@ const navAdmin = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/admin/ofertas", label: "Gestión ofertas" },
   { to: "/admin/reportes", label: "Reportes" },
+  { to: "/admin/usuarios", label: "Usuarios" },
   { to: "/admin/estrategico", label: "Panel estratégico" },
   { to: "/empleos", label: "Oportunidades" },
 ];
