@@ -13,6 +13,17 @@ const MODALIDADES = [
   { value: "hibrido", label: "Híbrido" },
 ];
 
+const CATEGORIAS = [
+  { value: "", label: "Todas" },
+  { value: "tecnologia", label: "Tecnología" },
+  { value: "negocios", label: "Negocios" },
+  { value: "diseno", label: "Diseño" },
+  { value: "ingenieria", label: "Ingeniería" },
+  { value: "marketing", label: "Marketing" },
+  { value: "salud", label: "Salud" },
+  { value: "otros", label: "Otros" },
+];
+
 const LIMIT = 10;
 
 export function EmpleosPage() {
@@ -26,11 +37,16 @@ export function EmpleosPage() {
   const q = searchParams.get("q") ?? "";
   const ubicacion = searchParams.get("ubicacion") ?? "";
   const modalidad = searchParams.get("modalidad") ?? "";
+  const categoria = searchParams.get("categoria") ?? "";
+  const empresa = searchParams.get("empresa") ?? "";
+  const fechaDesde = searchParams.get("fechaDesde") ?? "";
+  const fechaHasta = searchParams.get("fechaHasta") ?? "";
   const fuente = searchParams.get("fuente") ?? "";
   const page = Math.max(1, Number(searchParams.get("page") ?? "1") || 1);
 
   const [draftQ, setDraftQ] = useState(q);
   const [draftUbicacion, setDraftUbicacion] = useState(ubicacion);
+  const [draftEmpresa, setDraftEmpresa] = useState(empresa);
 
   useEffect(() => {
     setDraftQ(q);
@@ -39,6 +55,10 @@ export function EmpleosPage() {
   useEffect(() => {
     setDraftUbicacion(ubicacion);
   }, [ubicacion]);
+
+  useEffect(() => {
+    setDraftEmpresa(empresa);
+  }, [empresa]);
 
   const actualizarParam = useCallback(
     (cambios: Record<string, string | null>) => {
@@ -64,8 +84,9 @@ export function EmpleosPage() {
     actualizarParam({
       q: draftQ || null,
       ubicacion: draftUbicacion || null,
+      empresa: draftEmpresa || null,
     });
-  }, [actualizarParam, draftQ, draftUbicacion]);
+  }, [actualizarParam, draftQ, draftUbicacion, draftEmpresa]);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,6 +110,10 @@ export function EmpleosPage() {
       q: q || undefined,
       ubicacion: ubicacion || undefined,
       modalidad: modalidad || undefined,
+      categoria: categoria || undefined,
+      empresa: empresa || undefined,
+      fechaDesde: fechaDesde || undefined,
+      fechaHasta: fechaHasta || undefined,
       fuente: fuente || undefined,
       page,
       limit: LIMIT,
@@ -108,7 +133,7 @@ export function EmpleosPage() {
     return () => {
       cancelled = true;
     };
-  }, [q, ubicacion, modalidad, fuente, page]);
+  }, [q, ubicacion, modalidad, categoria, empresa, fechaDesde, fechaHasta, fuente, page]);
 
   const totalPaginas = Math.max(1, Math.ceil(total / LIMIT));
 
@@ -162,6 +187,61 @@ export function EmpleosPage() {
                 if (e.key === "Enter") aplicarBusqueda();
               }}
               onBlur={aplicarBusqueda}
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="filtro-empresa">Empresa</label>
+            <input
+              id="filtro-empresa"
+              type="text"
+              placeholder="Nombre de empresa"
+              value={draftEmpresa}
+              onChange={(e) => setDraftEmpresa(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") aplicarBusqueda();
+              }}
+              onBlur={aplicarBusqueda}
+            />
+          </div>
+
+          <div className="field">
+            <span>Categoría</span>
+            <div className="chip-group" role="group" aria-label="Categoría">
+              {CATEGORIAS.map((c) => (
+                <button
+                  key={c.value || "all-cat"}
+                  type="button"
+                  className={`chip${categoria === c.value ? " chip--active" : ""}`}
+                  onClick={() => actualizarParam({ categoria: c.value || null })}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="field">
+            <label htmlFor="filtro-fecha-desde">Publicadas desde</label>
+            <input
+              id="filtro-fecha-desde"
+              type="date"
+              value={fechaDesde}
+              onChange={(e) =>
+                actualizarParam({ fechaDesde: e.target.value || null })
+              }
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="filtro-fecha-hasta">Publicadas hasta</label>
+            <input
+              id="filtro-fecha-hasta"
+              type="date"
+              value={fechaHasta}
+              onChange={(e) =>
+                actualizarParam({ fechaHasta: e.target.value || null })
+              }
             />
           </div>
 

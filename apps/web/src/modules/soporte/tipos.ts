@@ -1,15 +1,24 @@
 export type MotorConfig = {
   habilidades: number;
   carrera: number;
+  intereses: number;
   experiencia: number;
   modalidad: number;
   ubicacion: number;
-  actualidad: number;
+  /** @deprecated */
+  actualidad?: number;
   actualizadoEn: string;
   total: number;
 };
 
-export type MotorConfigInput = Omit<MotorConfig, "actualizadoEn" | "total">;
+export type MotorConfigInput = {
+  habilidades: number;
+  carrera: number;
+  intereses: number;
+  experiencia: number;
+  modalidad: number;
+  ubicacion: number;
+};
 
 export type Incidencia = {
   id: string;

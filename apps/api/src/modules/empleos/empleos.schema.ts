@@ -59,6 +59,9 @@ const listEmpleosQueryIn = z.object({
   fuente: queryString(120),
   categoria: queryString(64),
   tipo: queryString(64),
+  empresa: queryString(120),
+  fechaDesde: queryString(32),
+  fechaHasta: queryString(32),
   page: queryPage(),
   limit: queryLimit(),
 });
@@ -70,6 +73,9 @@ export const listEmpleosQuerySchema = listEmpleosQueryIn.transform((d) => ({
   fuente: d.fuente,
   categoria: d.categoria,
   tipo: d.tipo,
+  empresa: d.empresa,
+  fechaDesde: d.fechaDesde,
+  fechaHasta: d.fechaHasta,
   page: d.page,
   limit: d.limit,
 }));
@@ -89,6 +95,8 @@ export const empleoSchema = z.object({
   salario: z.string().optional(),
   fechaPublicacion: z.string().optional(),
   fuenteNombre: z.string().optional(),
+  categoria: z.string().optional(),
+  tipoOportunidad: z.string().optional(),
 });
 
 export type Empleo = z.infer<typeof empleoSchema>;

@@ -6,7 +6,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js",
-    "test": "tsx --test src/modules/ofertas/ofertas.workflow.test.ts src/modules/ofertas/ofertas.test.ts",
+    "test": "tsx --test src/modules/recomendaciones/recommendation.engine.test.ts src/modules/recomendaciones/recomendaciones.test.ts src/modules/ofertas/ofertas.workflow.test.ts src/modules/ofertas/ofertas.test.ts",
     "lint": "eslint ."
   },
   "dependencies": {

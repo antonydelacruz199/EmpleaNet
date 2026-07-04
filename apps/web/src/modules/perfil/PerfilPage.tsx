@@ -1,4 +1,9 @@
 import { FormEvent, useEffect, useState } from "react";
+import {
+  fetchPreferenciasLaborales,
+  updatePreferenciasLaborales,
+} from "../recomendaciones/api";
+import type { PreferenciasLaborales } from "../recomendaciones/tipos";
 import { fetchPerfil, updatePerfil } from "./api";
 import type { Perfil } from "./tipos";
 
@@ -7,6 +12,13 @@ export function PerfilPage() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [skillsText, setSkillsText] = useState("");
+  const [carrera, setCarrera] = useState("");
+  const [interesesText, setInteresesText] = useState("");
+  const [anosExperiencia, setAnosExperiencia] = useState(0);
+  const [modalidadPreferida, setModalidadPreferida] = useState<
+    "" | "remoto" | "presencial" | "hibrido"
+  >("");
+  const [ubicacionPreferida, setUbicacionPreferida] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
   const [guardando, setGuardando] = useState(false);
@@ -14,13 +26,14 @@ export function PerfilPage() {
 
   useEffect(() => {
     let cancelled = false;
-    void fetchPerfil()
-      .then((data) => {
+    void Promise.all([fetchPerfil(), fetchPreferenciasLaborales()])
+      .then(([data, prefs]) => {
         if (!cancelled) {
           setPerfil(data);
           setName(data.name);
           setLocation(data.location ?? "");
           setSkillsText(data.skills.join(", "));
+          aplicarPreferencias(prefs);
         }
       })
       .catch(() => {
@@ -33,6 +46,14 @@ export function PerfilPage() {
       cancelled = true;
     };
   }, []);
+
+  function aplicarPreferencias(prefs: PreferenciasLaborales) {
+    setCarrera(prefs.carrera ?? "");
+    setInteresesText((prefs.intereses ?? []).join(", "));
+    setAnosExperiencia(prefs.anosExperiencia ?? 0);
+    setModalidadPreferida(prefs.modalidadPreferida ?? "");
+    setUbicacionPreferida(prefs.ubicacionPreferida ?? "");
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -59,8 +80,22 @@ export function PerfilPage() {
       });
       setPerfil(actualizado);
       setSkillsText(actualizado.skills.join(", "));
+
+      const intereses = interesesText
+        .split(",")
+        .map((s) => s.trim().toLowerCase())
+        .filter(Boolean);
+
+      const prefs = await updatePreferenciasLaborales({
+        carrera: carrera.trim() || undefined,
+        intereses: intereses.length ? intereses : undefined,
+        anosExperiencia,
+        modalidadPreferida: modalidadPreferida || undefined,
+        ubicacionPreferida: ubicacionPreferida.trim() || undefined,
+      });
+      aplicarPreferencias(prefs);
       setMensaje(
-        "Perfil actualizado. Las recomendaciones se recalcularon automáticamente.",
+        "Perfil y preferencias guardados. Las recomendaciones se recalcularon.",
       );
     } catch {
       setError("No se pudo guardar el perfil.");
@@ -145,8 +180,62 @@ export function PerfilPage() {
           </small>
         </div>
 
+        <h2 style={{ fontSize: 18, marginBottom: 12 }}>Preferencias laborales (O3)</h2>
+        <div className="admin-form__grid" style={{ marginBottom: 24 }}>
+          <label>
+            Carrera / afinidad académica
+            <input
+              value={carrera}
+              onChange={(e) => setCarrera(e.target.value)}
+              placeholder="Ingeniería de sistemas"
+            />
+          </label>
+          <label>
+            Años de experiencia
+            <input
+              type="number"
+              min={0}
+              max={50}
+              value={anosExperiencia}
+              onChange={(e) => setAnosExperiencia(Number(e.target.value) || 0)}
+            />
+          </label>
+          <label>
+            Intereses laborales (coma)
+            <input
+              value={interesesText}
+              onChange={(e) => setInteresesText(e.target.value)}
+              placeholder="tecnologia, startups"
+            />
+          </label>
+          <label>
+            Modalidad preferida
+            <select
+              value={modalidadPreferida}
+              onChange={(e) =>
+                setModalidadPreferida(
+                  e.target.value as "" | "remoto" | "presencial" | "hibrido",
+                )
+              }
+            >
+              <option value="">Sin preferencia</option>
+              <option value="remoto">Remoto</option>
+              <option value="presencial">Presencial</option>
+              <option value="hibrido">Híbrido</option>
+            </select>
+          </label>
+          <label>
+            Ubicación preferida
+            <input
+              value={ubicacionPreferida}
+              onChange={(e) => setUbicacionPreferida(e.target.value)}
+              placeholder="Lima, Arequipa..."
+            />
+          </label>
+        </div>
+
         <button type="submit" className="btn btn--primary" disabled={guardando}>
-          {guardando ? "Guardando..." : "Guardar perfil"}
+          {guardando ? "Guardando..." : "Guardar perfil y preferencias"}
         </button>
       </form>
     </>

@@ -10,11 +10,11 @@ import type { MotorConfig, MotorConfigInput } from "./tipos";
 
 const CAMPOS: { key: keyof MotorConfigInput; label: string }[] = [
   { key: "habilidades", label: "Habilidades" },
-  { key: "carrera", label: "Carrera / título" },
-  { key: "experiencia", label: "Experiencia" },
+  { key: "carrera", label: "Carrera / afinidad académica" },
+  { key: "intereses", label: "Intereses laborales" },
   { key: "modalidad", label: "Modalidad" },
   { key: "ubicacion", label: "Ubicación" },
-  { key: "actualidad", label: "Actualidad" },
+  { key: "experiencia", label: "Experiencia" },
 ];
 
 export function SoporteMotorPage() {
@@ -29,10 +29,10 @@ export function SoporteMotorPage() {
         setConfig({
           habilidades: data.habilidades,
           carrera: data.carrera,
+          intereses: data.intereses ?? data.actualidad ?? 15,
           experiencia: data.experiencia,
           modalidad: data.modalidad,
           ubicacion: data.ubicacion,
-          actualidad: data.actualidad,
         });
       })
       .catch(() => setMensaje("No se pudo cargar la configuración del motor."))

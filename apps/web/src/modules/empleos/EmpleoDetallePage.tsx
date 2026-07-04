@@ -16,6 +16,9 @@ import {
   claseEstadoPostulacion,
   etiquetaEstadoPostulacion,
 } from "../postulaciones/utilidades";
+import { fetchCoincidencia } from "../recomendaciones/api";
+import { claseNivel, etiquetaNivel } from "../recomendaciones/tipos";
+import type { CoincidenciaDetalle } from "../recomendaciones/tipos";
 import { fetchEmpleoById } from "./api";
 import type { EmpleoDetalle } from "./tipos";
 
@@ -47,6 +50,7 @@ export function EmpleoDetallePage() {
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [accionCargando, setAccionCargando] = useState(false);
   const [mensajeAccion, setMensajeAccion] = useState<string | null>(null);
+  const [coincidencia, setCoincidencia] = useState<CoincidenciaDetalle | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -59,7 +63,11 @@ export function EmpleoDetallePage() {
     const tareas: Promise<unknown>[] = [fetchEmpleoById(id)];
 
     if (esEstudiante) {
-      tareas.push(fetchFavoritoEstado(id), fetchPostulacionEstado(id));
+      tareas.push(
+        fetchFavoritoEstado(id),
+        fetchPostulacionEstado(id),
+        fetchCoincidencia(id).catch(() => null),
+      );
     }
 
     void Promise.all(tareas)
@@ -77,6 +85,9 @@ export function EmpleoDetallePage() {
           setEsFavorito(favoritoEstado.esFavorito);
           setPostulado(postulacionEstado.postulado);
           setEstadoPostulacion(postulacionEstado.postulacion?.estado ?? null);
+          if (results[3]) {
+            setCoincidencia(results[3] as CoincidenciaDetalle);
+          }
         }
       })
       .catch(() => {
@@ -189,6 +200,23 @@ export function EmpleoDetallePage() {
             <dt>Salario</dt>
             <dd>{empleo.salario ?? "No especificado"}</dd>
           </dl>
+
+          {coincidencia ? (
+            <div className="detail-actions" style={{ marginBottom: 16 }}>
+              <h3 style={{ margin: "0 0 8px", fontSize: 16 }}>Tu coincidencia</h3>
+              <p>
+                <span className={claseNivel(coincidencia.nivel)}>
+                  {etiquetaNivel(coincidencia.nivel)}
+                </span>{" "}
+                <strong>{Math.round(coincidencia.puntaje)} pts</strong>
+              </p>
+              <ul style={{ margin: "8px 0", paddingLeft: 18 }}>
+                {coincidencia.razones.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           {esEstudiante ? (
             <div className="detail-actions">

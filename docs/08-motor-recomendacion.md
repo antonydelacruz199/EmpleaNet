@@ -14,13 +14,16 @@ La primera versión del motor será basada en reglas y puntajes.
 - coincidencia de ubicación
 - actualidad de la oferta
 
-## Ejemplo de ponderación inicial
-- habilidades: 30
+## Ejemplo de ponderación (O3 — tesis)
+
+- habilidades: 35
 - carrera: 25
-- experiencia: 15
-- modalidad: 15
+- intereses laborales: 15
+- modalidad: 10
 - ubicación: 10
-- actualidad: 5
+- experiencia: 5
+
+Ver detalle en [`RECOMMENDATION_ENGINE.md`](RECOMMENDATION_ENGINE.md).
 
 ## Resultado
 El sistema devuelve un puntaje total y una explicación breve de por qué el empleo fue recomendado.
