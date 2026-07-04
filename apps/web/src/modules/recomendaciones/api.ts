@@ -1,8 +1,10 @@
 import { httpJson } from "../../core/http/clienteHttp";
-import type { Empleo } from "../empleos/tipos";
+import type { ListadoRecomendaciones } from "./tipos";
 
-export async function fetchRecomendaciones(filters: { skills: string }): Promise<Empleo[]> {
-  return httpJson<Empleo[]>("/recomendaciones", {
-    searchParams: { skills: filters.skills },
+export async function fetchRecomendaciones(
+  limit = 20,
+): Promise<ListadoRecomendaciones> {
+  return httpJson<ListadoRecomendaciones>("/recomendaciones", {
+    searchParams: { limit: String(limit) },
   });
 }

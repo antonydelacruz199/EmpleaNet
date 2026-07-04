@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 const navItems = [
-  { to: "/", label: "Inicio", end: true },
+  { to: "/", label: "Dashboard", end: true },
   { to: "/empleos", label: "Oportunidades" },
   { to: "/recomendados", label: "Recomendados" },
   { to: "/perfil", label: "Mi perfil" },

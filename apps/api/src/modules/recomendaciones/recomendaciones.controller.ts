@@ -8,8 +8,8 @@ export class RecomendacionesController {
   async list(req: Request, res: Response, next: NextFunction) {
     try {
       const query = recomendacionesQuerySchema.parse(req.query);
-      const recomendaciones = await this.recomendacionesService.list(query);
-      res.json(recomendaciones);
+      const resultado = await this.recomendacionesService.list(query);
+      res.json(resultado);
     } catch (err) {
       next(err);
     }

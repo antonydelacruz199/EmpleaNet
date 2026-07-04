@@ -9,3 +9,7 @@ export const perfilRouter: ExpressRouter = Router();
 perfilRouter.get("/me", (req, res, next) => {
   void controller.me(req, res, next);
 });
+
+perfilRouter.put("/me", (req, res, next) => {
+  void controller.updateMe(req, res, next);
+});

@@ -69,28 +69,28 @@ curl "http://localhost:4000/api/empleos?fuente=Remotive"
 
 ---
 
-## Fase 2 — Perfil y motor de recomendación
+## Fase 2 — Perfil y motor de recomendación ✅
 
 **Prioridad:** 🔴 Alta  
 **Bizagi:** O1 (perfil), O3, S2 | **Mockups:** dashboard estudiante
 
 ### Backend
-- [ ] `GET/PUT /api/perfil/me` contra tabla `perfil`
-- [ ] Motor por reglas (`docs/08-motor-recomendacion.md`): habilidades, modalidad, ubicación, actualidad
-- [ ] Persistir scores en `recomendacion` (índice único perfil+empleo)
-- [ ] `GET /api/recomendaciones` con puntaje y motivo
+- [x] `GET/PUT /api/perfil/me` contra tabla `perfil`
+- [x] Motor por reglas (`docs/08-motor-recomendacion.md`): habilidades, modalidad, ubicación, actualidad
+- [x] Persistir scores en `recomendacion` (índice único perfil+empleo)
+- [x] `GET /api/recomendaciones` con puntaje y motivo
 
 ### Frontend
-- [ ] Formulario perfil (habilidades, ubicación)
-- [ ] Sección recomendados en dashboard estudiante
-- [ ] Ordenamiento por relevancia (O3)
+- [x] Formulario perfil (habilidades, ubicación)
+- [x] Sección recomendados en dashboard estudiante
+- [x] Ordenamiento por relevancia (O3)
 
 ### Verificación
 Perfil editado → recomendaciones distintas → motivo visible en UI.
 
 ---
 
-## Fase 3 — Autenticación y roles
+## Fase 3 — Autenticación y roles *(siguiente)*
 
 **Prioridad:** 🔴 Alta  
 **Bizagi:** O1, S3 | **Mockup:** inicio de sesión

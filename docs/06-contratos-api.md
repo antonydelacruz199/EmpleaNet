@@ -46,4 +46,37 @@ Listado paginado. Query (todos opcionales; valores por defecto en servidor):
 Tras 2.3, al poblar con Remotive, `fuente` podrá filtrar por el registro de fuente “Remotive” u otro creado en catálogo.
 
 ### GET /api/empleos/:id
-Detalle de un empleo por `id` numérico. Incluye `modalidad` y demás campos persistidos.
+Detalle de un empleo por `id` numérico. Incluye `modalidad`, `fuenteNombre` y demás campos persistidos.
+
+## Endpoints: módulo perfil (implementados)
+
+### GET /api/perfil/me
+Perfil activo del usuario demo (Fase 2, sin auth: `id=1`).
+
+### PUT /api/perfil/me
+Actualiza nombre, ubicación y habilidades. Recalcula recomendaciones automáticamente.
+
+```json
+{
+  "name": "Estudiante Continental",
+  "location": "Remoto",
+  "skills": ["typescript", "react", "nodejs"]
+}
+```
+
+## Endpoints: módulo recomendaciones (implementados)
+
+### GET /api/recomendaciones
+Lista ordenada por `puntaje` descendente. Query opcional: `limit` (1–50, default 20).
+
+```json
+{
+  "recomendaciones": [
+    {
+      "puntaje": 72.5,
+      "motivo": "Habilidades: react, typescript. Modalidad remota alineada.",
+      "empleo": { "id": "1", "title": "..." }
+    }
+  ]
+}
+```

@@ -1,9 +1,145 @@
+import { getDb } from "../../core/db/conexion.js";
+import type { Empleo } from "../empleos/empleos.schema.js";
 import { EmpleosRepository } from "../empleos/empleos.repository.js";
+import { PERFIL_DEMO_ID } from "../perfil/perfil.schema.js";
+import type { Perfil } from "../perfil/perfil.schema.js";
+import { calcularRecomendacion } from "./recomendacion.motor.js";
+import type { RecomendacionItem } from "./recomendaciones.schema.js";
+
+type PerfilRow = {
+  id: number;
+  nombre: string;
+  email: string;
+  ubicacion: string | null;
+  habilidades: string;
+};
+
+type RecomendacionRow = {
+  puntaje: number;
+  motivo: string | null;
+  id: number;
+  titulo: string;
+  empresa: string;
+  ubicacion: string | null;
+  modalidad: string | null;
+  descripcion: string | null;
+  url_oferta: string | null;
+  salario: string | null;
+  fecha_publicacion: string | null;
+  fuente_nombre: string | null;
+};
+
+function mapPerfil(row: PerfilRow): Perfil {
+  return {
+    id: String(row.id),
+    name: row.nombre,
+    email: row.email,
+    location: row.ubicacion ?? undefined,
+    skills: row.habilidades
+      .split(",")
+      .map((s) => s.trim().toLowerCase())
+      .filter(Boolean),
+  };
+}
+
+function mapEmpleo(row: RecomendacionRow): Empleo {
+  return {
+    id: String(row.id),
+    title: row.titulo,
+    company: row.empresa,
+    location: row.ubicacion ?? undefined,
+    modalidad: row.modalidad ?? undefined,
+    descripcion: row.descripcion ?? undefined,
+    urlOferta: row.url_oferta ?? undefined,
+    salario: row.salario ?? undefined,
+    fechaPublicacion: row.fecha_publicacion ?? undefined,
+    fuenteNombre: row.fuente_nombre ?? undefined,
+  };
+}
 
 export class RecomendacionesRepository {
   private readonly empleosRepository = new EmpleosRepository();
 
-  async findCandidateJobs() {
+  getPerfilDemo(): Perfil | null {
+    const row = getDb()
+      .prepare(
+        "SELECT id, nombre, email, ubicacion, habilidades FROM perfil WHERE id = ?",
+      )
+      .get(PERFIL_DEMO_ID) as PerfilRow | undefined;
+    return row ? mapPerfil(row) : null;
+  }
+
+  async findAllEmpleos() {
     return this.empleosRepository.findAll();
+  }
+
+  replaceScores(
+    perfilId: number,
+    items: { empleoId: number; puntaje: number; motivo: string }[],
+  ): void {
+    const db = getDb();
+    const tx = db.transaction(() => {
+      db.prepare("DELETE FROM recomendacion WHERE perfil_id = ?").run(perfilId);
+      const stmt = db.prepare(
+        `INSERT INTO recomendacion (perfil_id, empleo_id, puntaje, motivo)
+         VALUES (?, ?, ?, ?)`,
+      );
+      for (const item of items) {
+        stmt.run(perfilId, item.empleoId, item.puntaje, item.motivo);
+      }
+    });
+    tx();
+  }
+
+  findByPerfil(perfilId: number, limit: number): RecomendacionItem[] {
+    const rows = getDb()
+      .prepare(
+        `SELECT r.puntaje, r.motivo,
+                e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion,
+                e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre
+         FROM recomendacion r
+         INNER JOIN empleo e ON e.id = r.empleo_id
+         LEFT JOIN fuente_empleo f ON f.id = e.fuente_id
+         WHERE r.perfil_id = ?
+         ORDER BY r.puntaje DESC, e.id ASC
+         LIMIT ?`,
+      )
+      .all(perfilId, limit) as RecomendacionRow[];
+
+    return rows.map((row) => ({
+      puntaje: row.puntaje,
+      motivo: row.motivo ?? "",
+      empleo: mapEmpleo(row),
+    }));
+  }
+
+  countByPerfil(perfilId: number): number {
+    const row = getDb()
+      .prepare("SELECT COUNT(*) AS c FROM recomendacion WHERE perfil_id = ?")
+      .get(perfilId) as { c: number };
+    return row.c;
+  }
+
+  buildScoresFromEmpleos(
+    perfil: Perfil,
+    empleos: Empleo[],
+  ): { empleoId: number; puntaje: number; motivo: string }[] {
+    return empleos.map((empleo) => {
+      const resultado = calcularRecomendacion(
+        { skills: perfil.skills, location: perfil.location },
+        {
+          title: empleo.title,
+          descripcion: empleo.descripcion,
+          modalidad: empleo.modalidad,
+          ubicacion: empleo.location,
+          fechaPublicacion: empleo.fechaPublicacion,
+        },
+      );
+      return {
+        empleoId: Number(empleo.id),
+        puntaje: resultado.puntaje,
+        motivo: resultado.motivo,
+      };
+    });
   }
 }
