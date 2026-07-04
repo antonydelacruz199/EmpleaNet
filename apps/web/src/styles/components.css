@@ -494,3 +494,162 @@
   color: var(--co-on-surface-variant);
   text-align: center;
 }
+
+/* Fase 4 — postulaciones, favoritos, modal */
+.btn--sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-card__label {
+  display: block;
+  font-size: 13px;
+  color: var(--co-on-surface-variant);
+  margin-bottom: 8px;
+}
+
+.stat-card__value {
+  font-size: 28px;
+  color: var(--co-primary);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--co-outline-variant);
+}
+
+.data-table th {
+  color: var(--co-on-surface-variant);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-table__link {
+  color: var(--co-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.data-table__link:hover {
+  text-decoration: underline;
+}
+
+.table-footnote {
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.table-footnote a {
+  color: var(--co-primary);
+}
+
+.estado-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.estado-badge--registrada {
+  background: rgba(0, 85, 164, 0.12);
+  color: var(--co-primary);
+}
+
+.estado-badge--proceso {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+}
+
+.estado-badge--cerrada {
+  background: rgba(100, 116, 139, 0.15);
+  color: #475569;
+}
+
+.detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--co-outline-variant);
+}
+
+.detail-actions__estado {
+  margin: 0;
+  font-size: 14px;
+}
+
+.detail-actions__msg {
+  margin: 0;
+  font-size: 13px;
+  color: var(--co-on-surface-variant);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+}
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+}
+
+.modal h2 {
+  margin: 0 0 12px;
+  color: var(--co-primary);
+  font-size: 20px;
+}
+
+.modal p {
+  margin: 0 0 20px;
+  color: var(--co-on-surface-variant);
+  line-height: 1.5;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.empleo-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+

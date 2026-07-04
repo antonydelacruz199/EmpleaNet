@@ -4,7 +4,9 @@ import { GuestRoute } from "./core/auth/GuestRoute";
 import { LayoutPrincipal } from "./layouts/LayoutPrincipal";
 import { EmpleoDetallePage } from "./modules/empleos/EmpleoDetallePage";
 import { EmpleosPage } from "./modules/empleos/EmpleosPage";
+import { FavoritosPage } from "./modules/favoritos/FavoritosPage";
 import { PerfilPage } from "./modules/perfil/PerfilPage";
+import { PostulacionesPage } from "./modules/postulaciones/PostulacionesPage";
 import { RecomendacionesPage } from "./modules/recomendaciones/RecomendacionesPage";
 import { InicioPage } from "./pages/InicioPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -30,6 +32,8 @@ export const router = createBrowserRouter([
             children: [
               { path: "perfil", element: <PerfilPage /> },
               { path: "recomendados", element: <RecomendacionesPage /> },
+              { path: "postulaciones", element: <PostulacionesPage /> },
+              { path: "favoritos", element: <FavoritosPage /> },
             ],
           },
         ],

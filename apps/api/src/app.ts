@@ -8,7 +8,9 @@ import { notFound } from "./core/middlewares/notFound.js";
 import { setupSecurity } from "./core/security/setupSecurity.js";
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { empleosRouter } from "./modules/empleos/empleos.routes.js";
+import { favoritosRouter } from "./modules/favoritos/favoritos.routes.js";
 import { fuentesRouter } from "./modules/fuentes/fuentes.routes.js";
+import { postulacionesRouter } from "./modules/postulaciones/postulaciones.routes.js";
 import { perfilRouter } from "./modules/perfil/perfil.routes.js";
 import { recomendacionesRouter } from "./modules/recomendaciones/recomendaciones.routes.js";
 
@@ -32,6 +34,8 @@ export function createApp(): Express {
   app.use("/api/empleos", empleosRouter);
   app.use("/api/perfil", perfilRouter);
   app.use("/api/recomendaciones", recomendacionesRouter);
+  app.use("/api/postulaciones", postulacionesRouter);
+  app.use("/api/favoritos", favoritosRouter);
   app.use("/api/fuentes", fuentesRouter);
 
   app.use(notFound);

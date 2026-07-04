@@ -94,3 +94,50 @@ Header: `Authorization: Bearer <token>`
 
 ### POST /api/auth/logout
 Header: `Authorization: Bearer <token>`. Respuesta `204`.
+
+## Endpoints: módulo postulaciones (implementados)
+
+Requieren JWT. Rol: `estudiante` o `egresado`.
+
+### GET /api/postulaciones
+Historial del perfil autenticado, ordenado por fecha descendente.
+
+### GET /api/postulaciones/resumen
+```json
+{ "activas": 0 }
+```
+Cuenta postulaciones con estado `registrada` o `en_proceso`.
+
+### GET /api/postulaciones/empleo/:empleoId
+```json
+{ "postulado": true, "postulacion": { "id", "empleoId", "estado", "fechaPostulacion" } }
+```
+
+### POST /api/postulaciones
+Registra postulación. Requiere perfil con al menos una habilidad (PP-02).
+
+```json
+{ "empleoId": "1" }
+```
+
+Respuesta `201`: `{ "postulacion": { ... }, "urlOferta": "https://..." }`
+
+## Endpoints: módulo favoritos (implementados)
+
+Requieren JWT. Rol: `estudiante` o `egresado`.
+
+### GET /api/favoritos
+Listado de ofertas guardadas.
+
+### GET /api/favoritos/empleo/:empleoId
+```json
+{ "esFavorito": false }
+```
+
+### POST /api/favoritos
+```json
+{ "empleoId": "1" }
+```
+
+### DELETE /api/favoritos/:empleoId
+Quita favorito. Respuesta `204`.

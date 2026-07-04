@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { env } from "../../config/env.js";
 import { ensureAuthSchema } from "../../modules/auth/auth.repository.js";
+import { ensurePostulacionFavoritoSchema } from "../../modules/postulaciones/postulaciones.repository.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(dirname, "../../../../..");
@@ -75,6 +76,7 @@ export function getDb(): Database.Database {
     db.pragma("foreign_keys = ON");
     ensureDevDatabase(db);
     ensureAuthSchema();
+    ensurePostulacionFavoritoSchema();
   }
   return db;
 }

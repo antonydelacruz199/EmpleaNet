@@ -101,23 +101,23 @@ Perfil editado → recomendaciones distintas → motivo visible en UI.
 - [x] Tabla `usuario` + JWT (HS256, `node:crypto`)
 - [x] Pantalla login según mockup
 
-## Fase 4 — Postulaciones y favoritos *(siguiente)*
+## Fase 4 — Postulaciones y favoritos ✅
 
 **Prioridad:** 🟡 Media  
 **Bizagi:** O4
 
 ### Backend
-- [ ] Tablas `postulacion`, `favorito`
-- [ ] Endpoints: registrar postulación, listar historial, guardar/quitar favorito
-- [ ] Redirección a `url_oferta` externa (no postulación automática)
+- [x] Tablas `postulacion`, `favorito`
+- [x] Endpoints: registrar postulación, listar historial, guardar/quitar favorito
+- [x] Redirección a `url_oferta` externa (no postulación automática)
 
 ### Frontend
-- [ ] Acciones en detalle: postular / guardar
-- [ ] Seguimiento de estado en dashboard estudiante
+- [x] Acciones en detalle: postular / guardar
+- [x] Seguimiento de estado en dashboard estudiante
 
 ---
 
-## Fase 5 — Administración y reportes
+## Fase 5 — Administración y reportes *(siguiente)*
 
 **Prioridad:** 🟡 Media  
 **Bizagi:** O2 (manual), O5 | **Mockups:** gestión ofertas, dashboard reportes
@@ -175,6 +175,6 @@ Este documento **extiende** `docs/10-roadmap.md` con fases de auth, postulacione
 
 ## Próximo paso inmediato
 
-**Fase 1:** verificar worker Remotive + implementar UI marketplace y detalle con design system institucional.
+**Fase 5:** panel de gestión de ofertas manuales y dashboard de reportes institucionales.
 
 Ver también: [`IMPLEMENTATION_AUDIT.md`](IMPLEMENTATION_AUDIT.md) · [`MODULES.md`](MODULES.md) · [`UI_FLOW.md`](UI_FLOW.md)
