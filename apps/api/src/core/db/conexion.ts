@@ -10,6 +10,7 @@ import { ensureProfileSchema } from "../../modules/perfil/ensureProfileSchema.js
 import { ensureOffersSchema } from "../../modules/ofertas/ensureOffersSchema.js";
 import { ensureRecommendationSchema } from "../../modules/recomendaciones/ensureRecommendationSchema.js";
 import { ensurePostulacionFavoritoSchema } from "../../modules/postulaciones/postulaciones.repository.js";
+import { ensureApplicationsTrackingSchema } from "../../modules/seguimiento/ensureApplicationsTrackingSchema.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(dirname, "../../../../..");
@@ -82,6 +83,7 @@ export function getDb(): Database.Database {
     ensureDevDatabase(db);
     ensureAuthSchema();
     ensurePostulacionFavoritoSchema();
+    ensureApplicationsTrackingSchema();
     ensureAdminSchema();
     ensureFase6Schema();
     ensureProfileSchema();

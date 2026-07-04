@@ -538,6 +538,32 @@
   margin-bottom: 24px;
 }
 
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid var(--co-outline-variant);
+  padding-bottom: 8px;
+}
+
+.tabs__btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--co-on-surface-variant);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tabs__btn--active {
+  background: var(--co-primary-container);
+  color: var(--co-on-primary-container);
+  border-color: var(--co-outline-variant);
+  font-weight: 600;
+}
+
 .stat-card {
   padding: 20px;
 }

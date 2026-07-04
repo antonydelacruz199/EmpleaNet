@@ -8,6 +8,7 @@ const navEstudiante = [
   { to: "/recomendados", label: "Recomendados" },
   { to: "/postulaciones", label: "Postulaciones" },
   { to: "/favoritos", label: "Favoritos" },
+  { to: "/seguimiento", label: "Seguimiento" },
   { to: "/perfil", label: "Mi perfil" },
 ];
 

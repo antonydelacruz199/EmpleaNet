@@ -18,6 +18,17 @@ type EmpleoRow = {
   fuente_nombre: string | null;
 };
 
+type EmpleoPostulacionRow = EmpleoRow & {
+  estado: string;
+  activo: number;
+  fecha_cierre: string | null;
+};
+
+export type EmpleoPostulacionContext = {
+  empleo: Empleo;
+  postulable: boolean;
+};
+
 const selectColumns = `e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.categoria,
   e.tipo_oportunidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion,
   e.habilidades_requeridas, f.nombre AS fuente_nombre`;
@@ -148,5 +159,28 @@ export class EmpleosRepository {
     syncOfertasVencidas();
     const row = getDb().prepare(sqlByIdPublico).get(numericId) as EmpleoRow | undefined;
     return Promise.resolve(row === undefined ? null : mapRow(row));
+  }
+
+  findForPostulacion(id: string): Promise<EmpleoPostulacionContext | null> {
+    const numericId = Number(id);
+    if (!Number.isInteger(numericId) || numericId < 1) {
+      return Promise.resolve(null);
+    }
+    syncOfertasVencidas();
+    const row = getDb()
+      .prepare(
+        `SELECT ${selectColumns}, e.estado, e.activo, e.fecha_cierre
+         ${fromJoin}
+         WHERE e.id = ?`,
+      )
+      .get(numericId) as EmpleoPostulacionRow | undefined;
+    if (row === undefined) {
+      return Promise.resolve(null);
+    }
+    const postulable =
+      row.estado === "publicada" &&
+      row.activo === 1 &&
+      (row.fecha_cierre === null || row.fecha_cierre >= new Date().toISOString().slice(0, 10));
+    return Promise.resolve({ empleo: mapRow(row), postulable });
   }
 }

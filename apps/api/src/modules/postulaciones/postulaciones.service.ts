@@ -59,15 +59,18 @@ export class PostulacionesService {
       );
     }
 
-    const empleo = await this.empleosRepository.findById(String(empleoId));
-    if (!empleo) {
+    const contexto = await this.empleosRepository.findForPostulacion(String(empleoId));
+    if (!contexto) {
       throw new AppError(404, "Oferta no encontrada");
+    }
+    if (!contexto.postulable) {
+      throw new AppError(422, "No se puede postular a ofertas cerradas");
     }
 
     const postulacion = this.repository.create(perfilId, empleoId);
     return {
       postulacion,
-      urlOferta: empleo.urlOferta,
+      urlOferta: contexto.empleo.urlOferta,
     };
   }
 }

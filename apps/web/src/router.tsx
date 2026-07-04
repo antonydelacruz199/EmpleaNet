@@ -20,6 +20,7 @@ import { PerfilInteresesPage } from "./modules/perfil/PerfilInteresesPage";
 import { PerfilOverviewPage } from "./modules/perfil/PerfilOverviewPage";
 import { PostulacionesPage } from "./modules/postulaciones/PostulacionesPage";
 import { RecomendacionesPage } from "./modules/recomendaciones/RecomendacionesPage";
+import { SeguimientoPage } from "./modules/seguimiento/SeguimientoPage";
 import { SoporteIncidenciasPage } from "./modules/soporte/SoporteIncidenciasPage";
 import { SoporteMotorPage } from "./modules/soporte/SoporteMotorPage";
 import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
               { path: "recomendados", element: <RecomendacionesPage /> },
               { path: "postulaciones", element: <PostulacionesPage /> },
               { path: "favoritos", element: <FavoritosPage /> },
+              { path: "seguimiento", element: <SeguimientoPage /> },
             ],
           },
           {

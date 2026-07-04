@@ -16,6 +16,7 @@ import {
   claseEstadoPostulacion,
   etiquetaEstadoPostulacion,
 } from "../postulaciones/utilidades";
+import { registrarVista } from "../seguimiento/api";
 import { fetchCoincidencia } from "../recomendaciones/api";
 import { claseNivel, etiquetaNivel } from "../recomendaciones/tipos";
 import type { CoincidenciaDetalle } from "../recomendaciones/tipos";
@@ -88,6 +89,7 @@ export function EmpleoDetallePage() {
           if (results[3]) {
             setCoincidencia(results[3] as CoincidenciaDetalle);
           }
+          void registrarVista(id).catch(() => undefined);
         }
       })
       .catch(() => {

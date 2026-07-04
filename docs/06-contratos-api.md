@@ -157,6 +157,19 @@ Listado de ofertas guardadas.
 ### DELETE /api/favoritos/:empleoId
 Quita favorito. Respuesta `204`.
 
+## Endpoints: módulo seguimiento (implementados)
+
+Requieren JWT. Rol: `estudiante` o `egresado`.
+
+### GET /api/seguimiento/resumen
+Contadores de postulaciones, activas, favoritos y vistas.
+
+### GET /api/seguimiento/vistas
+Historial de oportunidades consultadas en detalle.
+
+### POST /api/seguimiento/vistas
+Registra o actualiza vista `{ "empleoId": "1" }`. Respuesta `201`: `{ "vista": { ... } }`.
+
 ## Endpoints: módulo admin (implementados)
 
 Requieren JWT. Rol: `administrador`.

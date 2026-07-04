@@ -234,6 +234,9 @@ export function InicioPage() {
               <Link to="/favoritos" className="btn btn--secondary">
                 Mis favoritos
               </Link>
+              <Link to="/seguimiento" className="btn btn--secondary">
+                Seguimiento
+              </Link>
             </aside>
           </div>
 

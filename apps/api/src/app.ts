@@ -13,6 +13,7 @@ import { empleosRouter } from "./modules/empleos/empleos.routes.js";
 import { favoritosRouter } from "./modules/favoritos/favoritos.routes.js";
 import { fuentesRouter } from "./modules/fuentes/fuentes.routes.js";
 import { postulacionesRouter } from "./modules/postulaciones/postulaciones.routes.js";
+import { seguimientoRouter } from "./modules/seguimiento/seguimiento.routes.js";
 import { perfilRouter } from "./modules/perfil/perfil.routes.js";
 import { recomendacionesRouter } from "./modules/recomendaciones/recomendaciones.routes.js";
 
@@ -40,6 +41,7 @@ export function createApp(): Express {
   app.use("/api/recomendaciones", recomendacionesRouter);
   app.use("/api/postulaciones", postulacionesRouter);
   app.use("/api/favoritos", favoritosRouter);
+  app.use("/api/seguimiento", seguimientoRouter);
   app.use("/api/fuentes", fuentesRouter);
 
   app.use(notFound);
