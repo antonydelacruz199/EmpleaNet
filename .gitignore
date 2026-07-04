@@ -36,3 +36,4 @@ Thumbs.db
 
 # SQLite local
 database/*.db
+database/backups/

@@ -1,7 +1,10 @@
+import type { AuthUser } from "../../core/auth/types.js";
+import { AuditoriaRepository } from "../../core/auditoria/auditoria.repository.js";
 import { AppError } from "../../core/errors/AppError.js";
 import type {
   CreateEmpleoAdminBody,
   EmpleoAdmin,
+  EstrategicoResumen,
   ListEmpleosAdminResult,
   ReportesResumen,
   UpdateEmpleoActivoBody,
@@ -19,6 +22,7 @@ function parseId(raw: string): number {
 
 export class AdminService {
   private readonly repository = new AdminRepository();
+  private readonly auditoriaRepository = new AuditoriaRepository();
 
   listEmpleos(): ListEmpleosAdminResult {
     const empleos = this.repository.listEmpleos();
@@ -33,20 +37,49 @@ export class AdminService {
     return empleo;
   }
 
-  createEmpleo(data: CreateEmpleoAdminBody): EmpleoAdmin {
-    return this.repository.createManual(data);
+  createEmpleo(auth: AuthUser, data: CreateEmpleoAdminBody): EmpleoAdmin {
+    const empleo = this.repository.createManual(data);
+    this.auditoriaRepository.registrar({
+      usuarioId: auth.userId,
+      accion: "empleo_creado",
+      entidad: "empleo",
+      detalle: `${empleo.id}:${empleo.title}`,
+    });
+    return empleo;
   }
 
-  updateEmpleo(idRaw: string, data: UpdateEmpleoAdminBody): EmpleoAdmin {
-    return this.repository.updateEmpleo(parseId(idRaw), data);
+  updateEmpleo(auth: AuthUser, idRaw: string, data: UpdateEmpleoAdminBody): EmpleoAdmin {
+    const empleo = this.repository.updateEmpleo(parseId(idRaw), data);
+    this.auditoriaRepository.registrar({
+      usuarioId: auth.userId,
+      accion: "empleo_actualizado",
+      entidad: "empleo",
+      detalle: idRaw,
+    });
+    return empleo;
   }
 
-  setEmpleoActivo(idRaw: string, data: UpdateEmpleoActivoBody): EmpleoAdmin {
-    return this.repository.setActivo(parseId(idRaw), data.activo);
+  setEmpleoActivo(
+    auth: AuthUser,
+    idRaw: string,
+    data: UpdateEmpleoActivoBody,
+  ): EmpleoAdmin {
+    const empleo = this.repository.setActivo(parseId(idRaw), data.activo);
+    this.auditoriaRepository.registrar({
+      usuarioId: auth.userId,
+      accion: data.activo ? "empleo_reactivado" : "empleo_archivado",
+      entidad: "empleo",
+      detalle: idRaw,
+    });
+    return empleo;
   }
 
   getReportesResumen(): ReportesResumen {
     return this.repository.getReportesResumen();
+  }
+
+  getEstrategicoResumen(): EstrategicoResumen {
+    return this.repository.getEstrategicoResumen();
   }
 
   buildReportesCsv(resumen: ReportesResumen): string {

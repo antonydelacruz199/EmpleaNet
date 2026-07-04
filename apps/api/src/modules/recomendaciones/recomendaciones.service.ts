@@ -18,6 +18,14 @@ export class RecomendacionesService {
     this.recomendacionesRepository.replaceScores(perfilId, scores);
   }
 
+  async recalcularTodos(): Promise<number> {
+    const ids = this.recomendacionesRepository.listPerfilIds();
+    for (const id of ids) {
+      await this.recalcularParaPerfil(id);
+    }
+    return ids.length;
+  }
+
   async list(auth: AuthUser, query: RecomendacionesQuery) {
     if (!auth.perfilId) {
       throw new AppError(404, "Perfil no disponible para recomendaciones");

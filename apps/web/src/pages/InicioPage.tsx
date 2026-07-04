@@ -129,9 +129,12 @@ export function InicioPage() {
                 <Link to="/admin/ofertas" className="btn btn--primary">
                   Gestión de ofertas
                 </Link>
-                <Link to="/admin/reportes" className="btn btn--secondary">
-                  Reportes institucionales
-                </Link>
+              <Link to="/admin/reportes" className="btn btn--secondary">
+                Reportes institucionales
+              </Link>
+              <Link to="/admin/estrategico" className="btn btn--secondary">
+                Panel estratégico
+              </Link>
                 <Link to="/empleos" className="btn btn--secondary">
                   Ver marketplace
                 </Link>
@@ -141,15 +144,23 @@ export function InicioPage() {
         ) : (
           <section className="card detail-main">
             <h2 style={{ marginTop: 0, color: "var(--co-primary)" }}>
-              Panel de soporte
+              Panel de soporte técnico
             </h2>
             <p>
-              Desde aquí puedes consultar las oportunidades centralizadas. La
-              configuración del motor de recomendación se habilitará en la Fase 6.
+              Configura el motor de recomendación, registra incidencias y consulta la
+              auditoría del sistema.
             </p>
-            <Link to="/empleos" className="btn btn--primary">
-              Ver oportunidades
-            </Link>
+            <div className="empleo-card__actions">
+              <Link to="/soporte/motor" className="btn btn--primary">
+                Configuración del motor
+              </Link>
+              <Link to="/soporte/incidencias" className="btn btn--secondary">
+                Incidencias y auditoría
+              </Link>
+              <Link to="/empleos" className="btn btn--secondary">
+                Ver oportunidades
+              </Link>
+            </div>
           </section>
         )
       ) : (

@@ -7,6 +7,7 @@ import { errorHandler } from "./core/middlewares/errorHandler.js";
 import { notFound } from "./core/middlewares/notFound.js";
 import { setupSecurity } from "./core/security/setupSecurity.js";
 import { adminRouter } from "./modules/admin/admin.routes.js";
+import { soporteRouter } from "./modules/soporte/soporte.routes.js";
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { empleosRouter } from "./modules/empleos/empleos.routes.js";
 import { favoritosRouter } from "./modules/favoritos/favoritos.routes.js";
@@ -33,6 +34,7 @@ export function createApp(): Express {
   });
   app.use("/api/auth", authRouter);
   app.use("/api/admin", adminRouter);
+  app.use("/api/soporte", soporteRouter);
   app.use("/api/empleos", empleosRouter);
   app.use("/api/perfil", perfilRouter);
   app.use("/api/recomendaciones", recomendacionesRouter);

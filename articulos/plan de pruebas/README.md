@@ -12,8 +12,7 @@ El plan cubre la verificación de los módulos implementados según el roadmap (
 
 ## Estado de fases al momento del plan
 
-- **Fases 1–5 implementadas:** empleos, perfil, recomendaciones, auth, postulaciones, favoritos, administración y reportes
-- **Fase 6 pendiente:** soporte, panel estratégico y endurecimiento
+- **Fases 1–6 implementadas:** roadmap PROMPT 0 completo
 
 ## Casos sugeridos Fase 5 (admin / reportes)
 

@@ -57,7 +57,8 @@ Un punto único institucional que normaliza ofertas, las hace buscables y priori
 | Favoritos | Ofertas guardadas | ✅ Fase 4 |
 | Reportes | Indicadores institucionales + CSV | ✅ Fase 5 |
 | Administración | CRUD ofertas manuales | ✅ Fase 5 |
-| Soporte | Mantenimiento, config. motor | ❌ Fase 6 |
+| Soporte | Mantenimiento, config. motor, incidencias | ✅ Fase 6 |
+| Panel estratégico | Indicadores agregados para decisión | ✅ Fase 6 |
 | Integraciones | Worker Remotive → SQLite | ✅ Fase 1 |
 
 Detalle en [`MODULES.md`](MODULES.md).
@@ -66,12 +67,10 @@ Detalle en [`MODULES.md`](MODULES.md).
 
 Según `docs/02-alcance-funcional.md`:
 
-**Implementado (Fases 1–5):**
+**Implementado (Fases 1–6):**
 - Recopilación Remotive, empleos end-to-end, perfil, recomendaciones, auth, postulaciones, favoritos
 - Administración de ofertas manuales y reportes institucionales (O5)
-
-**Pendiente (Fase 6):**
-- Configuración del motor (S2), panel estratégico (E3), auditoría y endurecimiento
+- Configuración del motor (S2), panel estratégico (E3), auditoría e incidencias (Fase 6)
 
 ## Exclusiones explícitas
 

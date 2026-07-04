@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getDb } from "../../core/db/conexion.js";
+import { ensureFase6Schema } from "../../core/auditoria/auditoria.repository.js";
 import { AppError } from "../../core/errors/AppError.js";
 import type {
   CreateEmpleoAdminBody,
@@ -9,6 +10,7 @@ import type {
   OfertasPorFuente,
   ReportesResumen,
   UpdateEmpleoAdminBody,
+  EstrategicoResumen,
 } from "./admin.schema.js";
 
 type EmpleoAdminRow = {
@@ -217,6 +219,59 @@ export class AdminRepository {
       recomendacionesGeneradas,
       postulacionesRegistradas,
       favoritosGuardados,
+    };
+  }
+
+  getEstrategicoResumen(): EstrategicoResumen {
+    ensureAdminSchema();
+    ensureFase6Schema();
+    const base = this.getReportesResumen();
+    const db = getDb();
+
+    const usuariosPorRol = db
+      .prepare(
+        `SELECT rol AS etiqueta, COUNT(*) AS total FROM usuario WHERE activo = 1 GROUP BY rol ORDER BY total DESC`,
+      )
+      .all() as { etiqueta: string; total: number }[];
+
+    const postulacionesPorEstado = db
+      .prepare(
+        `SELECT estado AS etiqueta, COUNT(*) AS total FROM postulacion GROUP BY estado ORDER BY total DESC`,
+      )
+      .all() as { etiqueta: string; total: number }[];
+
+    const empleosPorModalidad = db
+      .prepare(
+        `SELECT COALESCE(modalidad, 'sin_definir') AS etiqueta, COUNT(*) AS total
+         FROM empleo WHERE activo = 1 GROUP BY modalidad ORDER BY total DESC`,
+      )
+      .all() as { etiqueta: string; total: number }[];
+
+    const promedioRow = db
+      .prepare("SELECT AVG(puntaje) AS avg FROM recomendacion")
+      .get() as { avg: number | null };
+
+    const incidenciasAbiertas = (
+      db
+        .prepare(
+          "SELECT COUNT(*) AS c FROM incidencia WHERE estado IN ('abierta', 'en_proceso')",
+        )
+        .get() as { c: number }
+    ).c;
+
+    const tasaPostulacionPorOferta =
+      base.ofertasPublicadas > 0
+        ? Math.round((base.postulacionesRegistradas / base.ofertasPublicadas) * 100) / 100
+        : 0;
+
+    return {
+      ...base,
+      usuariosPorRol,
+      postulacionesPorEstado,
+      empleosPorModalidad,
+      recomendacionPuntajePromedio: Math.round((promedioRow.avg ?? 0) * 10) / 10,
+      tasaPostulacionPorOferta,
+      incidenciasAbiertas,
     };
   }
 }

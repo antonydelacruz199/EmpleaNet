@@ -123,15 +123,15 @@ flowchart TD
 
 **Ruta:** `/admin/reportes`
 
-### 2.3 Panel estratégico (baja prioridad)
+### 2.3 Panel estratégico
 
 | Paso | Acción | Mockup | Bizagi | Estado |
 |------|--------|--------|--------|--------|
-| 1 | Analizar indicadores agregados | `panel_estrat_gico_*` | E3 t1-t2 | ❌ |
-| 2 | Identificar mejoras | panel estratégico | E3 | ❌ |
-| 3 | Priorizar cambios | panel estratégico | E3 t3-t4 | ❌ |
+| 1 | Analizar indicadores agregados | `panel_estrat_gico_*` | E3 t1-t2 | ✅ |
+| 2 | Identificar mejoras | panel estratégico | E3 | ✅ |
+| 3 | Priorizar cambios | panel estratégico | E3 t3-t4 | ✅ |
 
-**Ruta planificada:** `/admin/estrategico`
+**Ruta:** `/admin/estrategico`
 
 ---
 
@@ -141,23 +141,23 @@ flowchart TD
 
 | Paso | Acción | Mockup | Bizagi | Estado |
 |------|--------|--------|--------|--------|
-| 1 | Acceder config. motor | `configuraci_n_del_motor_*` | S2 t1-t2 | ❌ |
-| 2 | Ajustar ponderaciones (habilidades, modalidad, etc.) | config. motor (sliders/form) | S2 t2 | ❌ |
-| 3 | Ejecutar evaluación de desempeño | config. motor | S2 t3-t4 | ❌ |
-| 4 | Optimizar si no es óptimo | config. motor | S2 t5 | ❌ |
+| 1 | Acceder config. motor | `configuraci_n_del_motor_*` | S2 t1-t2 | ✅ |
+| 2 | Ajustar ponderaciones (habilidades, modalidad, etc.) | config. motor (sliders/form) | S2 t2 | ✅ |
+| 3 | Ejecutar evaluación de desempeño | config. motor | S2 t3-t4 | ✅ |
+| 4 | Optimizar si no es óptimo | config. motor | S2 t5 | ✅ |
 
-**Ruta planificada:** `/soporte/motor`
+**Ruta:** `/soporte/motor`
 
 ### 3.2 Mantenimiento e incidencias
 
 | Paso | Acción | Bizagi | Estado |
 |------|--------|--------|--------|
-| 1 | Registrar incidencia | S4 t1 | ❌ |
-| 2 | Diagnóstico técnico | S4 t2 | ❌ |
-| 3 | Corrección / actualización | S4 t3-t4 | ❌ |
-| 4 | Validación posterior | S4 t5 | ❌ |
+| 1 | Registrar incidencia | S4 t1 | ✅ |
+| 2 | Diagnóstico técnico | S4 t2 | ✅ |
+| 3 | Corrección / actualización | S4 t3-t4 | ✅ |
+| 4 | Validación posterior | S4 t5 | ✅ |
 
-**Ruta planificada:** `/soporte/incidencias` (sin mockup dedicado)
+**Ruta:** `/soporte/incidencias`
 
 ---
 

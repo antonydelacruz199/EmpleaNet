@@ -135,17 +135,25 @@ Ver detalle en [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md).
 
 ---
 
-## Fase 6 — Soporte, estrategia y endurecimiento *(siguiente)*
+## Fase 6 — Soporte, estrategia y endurecimiento ✅
 
 **Prioridad:** 🟢 Baja  
 **Bizagi:** E1–E3, S4 | **Mockups:** panel estratégico, config. motor
 
-- [ ] Pantalla soporte: parámetros del motor de recomendación
-- [ ] Panel estratégico: indicadores agregados (solo lectura)
-- [ ] Logs de auditoría básicos
-- [ ] Script de respaldo SQLite
-- [ ] Pruebas de humo / E2E en flujos críticos
-- [ ] Evaluación de segunda fuente externa (post-Remotive)
+- [x] Pantalla soporte: parámetros del motor de recomendación
+- [x] Panel estratégico: indicadores agregados (solo lectura)
+- [x] Logs de auditoría básicos
+- [x] Script de respaldo SQLite
+- [x] Pruebas de humo / E2E en flujos críticos
+- [x] Evaluación de segunda fuente externa (post-Remotive) — documento
+
+Ver [`FASE-6-SOPORTE-ESTRATEGIA.md`](FASE-6-SOPORTE-ESTRATEGIA.md).
+
+---
+
+## Roadmap completado
+
+Todas las fases F0–F6 del plan derivado del PROMPT 0 están cerradas.
 
 ---
 
@@ -178,6 +186,6 @@ Este documento **extiende** `docs/10-roadmap.md` con fases de auth, postulacione
 
 ## Próximo paso inmediato
 
-**Fase 6:** pantalla soporte del motor, panel estratégico, auditoría y endurecimiento.
+Roadmap F0–F6 cerrado. Mantenimiento: ejecutar `pnpm smoke`, respaldos periódicos (`pnpm backup:db`) y alinear plan de pruebas institucional.
 
 Ver también: [`IMPLEMENTATION_AUDIT.md`](IMPLEMENTATION_AUDIT.md) · [`MODULES.md`](MODULES.md) · [`UI_FLOW.md`](UI_FLOW.md)

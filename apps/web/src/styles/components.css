@@ -692,3 +692,20 @@
   min-height: 96px;
 }
 
+.motor-total {
+  margin: 0;
+  font-weight: 600;
+  color: var(--co-primary);
+}
+
+.motor-total--error {
+  color: #b45309;
+}
+
+.admin-form select {
+  padding: 8px 10px;
+  border: 1px solid var(--co-outline-variant);
+  border-radius: var(--co-radius-md);
+  font: inherit;
+}
+

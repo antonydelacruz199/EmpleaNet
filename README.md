@@ -63,9 +63,10 @@ articulos/            Estado del arte y plan de pruebas
 | Auth JWT y roles | ✅ Fase 3 |
 | Postulaciones y favoritos | ✅ Fase 4 |
 | Admin ofertas + reportes CSV | ✅ Fase 5 |
-| Soporte y panel estratégico | ❌ Fase 6 |
+| Soporte, auditoría y panel estratégico | ✅ Fase 6 |
+| **Roadmap F0–F6** | **✅ Completo** |
 
-Consulta [`docs/00-estado-actual.md`](docs/00-estado-actual.md), el roadmap en [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md) y el cierre de Fase 5 en [`docs/FASE-5-ADMIN-REPORTES.md`](docs/FASE-5-ADMIN-REPORTES.md).
+Consulta [`docs/00-estado-actual.md`](docs/00-estado-actual.md), [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md), [`docs/FASE-6-SOPORTE-ESTRATEGIA.md`](docs/FASE-6-SOPORTE-ESTRATEGIA.md).
 
 ### Usuarios demo
 
@@ -84,6 +85,7 @@ Contraseña para todos: `Continental2026`
 |-----------|-------------|
 | `docs/00-estado-actual.md` | Estado oficial del proyecto |
 | `docs/FASE-5-ADMIN-REPORTES.md` | Cierre Fase 5: admin y reportes |
+| `docs/FASE-6-SOPORTE-ESTRATEGIA.md` | Cierre Fase 6: soporte y estrategia |
 | `docs/DEVELOPMENT_ROADMAP.md` | Roadmap de implementación por fases |
 | `docs/MODULES.md` | Mapa de módulos del sistema |
 | `docs/06-contratos-api.md` | Contratos API |

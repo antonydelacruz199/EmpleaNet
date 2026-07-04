@@ -143,7 +143,7 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Gestión operativa de ofertas y supervisión del servicio |
 | **Actores** | Administrador |
-| **Estado** | ✅ Ofertas manuales (Fase 5) · ❌ Panel estratégico (Fase 6) |
+| **Estado** | ✅ Ofertas manuales y reportes (Fase 5) · ✅ Panel estratégico (Fase 6) |
 | **Bizagi** | O2 (registro manual), O5 (consulta indicadores), E2 (monitoreo) |
 | **Mockups** | `gesti_n_de_ofertas_*`, `dashboard_de_reportes_*`, `panel_estrat_gico_*` |
 | **Rutas actuales** | `/admin/ofertas`, `/admin/reportes` |
@@ -159,10 +159,10 @@ Mapa funcional de módulos con estado de implementación, referencias Bizagi y m
 |----------|-------|
 | **Propósito** | Mantenimiento técnico, configuración del motor, incidencias |
 | **Actores** | Soporte técnico |
-| **Estado** | ❌ Pendiente (Fase 6) |
+| **Estado** | ✅ Implementado (Fase 6) |
 | **Bizagi** | S2 (config. parámetros motor), S4 (incidencias, corrección, actualización) |
 | **Mockup** | `configuraci_n_del_motor_de_recomendaci_n_soporte_t_cnico/` |
-| **Rutas planificadas** | `/soporte/motor`, `/soporte/incidencias` |
+| **Rutas actuales** | `/soporte/motor`, `/soporte/incidencias` |
 
 ---
 

@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../core/auth/AuthContext";
-import { isAdminRole, isStudentRole } from "../core/auth/authApi";
+import { isAdminRole, isSoporteRole, isStudentRole } from "../core/auth/authApi";
 
 const navEstudiante = [
   { to: "/", label: "Dashboard", end: true },
@@ -15,6 +15,14 @@ const navAdmin = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/admin/ofertas", label: "Gestión ofertas" },
   { to: "/admin/reportes", label: "Reportes" },
+  { to: "/admin/estrategico", label: "Panel estratégico" },
+  { to: "/empleos", label: "Oportunidades" },
+];
+
+const navSoporte = [
+  { to: "/", label: "Dashboard", end: true },
+  { to: "/soporte/motor", label: "Motor recomendación" },
+  { to: "/soporte/incidencias", label: "Incidencias" },
   { to: "/empleos", label: "Oportunidades" },
 ];
 
@@ -40,7 +48,9 @@ export function LayoutPrincipal() {
       ? navEstudiante
       : isAdminRole(user.rol)
         ? navAdmin
-        : navInstitucional
+        : isSoporteRole(user.rol)
+          ? navSoporte
+          : navInstitucional
     : navInstitucional;
 
   return (

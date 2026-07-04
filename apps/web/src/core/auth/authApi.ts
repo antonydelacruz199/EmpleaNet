@@ -51,3 +51,7 @@ export function isStudentRole(rol: RolUsuario): boolean {
 export function isAdminRole(rol: RolUsuario): boolean {
   return rol === "administrador";
 }
+
+export function isSoporteRole(rol: RolUsuario): boolean {
+  return rol === "soporte";
+}

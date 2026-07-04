@@ -1,4 +1,5 @@
 import { signAccessToken } from "../../core/auth/jwt.js";
+import { AuditoriaRepository } from "../../core/auditoria/auditoria.repository.js";
 import type { AuthUser } from "../../core/auth/types.js";
 import { AppError } from "../../core/errors/AppError.js";
 import { RecomendacionesService } from "../recomendaciones/recomendaciones.service.js";
@@ -13,6 +14,7 @@ import { AuthRepository } from "./auth.repository.js";
 export class AuthService {
   private readonly authRepository = new AuthRepository();
   private readonly recomendacionesService = new RecomendacionesService();
+  private readonly auditoriaRepository = new AuditoriaRepository();
 
   private demoDefaults(email: string) {
     return (
@@ -56,6 +58,13 @@ export class AuthService {
       rol: usuario.rol,
       perfilId: perfil.id,
     };
+
+    this.auditoriaRepository.registrar({
+      usuarioId: usuario.id,
+      accion: "login_exitoso",
+      entidad: "usuario",
+      detalle: usuario.rol,
+    });
 
     return {
       token: signAccessToken(authUser),

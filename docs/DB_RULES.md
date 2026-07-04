@@ -256,6 +256,7 @@ database/migrations/
   002_add_usuario.sql      ← Fase 3
   004_postulacion_favorito.sql
   005_admin_empleo_activo.sql   ← Fase 5
+  006_fase6_soporte_estrategia.sql ← Fase 6
 ```
 
 Cada migración: idempotente donde sea posible; numerada secuencialmente.

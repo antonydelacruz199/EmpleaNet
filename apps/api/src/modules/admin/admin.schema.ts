@@ -58,3 +58,17 @@ export type ReportesResumen = {
   postulacionesRegistradas: number;
   favoritosGuardados: number;
 };
+
+export type ConteoPorEtiqueta = {
+  etiqueta: string;
+  total: number;
+};
+
+export type EstrategicoResumen = ReportesResumen & {
+  usuariosPorRol: ConteoPorEtiqueta[];
+  postulacionesPorEstado: ConteoPorEtiqueta[];
+  empleosPorModalidad: ConteoPorEtiqueta[];
+  recomendacionPuntajePromedio: number;
+  tasaPostulacionPorOferta: number;
+  incidenciasAbiertas: number;
+};

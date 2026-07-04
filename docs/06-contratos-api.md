@@ -166,3 +166,35 @@ Indicadores: usuarios activos, ofertas, recomendaciones, postulaciones, favorito
 
 ### GET /api/admin/reportes/export.csv
 Descarga CSV con los mismos indicadores.
+
+### GET /api/admin/estrategico/resumen
+Indicadores agregados para panel estratégico (E3).
+
+## Endpoints: módulo soporte (implementados)
+
+Requieren JWT. Rol: `soporte`.
+
+### GET /api/soporte/motor/config
+Ponderaciones actuales del motor (suma = 100).
+
+### PUT /api/soporte/motor/config
+Actualiza ponderaciones. Recalcular recomendaciones aparte.
+
+### POST /api/soporte/motor/recalcular
+Recalcula recomendaciones para todos los perfiles.
+
+### GET /api/soporte/incidencias
+Listado de incidencias técnicas.
+
+### POST /api/soporte/incidencias
+```json
+{ "titulo": "Error en login", "descripcion": "..." }
+```
+
+### PATCH /api/soporte/incidencias/:id/estado
+```json
+{ "estado": "en_proceso" }
+```
+
+### GET /api/soporte/auditoria
+Últimos registros de auditoría (`?limit=50`).

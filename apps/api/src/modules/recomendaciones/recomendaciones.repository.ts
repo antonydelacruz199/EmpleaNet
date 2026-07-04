@@ -4,6 +4,7 @@ import { EmpleosRepository } from "../empleos/empleos.repository.js";
 import type { Perfil } from "../perfil/perfil.schema.js";
 import { PerfilRepository } from "../perfil/perfil.repository.js";
 import { calcularRecomendacion } from "./recomendacion.motor.js";
+import { MotorConfigRepository } from "../soporte/motor-config.repository.js";
 import type { RecomendacionItem } from "./recomendaciones.schema.js";
 
 type RecomendacionRow = {
@@ -39,6 +40,7 @@ function mapEmpleo(row: RecomendacionRow): Empleo {
 export class RecomendacionesRepository {
   private readonly empleosRepository = new EmpleosRepository();
   private readonly perfilRepository = new PerfilRepository();
+  private readonly motorConfigRepository = new MotorConfigRepository();
 
   getPerfilById(perfilId: number): Perfil | null {
     return this.perfilRepository.findById(perfilId);
@@ -99,6 +101,7 @@ export class RecomendacionesRepository {
     perfil: Perfil,
     empleos: Empleo[],
   ): { empleoId: number; puntaje: number; motivo: string }[] {
+    const pesos = this.motorConfigRepository.getPesos();
     return empleos.map((empleo) => {
       const resultado = calcularRecomendacion(
         { skills: perfil.skills, location: perfil.location },
@@ -109,6 +112,7 @@ export class RecomendacionesRepository {
           ubicacion: empleo.location,
           fechaPublicacion: empleo.fechaPublicacion,
         },
+        pesos,
       );
       return {
         empleoId: Number(empleo.id),
@@ -116,5 +120,12 @@ export class RecomendacionesRepository {
         motivo: resultado.motivo,
       };
     });
+  }
+
+  listPerfilIds(): number[] {
+    const rows = getDb()
+      .prepare("SELECT id FROM perfil ORDER BY id")
+      .all() as { id: number }[];
+    return rows.map((r) => r.id);
   }
 }

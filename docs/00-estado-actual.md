@@ -1,33 +1,30 @@
 # Estado actual del proyecto - Continental Oportunidades
 
 ## Estado general
-Fases cerradas: 2.3 (Remotive), Fase 1 (empleos UI), Fase 2 (perfil + recomendaciones), Fase 3 (autenticación y roles), Fase 4 (postulaciones y favoritos), **Fase 5 (administración y reportes)**.
+**Roadmap PROMPT 0 completado (Fases 0–6).** Incluye empleos end-to-end, perfil, recomendaciones, auth, postulaciones, favoritos, administración, reportes, soporte técnico y panel estratégico.
 
 ## Implementado actualmente
 - Autenticación JWT con roles: estudiante, egresado, administrador, soporte
-- Tabla `usuario` + vínculo `perfil.usuario_id`
-- Endpoints `POST /api/auth/login`, `GET /api/auth/me`, `POST /api/auth/logout`
-- Protección API: `perfil` y `recomendaciones` requieren token y rol estudiantil
-- UI login institucional, rutas protegidas, cierre de sesión
-- Postulaciones y favoritos (proceso O4)
-- **Administración:** CRUD ofertas manuales (fuente Institucional), archivado lógico `empleo.activo`
-- **Reportes:** indicadores institucionales y exportación CSV (O5)
-- Endpoints `GET/POST/PUT/PATCH /api/admin/empleos`, `GET /api/admin/reportes/*`
-- UI admin: `/admin/ofertas`, `/admin/reportes` (rol administrador)
-- Usuarios demo (contraseña `Continental2026`):
-  - estudiante@continental.edu.pe
-  - egresado@continental.edu.pe
-  - admin@continental.edu.pe
-  - soporte@continental.edu.pe
-- Módulos empleos, fuentes, worker Remotive, marketplace y detalle UI
+- Módulos empleos, perfil, recomendaciones, postulaciones, favoritos, admin y soporte
+- Worker Remotive → SQLite compartida con API
+- **Fase 5:** CRUD ofertas manuales, reportes CSV, archivado `empleo.activo`
+- **Fase 6:** motor configurable, auditoría, incidencias, panel estratégico, scripts backup/smoke
+- UI: marketplace, detalle, dashboard estudiante, paneles admin/soporte
+- Documentación de cierre por fase en `docs/FASE-5-*.md`, `docs/FASE-6-*.md`
+
+### Usuarios demo (contraseña `Continental2026`)
+| Correo | Rol |
+|--------|-----|
+| estudiante@continental.edu.pe | estudiante |
+| egresado@continental.edu.pe | egresado |
+| admin@continental.edu.pe | administrador |
+| soporte@continental.edu.pe | soporte |
 
 ## Restricción técnica actual
-- Sin SSO institucional (fase futura)
-- Panel estratégico y config. motor pendientes (Fase 6)
+- Sin SSO institucional
+- Segunda fuente externa evaluada documentalmente; Remotive sigue siendo la única fuente activa
 
-## Documentación de cierre
-- [`FASE-5-ADMIN-REPORTES.md`](FASE-5-ADMIN-REPORTES.md) — alcance, API, verificación y exclusiones
-
-## Siguiente paso: Fase 6
-- Configuración del motor de recomendación (soporte)
-- Panel estratégico, auditoría y respaldos SQLite
+## Documentación
+- [`FASE-6-SOPORTE-ESTRATEGIA.md`](FASE-6-SOPORTE-ESTRATEGIA.md)
+- [`EVALUACION-SEGUNDA-FUENTE.md`](EVALUACION-SEGUNDA-FUENTE.md)
+- [`DEVELOPMENT_ROADMAP.md`](DEVELOPMENT_ROADMAP.md)

@@ -29,8 +29,12 @@ export class AdminController {
 
   createEmpleo(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.auth) {
+        res.status(401).json({ error: "Autenticación requerida" });
+        return;
+      }
       const body = createEmpleoAdminBodySchema.parse(req.body);
-      const empleo = this.service.createEmpleo(body);
+      const empleo = this.service.createEmpleo(req.auth, body);
       res.status(201).json(empleo);
     } catch (err) {
       next(err);
@@ -39,8 +43,12 @@ export class AdminController {
 
   updateEmpleo(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.auth) {
+        res.status(401).json({ error: "Autenticación requerida" });
+        return;
+      }
       const body = updateEmpleoAdminBodySchema.parse(req.body);
-      const empleo = this.service.updateEmpleo(req.params.id, body);
+      const empleo = this.service.updateEmpleo(req.auth, req.params.id, body);
       res.json(empleo);
     } catch (err) {
       next(err);
@@ -49,8 +57,12 @@ export class AdminController {
 
   setEmpleoActivo(req: Request, res: Response, next: NextFunction) {
     try {
+      if (!req.auth) {
+        res.status(401).json({ error: "Autenticación requerida" });
+        return;
+      }
       const body = updateEmpleoActivoBodySchema.parse(req.body);
-      const empleo = this.service.setEmpleoActivo(req.params.id, body);
+      const empleo = this.service.setEmpleoActivo(req.auth, req.params.id, body);
       res.json(empleo);
     } catch (err) {
       next(err);
@@ -60,6 +72,15 @@ export class AdminController {
   reportesResumen(req: Request, res: Response, next: NextFunction) {
     try {
       const resumen = this.service.getReportesResumen();
+      res.json(resumen);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  estrategicoResumen(req: Request, res: Response, next: NextFunction) {
+    try {
+      const resumen = this.service.getEstrategicoResumen();
       res.json(resumen);
     } catch (err) {
       next(err);

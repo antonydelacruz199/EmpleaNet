@@ -3,6 +3,7 @@ import { httpJson } from "../../core/http/clienteHttp";
 import type {
   CreateEmpleoAdminInput,
   EmpleoAdmin,
+  EstrategicoResumen,
   ListEmpleosAdminResult,
   ReportesResumen,
   UpdateEmpleoAdminInput,
@@ -43,6 +44,10 @@ export async function setAdminEmpleoActivo(
 
 export async function fetchReportesResumen(): Promise<ReportesResumen> {
   return httpJson<ReportesResumen>("/admin/reportes/resumen");
+}
+
+export async function fetchEstrategicoResumen(): Promise<EstrategicoResumen> {
+  return httpJson<EstrategicoResumen>("/admin/estrategico/resumen");
 }
 
 export async function downloadReportesCsv(): Promise<void> {

@@ -34,6 +34,10 @@ adminRouter.get("/reportes/resumen", (req, res, next) => {
   controller.reportesResumen(req, res, next);
 });
 
+adminRouter.get("/estrategico/resumen", (req, res, next) => {
+  controller.estrategicoResumen(req, res, next);
+});
+
 adminRouter.get("/reportes/export.csv", (req, res, next) => {
   controller.reportesExportCsv(req, res, next);
 });
