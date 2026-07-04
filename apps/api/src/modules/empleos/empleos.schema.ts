@@ -84,6 +84,7 @@ export const empleoSchema = z.object({
   urlOferta: z.string().optional(),
   salario: z.string().optional(),
   fechaPublicacion: z.string().optional(),
+  fuenteNombre: z.string().optional(),
 });
 
 export type Empleo = z.infer<typeof empleoSchema>;

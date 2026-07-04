@@ -4,7 +4,7 @@
 El recolector obtiene ofertas laborales desde una fuente externa, normaliza y persiste ofertas en el modelo de EmpleaNet (SQLite) para que queden accesibles vía `GET /api/empleos`.
 
 ## Estado actual
-El worker en `workers/recolector` tiene estructura mínima; no hay aún **integración productiva** con una API externa.
+El worker en `workers/recolector` está integrado con **Remotive API**. Flujo: extraer → normalizar → deduplicar por `url_oferta` → persistir en SQLite compartida con la API. Ejecución: `python -m recolector` desde `workers/recolector`.
 
 ## Fase 2.3 — fuente única: Remotive API
 - La **primera y única** integración real de esta fase es **Remotive API**.

@@ -1,38 +1,41 @@
-# Estado actual del proyecto - EmpleaNet
+# Estado actual del proyecto - Continental Oportunidades
 
 ## Estado general
-El proyecto ya tiene arquitectura base, documentación canónica, frontend y backend operativos, worker base y persistencia real del módulo `empleos` en SQLite.
+El proyecto tiene arquitectura base, documentación canónica, frontend y backend operativos, worker con integración Remotive y persistencia real del módulo `empleos` en SQLite. **Fase 2.3 cerrada:** recolección Remotive operativa. **Fase 1 UI cerrada:** marketplace y detalle de oportunidades con design system institucional.
 
 ## Implementado actualmente
 - estructura monorepo definida
-- apps/web operativo
+- apps/web operativo con layout institucional (sidebar + header)
 - apps/api operativo
-- worker base creado en `workers/recolector`
+- worker Remotive en `workers/recolector` (extraer → normalizar → deduplicar → SQLite)
 - endpoint `GET /api/health` operativo
-- endpoint `GET /api/empleos` operativo
+- endpoint `GET /api/empleos` operativo (filtros SQL, paginación, nombre de fuente)
 - endpoint `GET /api/empleos/:id` operativo
-- persistencia real con SQLite en el módulo `empleos`
-- filtros SQL en `/api/empleos`
-- paginación básica en `/api/empleos`
+- endpoint `GET /api/fuentes` operativo (lectura desde SQLite)
+- persistencia real con SQLite en módulos `empleos` y `fuentes`
+- UI marketplace `/empleos` con filtros (`q`, ubicación, modalidad, fuente) y paginación
+- UI detalle `/empleos/:id` con enlace a oferta original
 - `database/schema.sql` y `database/seeds.sql` operativos
+- deduplicación worker por `url_oferta` + fuente Remotive
 
 ## Restricción técnica actual
-- El cierre **visual** del módulo `empleos` en frontend aún no está hecho.
-- **Fase 2.3 (siguiente):** primera recolección real; fuente **única** = **Remotive API**; sin scraping; sin otras fuentes; sin tocar `perfil`, `recomendaciones` ni `auth`.
+- Módulos `perfil` y `recomendaciones` siguen como stub (Fase 2 del roadmap).
+- Sin autenticación ni roles (Fase 3).
+- Postulaciones, favoritos, admin y reportes pendientes (Fases 4–5).
 
-## Reglas de acotación de la Fase 2.3
-- una sola fuente: **Remotive API** (ninguna otra; ningún conector múltiple aún)
-- **no** scraping HTML
-- no modificar módulos `perfil` ni `recomendaciones`, ni añadir `auth`
-- prioridad: que el worker persista ofertas legibles luego vía `GET /api/empleos`
+## Reglas de acotación vigentes
+- fuente externa integrada: **Remotive API** (primera fuente real)
+- no scraping HTML en esta etapa
+- no modificar lógica de `perfil` ni `recomendaciones` más allá de stubs existentes
+- no añadir `auth` hasta Fase 3
 
-## Condiciones de uso a respetar en la integración inicial
-La integración con Remotive debe:
+## Condiciones de uso Remotive
 - conservar el enlace original de la oferta
-- registrar a Remotive como fuente
-- considerar que la API pública muestra empleos con retraso de 24 horas
-- no reutilizar esta integración para redistribuir empleos a terceros no permitidos por sus términos
+- registrar Remotive como fuente en `fuente_empleo`
+- asumir retraso ~24 h de la API pública
+- no redistribuir ofertas fuera de términos Remotive
 
-## Siguiente paso: Fase 2.3
-- Worker: Remotive → normalizar → deduplicar → SQLite (misma base que `apps/api`)
-- Verificación: empleos visibles en `GET /api/empleos` y detalle
+## Siguiente paso: Fase 2
+- Perfil real contra SQLite (`GET/PUT /api/perfil/me`)
+- Motor de recomendación por reglas (`docs/08-motor-recomendacion.md`)
+- UI dashboard estudiante con recomendados

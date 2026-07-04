@@ -6,22 +6,17 @@
 - `GET /api/health`
 - Módulo `empleos`: SQLite, filtros SQL, paginación, `modalidad`
 
-## Fase 2.3 (siguiente) — Recolección real, una sola fuente
-**Objetivo:** primera integración productiva del worker con **Remotive API** (única fuente inicial).
+## Fase 2.3 — Recolección real, una sola fuente ✅
+**Objetivo cumplido:** integración del worker con **Remotive API** (única fuente inicial).
 
 **Incluye:** extraer → normalizar → deduplicar → persistir en SQLite compartida con la API.
 
-**Excluye explícitamente:**
-- scraping HTML
-- cualquier fuente que no sea Remotive
-- múltiples fuentes o conectores en esta fase
-- cambios en `perfil`, `recomendaciones` y `auth`
+**Verificación:** ofertas visibles en `GET /api/empleos`, detalle y UI `/empleos`.
 
-**Verificación:** los empleos aparecen en `GET /api/empleos` y en detalle.
+## Fase 1 UI — Empleos end-to-end ✅
+Marketplace con filtros, paginación, detalle y design system institucional.
 
-## Fases posteriores (orden orientativo)
-- Cierre visual del módulo `empleos` (UI)
-- Módulo `perfil`
+## Fase 2 (siguiente) — Perfil y recomendaciones
 - Módulo `recomendaciones`
 - Fuentes adicionales (tras Remotive)
 - Endurecimiento y pruebas

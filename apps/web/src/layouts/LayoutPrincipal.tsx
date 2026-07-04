@@ -1,30 +1,45 @@
 import { NavLink, Outlet } from "react-router-dom";
 
+const navItems = [
+  { to: "/", label: "Inicio", end: true },
+  { to: "/empleos", label: "Oportunidades" },
+  { to: "/recomendados", label: "Recomendados" },
+  { to: "/perfil", label: "Mi perfil" },
+];
+
 export function LayoutPrincipal() {
   return (
-    <>
-      <header
-        style={{
-          display: "flex",
-          gap: "1rem",
-          padding: "0.75rem 1rem",
-          background: "#fff",
-          borderBottom: "1px solid #e2e8f0",
-        }}
-      >
-        <strong>EmpleaNet</strong>
-        <nav style={{ display: "flex", gap: "0.75rem" }}>
-          <NavLink to="/" end>
-            Inicio
-          </NavLink>
-          <NavLink to="/empleos">Empleos</NavLink>
-          <NavLink to="/perfil">Perfil</NavLink>
-          <NavLink to="/recomendados">Recomendados</NavLink>
-        </nav>
+    <div className="app-shell">
+      <header className="app-header">
+        <span className="app-header__brand">Continental Oportunidades</span>
       </header>
-      <main style={{ padding: "1rem", maxWidth: "960px", margin: "0 auto" }}>
-        <Outlet />
+
+      <aside className="app-sidebar">
+        <div className="app-sidebar__institution">
+          <h2>Gestión Institucional</h2>
+          <p>Universidad Continental</p>
+        </div>
+        <nav aria-label="Navegación principal">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                `app-nav-link${isActive ? " app-nav-link--active" : ""}`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+      </aside>
+
+      <main className="app-main">
+        <div className="app-main__inner">
+          <Outlet />
+        </div>
       </main>
-    </>
+    </div>
   );
 }

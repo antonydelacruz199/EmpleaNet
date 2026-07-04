@@ -40,6 +40,19 @@ def resolve_database_path() -> Path:
     return (REPO_ROOT / rest).resolve()
 
 
+def ensure_database_schema(conn: sqlite3.Connection) -> None:
+    """Crea tablas base si la API aún no inicializó la base (schema.sql en repo)."""
+    row = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='empleo'",
+    ).fetchone()
+    if row:
+        return
+    schema_path = REPO_ROOT / "database" / "schema.sql"
+    if not schema_path.is_file():
+        raise FileNotFoundError(f"No se encontró el esquema: {schema_path}")
+    conn.executescript(schema_path.read_text(encoding="utf-8"))
+
+
 def ensure_empleo_modalidad_column(conn: sqlite3.Connection) -> None:
     """Alineado con apps/api: bases antiguas sin `modalidad` en `empleo`."""
     cur = conn.execute("PRAGMA table_info(empleo)")
@@ -130,6 +143,7 @@ def guardar_ofertas(
     conn = sqlite3.connect(str(path))
     try:
         conn.execute("PRAGMA foreign_keys = ON")
+        ensure_database_schema(conn)
         ensure_empleo_modalidad_column(conn)
         fuente_id = asegurar_fuente_remotive(conn)
         existentes = urls_existentes(conn, fuente_id)

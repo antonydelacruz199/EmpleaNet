@@ -9,6 +9,7 @@ export type Empleo = {
   urlOferta?: string;
   salario?: string;
   fechaPublicacion?: string;
+  fuenteNombre?: string;
 };
 
 export type EmpleoDetalle = Empleo;

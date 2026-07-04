@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { LayoutPrincipal } from "./layouts/LayoutPrincipal";
+import { EmpleoDetallePage } from "./modules/empleos/EmpleoDetallePage";
 import { EmpleosPage } from "./modules/empleos/EmpleosPage";
 import { PerfilPage } from "./modules/perfil/PerfilPage";
 import { RecomendacionesPage } from "./modules/recomendaciones/RecomendacionesPage";
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <InicioPage /> },
       { path: "empleos", element: <EmpleosPage /> },
+      { path: "empleos/:id", element: <EmpleoDetallePage /> },
       { path: "perfil", element: <PerfilPage /> },
       { path: "recomendados", element: <RecomendacionesPage /> },
     ],

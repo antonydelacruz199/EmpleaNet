@@ -11,9 +11,10 @@ type EmpleoRow = {
   url_oferta: string | null;
   salario: string | null;
   fecha_publicacion: string | null;
+  fuente_nombre: string | null;
 };
 
-const selectColumns = `e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion`;
+const selectColumns = `e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre`;
 
 const fromJoin = "FROM empleo e LEFT JOIN fuente_empleo f ON f.id = e.fuente_id";
 
@@ -28,6 +29,7 @@ function mapRow(row: EmpleoRow): Empleo {
     urlOferta: row.url_oferta ?? undefined,
     salario: row.salario ?? undefined,
     fechaPublicacion: row.fecha_publicacion ?? undefined,
+    fuenteNombre: row.fuente_nombre ?? undefined,
   };
 }
 
@@ -70,8 +72,9 @@ function buildFiltroClauses(
 }
 
 const sqlByIdSolo = `
-  SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion
+  SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre
   FROM empleo e
+  LEFT JOIN fuente_empleo f ON f.id = e.fuente_id
   WHERE e.id = ?
 `;
 
@@ -98,9 +101,7 @@ export class EmpleosRepository {
   }
 
   findAll(): Promise<Empleo[]> {
-    const sql = `SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion
-      FROM empleo e
-      ORDER BY e.id`;
+    const sql = `SELECT ${selectColumns} ${fromJoin} ORDER BY e.id`;
     const rows = getDb().prepare(sql).all() as EmpleoRow[];
     return Promise.resolve(rows.map(mapRow));
   }

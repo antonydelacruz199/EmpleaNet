@@ -1,12 +1,29 @@
+import { getDb } from "../../core/db/conexion.js";
 import type { Fuente } from "./fuentes.schema.js";
 
-const fuentesSeed: Fuente[] = [
-  { id: "f1", name: "RemotoJobs", enabled: true, type: "api" },
-  { id: "f2", name: "TechFeed", enabled: true, type: "rss" },
-];
+type FuenteRow = {
+  id: number;
+  nombre: string;
+  tipo: string;
+  activa: number;
+};
+
+function mapRow(row: FuenteRow): Fuente {
+  return {
+    id: String(row.id),
+    name: row.nombre,
+    enabled: row.activa === 1,
+    type: row.tipo as Fuente["type"],
+  };
+}
 
 export class FuentesRepository {
   listAll(): Promise<Fuente[]> {
-    return Promise.resolve(structuredClone(fuentesSeed));
+    const rows = getDb()
+      .prepare(
+        "SELECT id, nombre, tipo, activa FROM fuente_empleo ORDER BY nombre",
+      )
+      .all() as FuenteRow[];
+    return Promise.resolve(rows.map(mapRow));
   }
 }

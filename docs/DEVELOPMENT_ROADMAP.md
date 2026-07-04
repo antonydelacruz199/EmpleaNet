@@ -47,16 +47,16 @@ gantt
 **Bizagi:** O2, S5 | **Mockups:** marketplace, detalle de oportunidad
 
 ### Backend / worker
-- [ ] Ejecutar worker Remotive y verificar datos en `database/empleanet.db`
-- [ ] Confirmar deduplicación por `url_oferta`
-- [ ] Registrar fuente "Remotive" en `fuente_empleo`
-- [ ] Actualizar `docs/00-estado-actual.md` al cerrar 2.3
+- [x] Ejecutar worker Remotive y verificar datos en `database/empleanet.db`
+- [x] Confirmar deduplicación por `url_oferta`
+- [x] Registrar fuente "Remotive" en `fuente_empleo`
+- [x] Actualizar `docs/00-estado-actual.md` al cerrar 2.3
 
 ### Frontend
-- [ ] Aplicar design system (`mockups/continental_oportunidades_design_system/DESIGN.md`)
-- [ ] Pantalla marketplace: listado + filtros (`q`, ubicación, modalidad, fuente) + paginación
-- [ ] Pantalla detalle `/empleos/:id` con enlace a oferta original
-- [ ] Layout sidebar + header según mockups
+- [x] Aplicar design system (`mockups/continental_oportunidades_design_system/DESIGN.md`)
+- [x] Pantalla marketplace: listado + filtros (`q`, ubicación, modalidad, fuente) + paginación
+- [x] Pantalla detalle `/empleos/:id` con enlace a oferta original
+- [x] Layout sidebar + header según mockups
 
 ### Verificación
 ```bash
