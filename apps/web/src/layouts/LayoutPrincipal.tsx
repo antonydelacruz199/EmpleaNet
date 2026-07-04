@@ -14,6 +14,8 @@ const navEstudiante = [
 const navAdmin = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/admin/ofertas", label: "Gestión ofertas" },
+  { to: "/admin/empresas", label: "Empresas" },
+  { to: "/admin/fuentes", label: "Fuentes" },
   { to: "/admin/reportes", label: "Reportes" },
   { to: "/admin/usuarios", label: "Usuarios" },
   { to: "/admin/estrategico", label: "Panel estratégico" },

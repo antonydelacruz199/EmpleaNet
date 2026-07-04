@@ -7,6 +7,11 @@ export type FiltrosListadoEmpleos = {
   location?: string;
   modalidad?: string;
   fuente?: string;
+  categoria?: string;
+  tipo?: string;
+  empresa?: string;
+  fechaDesde?: string;
+  fechaHasta?: string;
   page?: number;
   limit?: number;
 };
@@ -25,6 +30,11 @@ export async function fetchEmpleos(
       location: params.location,
       modalidad: params.modalidad,
       fuente: params.fuente,
+      categoria: params.categoria,
+      tipo: params.tipo,
+      empresa: params.empresa,
+      fechaDesde: params.fechaDesde,
+      fechaHasta: params.fechaHasta,
       page: paramNumero(params.page),
       limit: paramNumero(params.limit),
     },

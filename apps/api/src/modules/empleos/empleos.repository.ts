@@ -1,4 +1,5 @@
 import { getDb } from "../../core/db/conexion.js";
+import { SQL_OFERTA_PUBLICA, syncOfertasVencidas } from "../ofertas/ensureOffersSchema.js";
 import type { Empleo, ListEmpleosQuery, ListEmpleosResult } from "./empleos.schema.js";
 
 type EmpleoRow = {
@@ -7,14 +8,19 @@ type EmpleoRow = {
   empresa: string;
   ubicacion: string | null;
   modalidad: string | null;
+  categoria: string | null;
+  tipo_oportunidad: string | null;
   descripcion: string | null;
   url_oferta: string | null;
   salario: string | null;
   fecha_publicacion: string | null;
+  habilidades_requeridas: string | null;
   fuente_nombre: string | null;
 };
 
-const selectColumns = `e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre`;
+const selectColumns = `e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.categoria,
+  e.tipo_oportunidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion,
+  e.habilidades_requeridas, f.nombre AS fuente_nombre`;
 
 const fromJoin = "FROM empleo e LEFT JOIN fuente_empleo f ON f.id = e.fuente_id";
 
@@ -25,6 +31,8 @@ function mapRow(row: EmpleoRow): Empleo {
     company: row.empresa,
     location: row.ubicacion ?? undefined,
     modalidad: row.modalidad ?? undefined,
+    categoria: row.categoria ?? undefined,
+    tipoOportunidad: row.tipo_oportunidad ?? undefined,
     descripcion: row.descripcion ?? undefined,
     urlOferta: row.url_oferta ?? undefined,
     salario: row.salario ?? undefined,
@@ -67,16 +75,40 @@ function buildFiltroClauses(
       }
     }
   }
-  conds.push(`(e.activo = 1)`);
+  if (f.categoria) {
+    conds.push(`(e.categoria = ?)`);
+    values.push(f.categoria);
+  }
+  if (f.tipo) {
+    conds.push(`(e.tipo_oportunidad = ?)`);
+    values.push(f.tipo);
+  }
+  if (f.empresa) {
+    const t = `%${f.empresa.toLowerCase()}%`;
+    conds.push(`LOWER(e.empresa) LIKE ?`);
+    values.push(t);
+  }
+  if (f.fechaDesde) {
+    conds.push(`(e.fecha_publicacion IS NOT NULL AND e.fecha_publicacion >= ?)`);
+    values.push(f.fechaDesde);
+  }
+  if (f.fechaHasta) {
+    conds.push(`(e.fecha_publicacion IS NOT NULL AND e.fecha_publicacion <= ?)`);
+    values.push(f.fechaHasta);
+  }
+  syncOfertasVencidas();
+  conds.push(`(${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")})`);
   const whereSql = conds.length > 0 ? `WHERE ${conds.join(" AND ")}` : "";
   return { whereSql, values };
 }
 
-const sqlByIdSolo = `
-  SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion, f.nombre AS fuente_nombre
+const sqlByIdPublico = `
+  SELECT e.id, e.titulo, e.empresa, e.ubicacion, e.modalidad, e.categoria,
+    e.tipo_oportunidad, e.descripcion, e.url_oferta, e.salario, e.fecha_publicacion,
+    e.habilidades_requeridas, f.nombre AS fuente_nombre
   FROM empleo e
   LEFT JOIN fuente_empleo f ON f.id = e.fuente_id
-  WHERE e.id = ?
+  WHERE e.id = ? AND (${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")})
 `;
 
 export class EmpleosRepository {
@@ -102,7 +134,8 @@ export class EmpleosRepository {
   }
 
   findAll(): Promise<Empleo[]> {
-    const sql = `SELECT ${selectColumns} ${fromJoin} WHERE e.activo = 1 ORDER BY e.id`;
+    syncOfertasVencidas();
+    const sql = `SELECT ${selectColumns} ${fromJoin} WHERE ${SQL_OFERTA_PUBLICA.replace(/\n/g, " ")} ORDER BY e.id`;
     const rows = getDb().prepare(sql).all() as EmpleoRow[];
     return Promise.resolve(rows.map(mapRow));
   }
@@ -112,7 +145,8 @@ export class EmpleosRepository {
     if (!Number.isInteger(numericId) || numericId < 1) {
       return Promise.resolve(null);
     }
-    const row = getDb().prepare(sqlByIdSolo).get(numericId) as EmpleoRow | undefined;
+    syncOfertasVencidas();
+    const row = getDb().prepare(sqlByIdPublico).get(numericId) as EmpleoRow | undefined;
     return Promise.resolve(row === undefined ? null : mapRow(row));
   }
 }
